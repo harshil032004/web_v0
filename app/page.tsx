@@ -189,6 +189,36 @@ export default function Home() {
                 As our fleet will be all electric, the cars will release no emissions in their lifespan. As a result, cities will eventually be able to breathe easy without worrying about toxic fumes from exhaust pipes.
               </p>
             </div>
+                        
+            <div className="text-center text-white">
+              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="h-10 w-10" />
+              </div>
+              <h4 className="text-xl font-bold mb-4">PROFESSIONAL DRIVERS</h4>
+              <p className="text-blue-100 leading-relaxed">
+                Our drivers don't have any facility to cancel your ride. Only customers can cancel their trips. Ride hassle-free with us.
+              </p>
+            </div>
+            
+            <div className="text-center text-white">
+              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="h-10 w-10" />
+              </div>
+              <h4 className="text-xl font-bold mb-4">COMFORT</h4>
+              <p className="text-blue-100 leading-relaxed">
+                Due to the electric nature of our vehicles, the comfort factor too has been upped as the cars operate without gears. This eliminates the jerks and discomfort felt while commuting in a manual car with an inexperienced driver.
+              </p>
+            </div>
+            
+            <div className="text-center text-white">
+              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <Shield className="h-10 w-10" />
+              </div>
+              <h4 className="text-xl font-bold mb-4">SAFETY</h4>
+              <p className="text-blue-100 leading-relaxed">
+                Our service has placed top priority on passenger safety by conducting comprehensive background checks and installing state of the art safety features within the cars.
+              </p>
+            </div>
           </div>
         </div>
       </section>
