@@ -36,25 +36,25 @@ export default function Home() {
       <ScrollToTop />
 
       {/* Hero Section with Slideshow */}
-      <section className="relative py-20 overflow-hidden min-h-[600px]">
+      <section className="relative py-10 sm:py-16 lg:py-20 overflow-hidden min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
         <HeroSlideshow />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl">
-            <div className="text-left">
-              <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
-                <Award className="h-4 w-4 mr-2" />
+            <div className="text-center sm:text-left">
+              <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 India's Most Trusted Cab Service
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
                 Book Your
                 <span className="text-yellow-400 block">Perfect Ride</span>
               </h1>
-              <p className="text-xl text-white/90 mb-8 max-w-xl drop-shadow">
+              <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-xl drop-shadow">
                 Experience premium taxi services with professional drivers, clean vehicles, and transparent pricing. Available 24/7 across India.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <div className="relative">
                   <Button 
                     size="lg" 
@@ -99,17 +99,17 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="flex items-center space-x-6 text-sm text-white/80">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0 text-xs sm:text-sm text-white/80">
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   GPS Enabled
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   24/7 Support
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   Safe & Secure
                 </div>
               </div>
@@ -121,33 +121,32 @@ export default function Home() {
       </section>
 
       {/* Electric Cab Service Section */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-green-600 mb-4">India's All Electric Cab Service</h2>
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 mb-4">India's All Electric Cab Service</h2>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+            <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
                 Evera Cabs is soon to become India's biggest network of all-electric cabs that you can book using our App. Not only have we created an all-electric cab service to help reduce carbon emissions being released by diesel/petrol – run cabs on a daily basis, we are also addressing safety and comfort issues through a best in class commuting experience powered by our fleet of all-electric cars, professionally certified and full-time drivers combined!
               </p>
               
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
                 Unlike other taxi services, our app does not allow drivers to cancel your ride. This is only one small aspect of an all-electric cab service that will help India commute in a safe & comfortable manner.
               </p>
             </div>
             
-            <div className="flex justify-center">
-              <div className="w-96 h-64 bg-gradient-to-br from-blue-100 to-green-100 rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <Image src="/02Charging-Station-2.jpg" alt="Electric Cab" width={350} height={250} className="w-96 h-64 bg-gradient-to-br from-blue-100 to-green-100 rounded-lg flex items-center justify-center" />
-                  {/* 
-                  <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <Car className="h-12 w-12 text-green-600" />
-                  </div> */}
-                  {/* <p className="text-gray-600 font-medium">Electric Vehicle</p> */}
-                </div>
+            <div className="flex justify-center order-1 lg:order-2">
+              <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg aspect-[4/3] bg-gradient-to-br from-blue-100 to-green-100 rounded-lg overflow-hidden">
+                <Image 
+                  src="/02Charging-Station-2.jpg" 
+                  alt="Electric Cab" 
+                  width={400} 
+                  height={300} 
+                  className="w-full h-full object-cover" 
+                />
               </div>
             </div>
           </div>
@@ -155,71 +154,41 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-green-600">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-green-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">More Than Just An</h2>
-            <h3 className="text-3xl font-bold text-white">All Electric Cab Service</h3>
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-4">More Than Just An</h2>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">All Electric Cab Service</h3>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <CreditCard className="h-10 w-10" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CreditCard className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">NO SURGE CHARGE</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SURGE CHARGE</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 No amount of traffic or demand will bring about a change in the cost of the journey. As a result, customers can book cabs without worrying about absurd prices.
               </p>
             </div>
             
             <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <X className="h-10 w-10" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <X className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">NO SERVICE DENIALS</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SERVICE DENIALS</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 Our driver are trained professional who are on duty if on the app. Only customers have the ability to cancel their trip.
               </p>
             </div>
             
-            <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Leaf className="h-10 w-10" />
+            <div className="text-center text-white sm:col-span-2 lg:col-span-1">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <Leaf className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">NO EMISSIONS</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO EMISSIONS</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 As our fleet will be all electric, the cars will release no emissions in their lifespan. As a result, cities will eventually be able to breathe easy without worrying about toxic fumes from exhaust pipes.
-              </p>
-            </div>
-            
-            <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-10 w-10" />
-              </div>
-              <h4 className="text-xl font-bold mb-4">PROFESSIONAL DRIVERS</h4>
-              <p className="text-blue-100 leading-relaxed">
-                Our drivers don't have any facility to cancel your ride. Only customers can cancel their trips. Ride hassle-free with us.
-              </p>
-            </div>
-            
-            <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="h-10 w-10" />
-              </div>
-              <h4 className="text-xl font-bold mb-4">COMFORT</h4>
-              <p className="text-blue-100 leading-relaxed">
-                Due to the electric nature of our vehicles, the comfort factor too has been upped as the cars operate without gears. This eliminates the jerks and discomfort felt while commuting in a manual car with an inexperienced driver.
-              </p>
-            </div>
-            
-            <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="h-10 w-10" />
-              </div>
-              <h4 className="text-xl font-bold mb-4">SAFETY</h4>
-              <p className="text-blue-100 leading-relaxed">
-                Our service has placed top priority on passenger safety by conducting comprehensive background checks and installing state of the art safety features within the cars.
               </p>
             </div>
           </div>

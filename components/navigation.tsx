@@ -127,6 +127,7 @@ export function Navigation() {
                 <MapPin className="h-4 w-4 mr-2" />
                 Track Ride
               </Link>
+              <Link href="/driver" className="px-2 py-2 font-medium text-white">Work with Us</Link>
 
               <div className="px-2 pt-4 space-y-3">
                 <div className="space-y-2">
@@ -139,7 +140,7 @@ export function Navigation() {
                     Android App
                   </Link>
                   <Link 
-                    href="https://qrcodes.pro/2g0L5e" 
+                    href="https://apps.apple.com/in/app/evera/id1625582988" 
                     target="_blank"
                     className="w-full border border-white bg-white text-[#48A66F] px-4 py-2 rounded flex items-center justify-center"
                   >
@@ -149,8 +150,10 @@ export function Navigation() {
                 </div>
 
                 <Button className="w-full bg-[#335185] hover:bg-[#2A426E]">
+                  <Link href="/book" className="flex items-center">
                   <Car className="h-4 w-4 mr-2" />
                   Book Ride
+                  </Link>
                 </Button>
               </div>
             </nav>
