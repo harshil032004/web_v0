@@ -537,9 +537,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-gray-400">
-                <li className="flex items-center"><Phone className="h-4 w-4 mr-2" /> +91 98765 43210</li>
-                <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> info@everacabs.com</li>
-                <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> Pan India Service</li>
+                <li className="flex items-center"><Phone className="h-4 w-4 mr-2" /> 01149540005/06</li>
+                <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> support@everacabs.com</li>
+                <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> Service in Delhi-NCR</li>
                 <li className="flex items-center"><Headphones className="h-4 w-4 mr-2" /> 24/7 Support</li>
               </ul>
             </div>
