@@ -27,8 +27,12 @@ export function HeroSlideshow() {
           key={index}
           className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
             index === currentSlide ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ backgroundImage: `url(${slide})` }}
+          } sm:bg-cover`}
+          style={{ 
+            backgroundImage: `url(${slide})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center'
+          }}
         />
       ))}
       <div className="absolute inset-0 bg-black/40"></div>

@@ -36,11 +36,11 @@ export default function Home() {
       <ScrollToTop />
 
       {/* Hero Section with Slideshow */}
-      <section className="relative py-10 sm:py-16 lg:py-20 overflow-hidden min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+      <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden min-h-[100vh] sm:min-h-[600px] lg:min-h-[700px] flex items-center">
         <HeroSlideshow />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="max-w-4xl mx-auto sm:mx-0">
             <div className="text-center sm:text-left">
               <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
                 <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
@@ -50,15 +50,15 @@ export default function Home() {
                 Book Your
                 <span className="text-yellow-400 block">Perfect Ride</span>
               </h1>
-              <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-xl drop-shadow">
+              <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-xl mx-auto sm:mx-0 drop-shadow">
                 Experience premium taxi services with professional drivers, clean vehicles, and transparent pricing. Available 24/7 across India.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-                <div className="relative">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center sm:justify-start">
+                <div className="relative w-full sm:w-auto">
                   <Button 
                     size="lg" 
-                    className="bg-blue-600 hover:bg-blue-700 px-8 shadow-lg"
+                    className="bg-blue-600 hover:bg-blue-700 px-8 shadow-lg w-full sm:w-auto"
                     onClick={(e) => {
                       e.stopPropagation();
                       setIsAppDropdownOpen(!isAppDropdownOpen);
@@ -69,7 +69,7 @@ export default function Home() {
                   </Button>
                   
                   {isAppDropdownOpen && (
-                    <div className="absolute top-full mt-2 left-0 bg-white rounded-lg shadow-lg border min-w-48 z-50">
+                    <div className="absolute top-full mt-2 left-0 right-0 sm:left-0 sm:right-auto bg-white rounded-lg shadow-lg border min-w-[200px] z-50">
                       <Link 
                         href="https://qrcodes.pro/2g0L5e" 
                         target="_blank"
@@ -91,7 +91,7 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg" asChild>
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg w-full sm:w-auto" asChild>
                   <Link href="/book">
                     <Car className="h-5 w-5 mr-2" />
                     Book Ride
@@ -99,23 +99,21 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0 text-xs sm:text-sm text-white/80">
-                <div className="flex items-center">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0 text-xs sm:text-sm text-white/80 justify-center sm:justify-start">
+                <div className="flex items-center justify-center sm:justify-start">
                   <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   GPS Enabled
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center justify-center sm:justify-start">
                   <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   24/7 Support
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center justify-center sm:justify-start">
                   <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
                   Safe & Secure
                 </div>
               </div>
             </div>
-            
-
           </div>
         </div>
       </section>
