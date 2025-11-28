@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation";
 import { ServiceCard } from "@/components/service-card";
 import { Button } from "@/components/ui/button";
-import { Car, Users, MapPin, Plane, Clock, Shield, Star, CreditCard, Phone, CheckCircle, Award, Briefcase, Heart, Zap } from "lucide-react";
+import { Car, Users, MapPin, Clock, Shield, Star, CreditCard, Award, Briefcase, Heart, Zap } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesPage() {

@@ -17,8 +17,11 @@ export default function Home() {
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
 
   useEffect(() => {
-    const handleClickOutside = () => {
-      setIsAppDropdownOpen(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('[data-dropdown]')) {
+        setIsAppDropdownOpen(false);
+      }
     };
 
     if (isAppDropdownOpen) {
@@ -55,7 +58,7 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center sm:justify-start">
-                <div className="relative w-full sm:w-auto">
+                <div className="relative w-full sm:w-auto" data-dropdown>
                   <Button 
                     size="lg" 
                     className="bg-blue-600 hover:bg-blue-700 px-8 shadow-lg w-full sm:w-auto"
@@ -191,31 +194,31 @@ export default function Home() {
             </div>
                         
             <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-10 w-10" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <Users className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">PROFESSIONAL DRIVERS</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">PROFESSIONAL DRIVERS</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 Our drivers don't have any facility to cancel your ride. Only customers can cancel their trips. Ride hassle-free with us.
               </p>
             </div>
             
             <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="h-10 w-10" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">COMFORT</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">COMFORT</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 Due to the electric nature of our vehicles, the comfort factor too has been upped as the cars operate without gears. This eliminates the jerks and discomfort felt while commuting in a manual car with an inexperienced driver.
               </p>
             </div>
             
             <div className="text-center text-white">
-              <div className="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="h-10 w-10" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h4 className="text-xl font-bold mb-4">SAFETY</h4>
-              <p className="text-blue-100 leading-relaxed">
+              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">SAFETY</h4>
+              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 Our service has placed top priority on passenger safety by conducting comprehensive background checks and installing state of the art safety features within the cars.
               </p>
             </div>
@@ -480,7 +483,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8" asChild>
-                  <Link href="https://qrcodes.pro/2g0L5e" target="_blank" className="flex items-center">
+                  <Link href="https://apps.apple.com/in/app/evera/id1625582988" target="_blank" className="flex items-center">
                     <Smartphone className="h-5 w-5 mr-2" />
                     Download for iOS
                   </Link>

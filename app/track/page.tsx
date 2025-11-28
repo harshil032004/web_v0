@@ -6,13 +6,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MapPin, Search, Clock, Car, Phone, Award } from "lucide-react";
 
+type RideData = {
+  driver: string;
+  vehicle: string;
+  phone: string;
+  location: string;
+  status: string;
+  eta: string;
+};
+
 export default function TrackRide() {
   const [rideId, setRideId] = useState("");
   const [isTracking, setIsTracking] = useState(false);
   const [showRideStatus, setShowRideStatus] = useState(false);
-  const [rideData, setRideData] = useState(null);
+  const [rideData, setRideData] = useState<RideData | null>(null);
 
-  const testRides: { [key: string]: any } = {
+  const testRides: { [key: string]: RideData } = {
     "EVR123456": {
       driver: "Rajesh Kumar",
       vehicle: "Tata Nexon EV - KA 01 AB 1234",

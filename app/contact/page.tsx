@@ -4,17 +4,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Headphones, Users, Shield, Award, Send } from "lucide-react";
+import { MapPin, Clock, Headphones, Users, Shield, Award, Send } from "lucide-react";
+
+const HERO_PATTERN = "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')";
 
 export default function Contact() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Form submission logic would go here
+    alert('Thank you for your message! We will get back to you within 2 hours.');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
-          <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
+          <div className="w-full h-full bg-repeat" style={{backgroundImage: HERO_PATTERN}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -31,51 +38,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Quick Contact Options */}
-      {/* <section className="py-12 sm:py-16 relative">
-        <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
-              <MessageCircle className="h-4 w-4 mr-2" />
-              Multiple Ways to Reach Us
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Choose Your Preferred Method</h2>
-            <p className="text-lg text-gray-600">We're always ready to assist you</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <Phone className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Call Us</h3>
-              <p className="text-2xl font-bold text-blue-600 mb-1">01149540005/06</p>
-              <p className="text-sm text-gray-500">24/7 Available</p>
-            </Card>
-
-            <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <Mail className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Email</h3>
-              <p className="text-lg font-semibold text-purple-600 mb-1">support@everacabs.com</p>
-              <p className="text-sm text-gray-500">Response in 2 hours</p>
-            </Card>
-
-            <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <Headphones className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Leave Your Message</h3>
-              <p className="text-lg font-semibold text-orange-600 mb-1"></p>
-              <p className="text-sm text-gray-500">Instant Support</p>
-            </Card>
-          </div>
-        </div>
-      </section> */}
-
       {/* Main Contact Section */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +47,7 @@ export default function Contact() {
               <div>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Contact Information</h2>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Our customer support team is available 24/7 to assist you with bookings, queries, and any support you need. We're committed to providing you with the best service possible.
+                  Our customer support team is available 24/7 to assist you with bookings, queries, and any support you need. We&apos;re committed to providing you with the best service possible.
                 </p>
               </div>
 
@@ -146,7 +108,7 @@ export default function Contact() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
                 <p className="text-gray-600 mb-6">Fill out the form and we'll get back to you within 2 hours.</p>
                 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName" className="text-sm font-medium text-gray-700 mb-2 block">First Name *</Label>
@@ -207,7 +169,7 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section */}      
       <section className="py-16 sm:py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.1'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         

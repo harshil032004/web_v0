@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { MapPin, Calendar, Phone, Plane, Car as CarIcon, Navigation } from "lucide-react";
+import { MapPin, Phone, Plane, Car as CarIcon, Navigation } from "lucide-react";
 
 export function BookingForm() {
   const [activeTab, setActiveTab] = useState('airport');
@@ -13,21 +13,14 @@ export function BookingForm() {
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
 
-  const airportTerminals = {
-    'Delhi': ['Terminal 1', 'Terminal 2', 'Terminal 3'],
-    'Gurgaon': ['Delhi Airport T1', 'Delhi Airport T2', 'Delhi Airport T3'],
-    'Noida': ['Delhi Airport T1', 'Delhi Airport T2', 'Delhi Airport T3']
-  };
-
   const reverseGeocode = async (lat: number, lng: number) => {
     try {
       // Using a free geocoding service (you can replace with Google Maps API)
       const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`);
       const data = await response.json();
       return data.display_name || data.locality || `${data.city}, ${data.countryName}` || 'Address not found';
-    } catch (error) {
-      console.error('Geocoding error:', error);
-      return 'Address not available';
+    } catch {
+      return 'Unable to get address';
     }
   };
 
@@ -41,8 +34,7 @@ export function BookingForm() {
           setCurrentLocation(address);
           setIsGettingLocation(false);
         },
-        (error) => {
-          console.error('Error getting location:', error);
+        () => {
           setCurrentLocation('Location access denied');
           setIsGettingLocation(false);
         }

@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Car, Users, Luggage, Star, Shield, CheckCircle, Phone, Award, Zap, Leaf } from "lucide-react";
+import { Car, Users, Luggage, Star, Shield, CheckCircle, Award, Zap, Leaf } from "lucide-react";
 import Link from "next/link";
 
 export default function FleetPage() {
