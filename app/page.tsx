@@ -275,7 +275,7 @@ export default function Home() {
               <div className="mb-4">
                 <div className="h-16 w-16 mx-auto flex items-center justify-center">
                   <svg className="h-16 w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" />
+                    <path d="M16.5 3c.28 0 .5.22.5.5V6h2.5c.28 0 .5.22.5.5v14c0 .28-.22.5-.5.5s-.5-.22-.5-.5V18h-2v2.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-17c0-.28.22-.5.5-.5zM17 7v10h2V7h-2zM5 3c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4h10v-4H7c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h7c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-4H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4zm2 3l-3 5h2v3l3-5H7V6z" />
                   </svg>
                 </div>
               </div>
