@@ -13,7 +13,8 @@ export default function FleetPage() {
       luggage: "3 Bags",
       features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
       gradient: "from-green-400 to-green-600",
-      icon: "🚙"
+      icon: "🚙",
+      price: "$45/day"
     },
     {
       name: "Electric SUV",
@@ -22,7 +23,8 @@ export default function FleetPage() {
       luggage: "4 Bags",
       features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
       gradient: "from-purple-400 to-purple-600",
-      icon: "🚘"
+      icon: "🚘",
+      price: "$65/day"
     },
   ];
 
