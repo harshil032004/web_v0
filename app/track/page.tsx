@@ -39,7 +39,7 @@ export default function TrackRide() {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRideId(e.target.value);
     setShowRideStatus(false);
     setRideData(null);
