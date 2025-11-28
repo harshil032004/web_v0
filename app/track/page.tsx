@@ -12,7 +12,7 @@ export default function TrackRide() {
   const [showRideStatus, setShowRideStatus] = useState(false);
   const [rideData, setRideData] = useState(null);
 
-  const testRides = {
+  const testRides: { [key: string]: any } = {
     "EVR123456": {
       driver: "Rajesh Kumar",
       vehicle: "Tata Nexon EV - KA 01 AB 1234",
