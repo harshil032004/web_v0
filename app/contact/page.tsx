@@ -8,12 +8,11 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, Headphones, Users, Shield, A
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700"></div>
+
+      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
@@ -33,7 +32,7 @@ export default function Contact() {
       </section>
 
       {/* Quick Contact Options */}
-      <section className="py-12 sm:py-16 relative">
+      {/* <section className="py-12 sm:py-16 relative">
         <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -46,23 +45,14 @@ export default function Contact() {
             <p className="text-lg text-gray-600">We're always ready to assist you</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                 <Phone className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Call Us</h3>
-              <p className="text-2xl font-bold text-blue-600 mb-1">+91 98765 43210</p>
+              <p className="text-2xl font-bold text-blue-600 mb-1">01149540005/06</p>
               <p className="text-sm text-gray-500">24/7 Available</p>
-            </Card>
-
-            <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <MessageCircle className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">WhatsApp</h3>
-              <p className="text-lg font-semibold text-green-600 mb-1">+91 98765 43210</p>
-              <p className="text-sm text-gray-500">Quick Support</p>
             </Card>
 
             <Card className="text-center p-6 hover:shadow-2xl transition-all cursor-pointer bg-white/80 backdrop-blur-sm group">
@@ -70,7 +60,7 @@ export default function Contact() {
                 <Mail className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-lg font-semibold mb-2">Email</h3>
-              <p className="text-lg font-semibold text-purple-600 mb-1">info@everacabs.com</p>
+              <p className="text-lg font-semibold text-purple-600 mb-1">support@everacabs.com</p>
               <p className="text-sm text-gray-500">Response in 2 hours</p>
             </Card>
 
@@ -78,13 +68,13 @@ export default function Contact() {
               <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                 <Headphones className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Live Chat</h3>
-              <p className="text-lg font-semibold text-orange-600 mb-1">Chat Now</p>
+              <h3 className="text-lg font-semibold mb-2">Leave Your Message</h3>
+              <p className="text-lg font-semibold text-orange-600 mb-1"></p>
               <p className="text-sm text-gray-500">Instant Support</p>
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Main Contact Section */}
       <section className="py-12 sm:py-16 bg-white">
@@ -106,9 +96,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">Head Office</h3>
-                    <p className="text-gray-600">Evera Cabs Headquarters</p>
-                    <p className="text-gray-600">123 Business District, Bandra Kurla Complex</p>
-                    <p className="text-gray-600">Mumbai, Maharashtra 400051</p>
+                    <p className="text-gray-600">Eprakriti E-Mobility</p>
+                    <p className="text-gray-600">3rd Floor, DLF Tower A, 308</p>
+                    <p className="text-gray-600">Jasola Vihar, New Delhi, Delhi, 110025</p>
                   </div>
                 </div>
 
@@ -142,7 +132,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">Emergency Support</h3>
-                    <p className="text-gray-600">📧 emergency@everacabs.com</p>
+                    <p className="text-gray-600">📧 support@everacabs.com</p>
                     <p className="text-gray-600">📞 +91 98765 43212</p>
                     <p className="text-gray-600">🚨 24/7 Emergency assistance</p>
                   </div>
@@ -236,7 +226,7 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-6 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-shadow">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">How do I book a cab?</h3>
-              <p className="text-gray-600 leading-relaxed">You can book through our website, mobile app, or by calling +91 98765 43210. It's quick and easy!</p>
+              <p className="text-gray-600 leading-relaxed">You can book through our website or mobile app. It's quick and easy!</p>
             </Card>
             
             <Card className="p-6 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-shadow">

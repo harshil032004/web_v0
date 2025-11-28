@@ -7,54 +7,32 @@ import Link from "next/link";
 export default function FleetPage() {
   const vehicles = [
     {
-      name: "Electric Hatchback",
-      category: "Economy",
-      seats: "4 Seats",
-      luggage: "2 Bags",
-      features: ["Climate Control", "GPS Navigation", "Music System", "Phone Charger"],
-      price: "₹12/km",
-      gradient: "from-blue-400 to-blue-600",
-      icon: "🚗"
-    },
-    {
       name: "Electric Sedan",
       category: "Comfort",
       seats: "4 Seats",
       luggage: "3 Bags",
-      features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging", "Wi-Fi"],
-      price: "₹15/km",
+      features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
       gradient: "from-green-400 to-green-600",
       icon: "🚙"
     },
     {
       name: "Electric SUV",
       category: "Premium",
-      seats: "6-7 Seats",
+      seats: "4 Seats",
       luggage: "4 Bags",
-      features: ["Dual AC", "GPS Navigation", "Leather Seats", "Entertainment System", "Ambient Lighting"],
-      price: "₹20/km",
+      features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
       gradient: "from-purple-400 to-purple-600",
       icon: "🚘"
     },
-    {
-      name: "Luxury Electric",
-      category: "Luxury",
-      seats: "4 Seats",
-      luggage: "3 Bags",
-      features: ["Premium Climate Control", "Advanced GPS", "Luxury Interior", "Complimentary Water", "Premium Audio"],
-      price: "₹25/km",
-      gradient: "from-yellow-400 to-orange-600",
-      icon: "🚗"
-    }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700"></div>
+      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
@@ -151,10 +129,12 @@ export default function FleetPage() {
                           ))}
                         </div>
                       </div>
-
-                      <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
-                        Book {vehicle.name}
-                      </Button>
+                      
+                      <Link href="/book" className="block">
+                        <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
+                          Book {vehicle.name}
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
@@ -241,10 +221,6 @@ export default function FleetPage() {
                 <Car className="h-5 w-5 mr-2" />
                 Book Now
               </Link>
-            </Button>
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 shadow-lg">
-              <Phone className="h-5 w-5 mr-2" />
-              Call: +91 98765 43210
             </Button>
           </div>
         </div>

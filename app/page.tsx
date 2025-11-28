@@ -322,26 +322,35 @@ export default function Home() {
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">From quick city rides to long-distance travel, we offer comprehensive transportation solutions tailored to your needs.</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ServiceCard
               icon={Car}
-              title="Local City Rides"
-              description="Quick and convenient rides within the city for daily commutes, shopping, and errands with instant booking."
-              buttonText="Book City Ride"
-              color="text-blue-600"
-            />
-            <ServiceCard
-              icon={Users}
               title="Airport Transfer"
               description="Reliable airport pickups and drops with flight tracking, meet & greet service, and luggage assistance."
               buttonText="Book Airport Transfer"
+              color="text-blue-600"
+              href="/book"
+            />
+            <ServiceCard
+              icon={Users}
+              title="Rentals"
+              description="Flexible vehicle rental solutions for corporate needs with various vehicle types and dedicated support."
+              buttonText="Book Rentals"
               color="text-green-600"
+              href="/book"
+            />
+            <ServiceCard
+              icon={Shield}
+              title="City Rides"
+              description="Safe and comfortable city rides with professional drivers, real-time tracking, and transparent pricing."
+              buttonText="Coming Soon"
+              color="text-red-600"
             />
             <ServiceCard
               icon={MapPin}
-              title="Outstation Travel"
+              title="Intercity Rides"
               description="Comfortable long-distance travel with experienced drivers, flexible packages, and multiple vehicle options."
-              buttonText="Book Outstation"
+              buttonText="Coming Soon"
               color="text-purple-600"
             />
           </div>
@@ -401,7 +410,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -409,7 +418,7 @@ export default function Home() {
               <Star className="h-4 w-4 mr-2" />
               Customer Reviews
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-600 to-red-600 bg-clip-text text-transparent mb-6">What Our Customers Say</h2>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-900 to-blue-500 bg-clip-text text-transparent mb-6">What Our Customers Say</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.</p>
           </div>
           
@@ -527,9 +536,9 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="/careers" className="hover:text-white transition-colors">Careers</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
               </ul>
             </div>
@@ -537,7 +546,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-gray-400">
-                <li className="flex items-center"><Phone className="h-4 w-4 mr-2" /> 01149540005/06</li>
+                <li className="flex items-center"><Phone className="h-4 w-4 mr-2" /> 01149540005</li>
                 <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> support@everacabs.com</li>
                 <li className="flex items-center"><MapPin className="h-4 w-4 mr-2" /> Service in Delhi-NCR</li>
                 <li className="flex items-center"><Headphones className="h-4 w-4 mr-2" /> 24/7 Support</li>

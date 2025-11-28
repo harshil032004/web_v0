@@ -6,12 +6,12 @@ import Link from "next/link";
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700"></div>
+      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
@@ -31,43 +31,47 @@ export default function ServicesPage() {
       </section>
 
       {/* Main Services */}
-      <section className="py-16 sm:py-20 relative">
-        <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        
+      <section id="services" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.3\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12 lg:mb-16">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
               <Car className="h-4 w-4 mr-2" />
-              Choose Your Service
+              Premium Services
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-              Ride Options for Every Need
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-              Whether it's a quick trip or a long journey, we have the perfect solution for you
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Our Premium Services</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">From quick city rides to long-distance travel, we offer comprehensive transportation solutions tailored to your needs.</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ServiceCard
               icon={Car}
-              title="Local City Rides"
-              description="Quick and convenient rides within the city for daily commutes, shopping, and errands with instant booking and real-time tracking."
-              buttonText="Book City Ride"
+              title="Airport Transfer"
+              description="Reliable airport pickups and drops with flight tracking, meet & greet service, and luggage assistance."
+              buttonText="Book Airport Transfer"
               color="text-blue-600"
+              href="/book"
             />
             <ServiceCard
-              icon={Plane}
-              title="Airport Transfer"
-              description="Reliable airport pickups and drops with flight tracking, meet & greet service, and luggage assistance for stress-free travel."
-              buttonText="Book Airport Transfer"
+              icon={Users}
+              title="Rentals"
+              description="Flexible vehicle rental solutions for corporate needs with various vehicle types and dedicated support."
+              buttonText="Book Rentals"
               color="text-green-600"
+              href="/book"
+            />
+            <ServiceCard
+              icon={Shield}
+              title="City Rides"
+              description="Safe and comfortable city rides with professional drivers, real-time tracking, and transparent pricing."
+              buttonText="Coming Soon"
+              color="text-red-600"
             />
             <ServiceCard
               icon={MapPin}
-              title="Outstation Travel"
-              description="Comfortable long-distance travel with experienced drivers, flexible packages, and multiple vehicle options for intercity journeys."
-              buttonText="Book Outstation"
+              title="Intercity Rides"
+              description="Comfortable long-distance travel with experienced drivers, flexible packages, and multiple vehicle options."
+              buttonText="Coming Soon"
               color="text-purple-600"
             />
           </div>
@@ -90,7 +94,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center text-white bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
               <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Briefcase className="h-8 w-8 sm:h-10 sm:w-10" />
@@ -105,9 +109,9 @@ export default function ServicesPage() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3">Wedding & Events</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-3">Events</h3>
               <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
-                Special occasion transportation with decorated vehicles and premium service
+                Special occasion transportation with premium service
               </p>
             </div>
             
@@ -118,16 +122,6 @@ export default function ServicesPage() {
               <h3 className="text-lg sm:text-xl font-bold mb-3">Hourly Rental</h3>
               <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
                 Flexible hourly packages for multiple stops, waiting time, and extended trips
-              </p>
-            </div>
-
-            <div className="text-center text-white bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3">Medical Emergency</h3>
-              <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
-                Priority booking for medical emergencies and hospital visits with trained drivers
               </p>
             </div>
           </div>
@@ -159,9 +153,9 @@ export default function ServicesPage() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Zap className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Instant Booking</h3>
+              <h3 className="text-xl font-bold mb-3">No Service Denials</h3>
               <p className="text-gray-600 leading-relaxed">
-                Quick and easy booking process with instant confirmation and driver assignment
+                Our driver are trained professional who are on duty if on the app. Only customers have the ability to cancel their trip
               </p>
             </div>
 
@@ -197,10 +191,6 @@ export default function ServicesPage() {
                 <Car className="h-5 w-5 mr-2" />
                 Book Your Ride Now
               </Link>
-            </Button>
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 shadow-lg">
-              <Phone className="h-5 w-5 mr-2" />
-              Call: +91 98765 43210
             </Button>
           </div>
         </div>

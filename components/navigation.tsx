@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Car, Menu, X, Download, MapPin } from "lucide-react";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -37,23 +39,27 @@ export function Navigation() {
               alt="Evera" 
               width={120} 
               height={40} 
-              className="h-10" 
+              className="h-10 w-auto filter invert brightness-0 contrast-100" 
+              style={{ imageRendering: 'crisp-edges' }}
+              priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-8">
-            <Link href="/" className="font-medium text-white">Home</Link>
-            <Link href="/services" className="font-medium text-white">Services</Link>
-            <Link href="/fleet" className="font-medium text-white">Fleet</Link>
-            <Link href="/about" className="font-medium text-white">About</Link>
-            <Link href="/contact" className="font-medium text-white">Contact</Link>
+          <nav className="hidden lg:flex space-x-6">
+            <Link href="/" className={`font-medium ${pathname === '/' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Home</Link>
+            <Link href="/services" className={`font-medium ${pathname === '/services' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Services</Link>
+            <Link href="/corporate" className={`font-medium ${pathname === '/corporate' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Corporate</Link>
+            <Link href="/fleet" className={`font-medium ${pathname === '/fleet' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Fleet</Link>
+            <Link href="/about" className={`font-medium ${pathname === '/about' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>About</Link>
+            <Link href="/team" className={`font-medium ${pathname === '/team' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Team</Link>
+            <Link href="/careers" className={`font-medium ${pathname === '/careers' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Careers</Link>
+            <Link href="/contact" className={`font-medium ${pathname === '/contact' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>Contact</Link>
 
-            <Link href="/track" className="font-medium flex items-center text-white">
+            <Link href="/track" className={`font-medium flex items-center ${pathname === '/track' ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' : 'text-white hover:text-yellow-200'}`}>
               <MapPin className="h-4 w-4 mr-1" />
               Track Ride
             </Link>
-            <Link href="/driver" className="font-medium text-white">Work with Us</Link>
           </nav>
 
           {/* Buttons */}
@@ -118,16 +124,18 @@ export function Navigation() {
         {isOpen && (
           <div className="lg:hidden border-t py-4 border-white bg-gradient-to-r from-[#48A66F] to-[#335185]">
             <nav className="flex flex-col space-y-4">
-              <Link href="/" className="px-2 py-2 font-medium text-white">Home</Link>
-              <Link href="/services" className="px-2 py-2 font-medium text-white">Services</Link>
-              <Link href="/fleet" className="px-2 py-2 font-medium text-white">Fleet</Link>
-              <Link href="/about" className="px-2 py-2 font-medium text-white">About</Link>
-              <Link href="/contact" className="px-2 py-2 font-medium text-white">Contact</Link>
-              <Link href="/track" className="px-2 py-2 font-medium flex items-center text-white">
+              <Link href="/" className={`px-2 py-2 font-medium ${pathname === '/' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Home</Link>
+              <Link href="/services" className={`px-2 py-2 font-medium ${pathname === '/services' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Services</Link>
+              <Link href="/corporate" className={`px-2 py-2 font-medium ${pathname === '/corporate' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Corporate</Link>
+              <Link href="/fleet" className={`px-2 py-2 font-medium ${pathname === '/fleet' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Fleet</Link>
+              <Link href="/about" className={`px-2 py-2 font-medium ${pathname === '/about' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>About</Link>
+              <Link href="/team" className={`px-2 py-2 font-medium ${pathname === '/team' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Team</Link>
+              <Link href="/careers" className={`px-2 py-2 font-medium ${pathname === '/careers' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Careers</Link>
+              <Link href="/contact" className={`px-2 py-2 font-medium ${pathname === '/contact' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>Contact</Link>
+              <Link href="/track" className={`px-2 py-2 font-medium flex items-center ${pathname === '/track' ? 'text-yellow-400 bg-white/10 rounded' : 'text-white'}`}>
                 <MapPin className="h-4 w-4 mr-2" />
                 Track Ride
               </Link>
-              <Link href="/driver" className="px-2 py-2 font-medium text-white">Work with Us</Link>
 
               <div className="px-2 pt-4 space-y-3">
                 <div className="space-y-2">
