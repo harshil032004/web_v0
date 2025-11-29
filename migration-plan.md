@@ -10,7 +10,7 @@ npm install contentful @contentful/rich-text-react-renderer
 ```
 
 ### Content Types Structure
-- **Services**: Taxi types, pricing, features
+- **Services**: cab types, pricing, features
 - **Fleet**: Vehicle details, images, specifications  
 - **Testimonials**: Customer reviews, ratings
 - **Pages**: About, Contact, Terms, Privacy
@@ -85,7 +85,7 @@ npm install contentful @contentful/rich-text-react-renderer
 - Migrate WordPress URLs with redirects
 - Update meta tags and structured data
 - Implement local business schema
-- Optimize for "taxi service" keywords
+- Optimize for "cab service" keywords
 
 ### Performance Optimization
 - Image optimization with Next.js Image

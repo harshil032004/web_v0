@@ -14,13 +14,13 @@ export function Navigation() {
 
   const getNavLinkClass = (path: string) => 
     pathname === path 
-      ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1' 
-      : 'text-white hover:text-yellow-200';
+      ? 'text-black border-b-2 border-white pb-1' 
+      : 'text-white hover:text-black';
 
   const getMobileNavLinkClass = (path: string) => 
     pathname === path 
-      ? 'px-2 py-2 font-medium text-yellow-400 bg-white/10 rounded' 
-      : 'px-2 py-2 font-medium text-white';
+      ? 'px-2 py-2 font-medium border-b-2 border-white' 
+      : 'px-2 py-2 hover:font-bold text-white hover:text-black';
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -60,8 +60,8 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-6">
             <Link href="/" className={`font-medium ${getNavLinkClass('/')}`}>Home</Link>
-            <Link href="/services" className={`font-medium ${getNavLinkClass('/services')}`}>Services</Link>
-            <Link href="/corporate" className={`font-medium ${getNavLinkClass('/corporate')}`}>Corporate</Link>
+            {/* <Link href="/services" className={`font-medium ${getNavLinkClass('/services')}`}>Services</Link> */}
+            <Link href="/corporate" className={`font-medium ${getNavLinkClass('/corporate')}`}>Evera Corporate</Link>
             <Link href="/fleet" className={`font-medium ${getNavLinkClass('/fleet')}`}>Fleet</Link>
             <Link href="/about" className={`font-medium ${getNavLinkClass('/about')}`}>About</Link>
             <Link href="/team" className={`font-medium ${getNavLinkClass('/team')}`}>Team</Link>

@@ -25,7 +25,7 @@ export default function About() {
             About <span className="text-yellow-400">Evera Cabs</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
-            India's most trusted electric cab service, committed to providing safe, reliable, and sustainable transportation solutions.
+            India's most trusted electric cab service, committed to providing safe, reliable, and sustainable mobility solutions.
           </p>
         </div>
       </section>
@@ -41,10 +41,10 @@ export default function About() {
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Revolutionizing Urban Mobility</h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Evera Cabs is pioneering India's transition to all-electric transportation. We're not just another cab service – we're building a cleaner, safer, and more reliable commuting experience for millions of Indians.
+                Evera Cabs is pioneering India's transition to all-electric mobility. We're not just another cab service – we're building a cleaner, safer, and more reliable commuting experience for millions of Indians.
               </p>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Unlike traditional taxi services, our app ensures drivers can't cancel your ride. Combined with our all-electric fleet and professionally certified full-time drivers, we're addressing the core issues of safety, comfort, and environmental responsibility.
+                Unlike traditional cab services, our app ensures drivers can't cancel your ride. Combined with our all-electric fleet and professionally certified full-time drivers, we're addressing the core issues of safety, comfort, and environmental responsibility.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center">
@@ -118,7 +118,7 @@ export default function About() {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
               <p className="text-gray-700 leading-relaxed">
-                To revolutionize India's transportation by building the nation's largest all-electric cab network that prioritizes safety, comfort, and environmental sustainability while eliminating common pain points like driver cancellations and surge pricing.
+                To revolutionize India's mobility by building the nation's largest all-electric cab network that prioritizes safety, comfort, and environmental sustainability while eliminating common pain points like driver cancellations and surge pricing.
               </p>
             </Card>
 
@@ -128,7 +128,7 @@ export default function About() {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
               <p className="text-gray-700 leading-relaxed">
-                To become India's most trusted and preferred electric mobility partner, setting new benchmarks in customer experience, environmental responsibility, and urban transportation while helping cities breathe cleaner air.
+                To become India's most trusted and preferred electric mobility partner, setting new benchmarks in customer experience, environmental responsibility, and urban mobility while helping cities breathe cleaner air.
               </p>
             </Card>
           </div>
@@ -204,7 +204,7 @@ export default function About() {
             Join the Evera Cabs Family
           </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Experience the future of transportation with India's leading all-electric cab service.
+            Experience the future of mobility with India's leading all-electric cab service.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg" asChild>

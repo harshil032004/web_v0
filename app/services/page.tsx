@@ -19,13 +19,13 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
             <Award className="h-4 w-4 mr-2" />
-            Premium Transportation Solutions
+            Premium mobility Solutions
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Our Premium <span className="text-yellow-400">Services</span>
+            Our Premium <span className="text-green-500">Services</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
-            From quick city rides to long-distance travel, we offer comprehensive transportation solutions tailored to your needs with comfort and reliability.
+            From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs with comfort and reliability.
           </p>
         </div>
       </section>
@@ -35,12 +35,8 @@ export default function ServicesPage() {
         <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.3\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
-              <Car className="h-4 w-4 mr-2" />
-              Premium Services
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">Our Premium Services</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">From quick city rides to long-distance travel, we offer comprehensive transportation solutions tailored to your needs.</p>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent mb-6">Our Premium Services</h2>
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -111,7 +107,7 @@ export default function ServicesPage() {
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Events</h3>
               <p className="text-sm sm:text-base text-blue-100 leading-relaxed">
-                Special occasion transportation with premium service
+                Special occasion mobility with premium service
               </p>
             </div>
             
@@ -183,7 +179,7 @@ export default function ServicesPage() {
             Ready to Experience Premium Service?
           </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join thousands of satisfied customers who trust Evera Cabs for their transportation needs.
+            Join thousands of satisfied customers who trust Evera Cabs for their mobility needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg" asChild>

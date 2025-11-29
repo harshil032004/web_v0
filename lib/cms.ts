@@ -43,7 +43,7 @@ export const getServices = async (): Promise<Service[]> => {
     {
       id: '2', 
       title: 'Local City Rides',
-      description: 'Quick and comfortable city transportation',
+      description: 'Quick and comfortable city mobility',
       price: 8,
       features: ['GPS Tracking', 'AC Vehicles', 'Professional Drivers'],
       image: '/services/local.jpg',
