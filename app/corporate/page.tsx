@@ -19,7 +19,7 @@ export default function CorporatePage() {
     message: ""
   });
 
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const services = [
