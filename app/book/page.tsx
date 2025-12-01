@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { BookingForm } from "@/components/booking-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Clock, Star, Phone, CheckCircle, Zap, Award, Users, MapPin, ChevronDown } from "lucide-react";
+import { Shield, Clock, Star, Phone, CheckCircle, Zap, Award, MapPin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -138,7 +138,13 @@ export default function BookPage() {
                 <div className="relative">
                   <Button 
                     className="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-semibold py-3"
-                    onClick={() => setIsAppDropdownOpen(!isAppDropdownOpen)}
+                    onClick={() => {
+                      try {
+                        setIsAppDropdownOpen(!isAppDropdownOpen);
+                      } catch (error) {
+                        console.error('Failed to toggle dropdown:', error);
+                      }
+                    }}
                   >
                     Get Mobile App
                     <ChevronDown className="h-4 w-4 ml-2" />
@@ -150,7 +156,13 @@ export default function BookPage() {
                         href="https://qrcodes.pro/2g0L5e" 
                         target="_blank"
                         className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-lg"
-                        onClick={() => setIsAppDropdownOpen(false)}
+                        onClick={() => {
+                          try {
+                            setIsAppDropdownOpen(false);
+                          } catch (error) {
+                            console.error('Failed to close dropdown:', error);
+                          }
+                        }}
                       >
                         <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
                         Download for Android

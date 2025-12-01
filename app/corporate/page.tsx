@@ -406,7 +406,7 @@ export default function CorporatePage() {
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">Key Benefits</h3>
                   <ul className="space-y-2">
-                    {selectedService.details.benefits.map((benefit, idx) => (
+                    {selectedService.details.benefits.map((benefit: string, idx: number) => (
                       <li key={idx} className="flex items-center text-gray-600">
                         <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
                         {benefit}

@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, Users, Car, Award, Clock, Star, Phone, CheckCircle, Target, Eye, Heart, Zap } from "lucide-react";
+import { Shield, Users, Car, Award, Clock, Star, Phone, CheckCircle, Target, Eye, Heart } from "lucide-react";
 import Link from "next/link";
 import { AnimatedCounter } from "@/components/animated-counter";
 
@@ -11,7 +11,6 @@ export default function About() {
       <Navigation />
 
       <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
@@ -213,7 +212,17 @@ export default function About() {
                 Book Your First Ride
               </Link>
             </Button>
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 shadow-lg">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-600 hover:bg-gray-100 px-8 shadow-lg"
+              onClick={() => {
+                try {
+                  window.location.href = 'tel:01149540005';
+                } catch (error) {
+                  console.error('Failed to initiate call:', error);
+                }
+              }}
+            >
               <Phone className="h-5 w-5 mr-2" />
               Contact Us
             </Button>
