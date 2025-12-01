@@ -49,7 +49,7 @@ export default function CareersPage() {
       <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Join<span className="text-yellow-400"> Our Team</span>
+            Join<span className="text-green-500"> Our Team</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Drive with purpose. Build a sustainable future together.
@@ -57,7 +57,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Driver Application / ड्राइवर आवेदन</h2>
@@ -69,7 +69,7 @@ export default function CareersPage() {
             </p>
           </div>
 
-          <Card>
+          <Card className="bg-white/90 backdrop-blur-sm border border-gray-200 border-t pt-8">
             <CardHeader>
               <CardTitle>Driver Registration Form / ड्राइवर पंजीकरण फॉर्म</CardTitle>
               <CardDescription>Please provide accurate basic information / कृपया सटीक बुनियादी जानकारी प्रदान करें</CardDescription>

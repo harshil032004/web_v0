@@ -21,6 +21,7 @@ export default function Contact() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
+      {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: HERO_PATTERN}}></div>
@@ -32,7 +33,7 @@ export default function Contact() {
             24/7 Support Available
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Get in <span className="text-yellow-400">Touch</span>
+            Get in <span className="text-green-500">Touch</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
             We're here to help you 24/7. Contact us for bookings, support, or any questions about our services.
@@ -41,7 +42,7 @@ export default function Contact() {
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-12 sm:py-16 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -172,22 +173,22 @@ export default function Contact() {
       </section>
 
       {/* FAQ Section */}      
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 relative overflow-hidden">
+      <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.1'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-4 py-2 bg-black/10 text-black rounded-full text-sm font-medium mb-4">
               <Award className="h-4 w-4 mr-2" />
               Quick Answers
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-600 to-red-600 bg-clip-text text-transparent mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black bg-clip-text mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-gray-700">Find quick answers to common questions</p>
+            <p className="text-lg text-gray-800">Find quick answers to common questions</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 border-t pt-8">
             <Card className="p-6 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-shadow">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">How do I book a cab?</h3>
               <p className="text-gray-600 leading-relaxed">You can book through our website or mobile app. It's quick and easy!</p>

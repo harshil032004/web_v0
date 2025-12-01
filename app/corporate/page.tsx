@@ -100,7 +100,8 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-green-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Our ESG Commitments */}
+      <section className="py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -231,7 +232,8 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-r from-gray-100 to-gray-200">
+      {/* Services Offered */}
+      <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-5xl font-bold text-black mb-4">Our Services</h2>
@@ -242,7 +244,7 @@ export default function CorporatePage() {
             {services.map((service, index) => (
               <Card key={index} className="hover:shadow-xl transition-shadow border border-gray-300">
                 <CardHeader>
-                  <CardTitle className="text-[#335185] text-center ">{service.title}</CardTitle>
+                  <CardTitle className="text-[#335185] text-center text-xl font-semibold">{service.title}</CardTitle>
                   <CardDescription>{service.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -287,7 +289,8 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-100">
+      {/* Contact Form */}
+      <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Started Today</h2>

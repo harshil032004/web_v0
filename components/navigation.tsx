@@ -62,8 +62,8 @@ export function Navigation() {
             <Link href="/" className={`font-medium ${getNavLinkClass('/')}`}>Home</Link>
             {/* <Link href="/services" className={`font-medium ${getNavLinkClass('/services')}`}>Services</Link> */}
             <Link href="/corporate" className={`font-medium ${getNavLinkClass('/corporate')}`}>Evera Corporate</Link>
-            <Link href="/fleet" className={`font-medium ${getNavLinkClass('/fleet')}`}>Fleet</Link>
             <Link href="/about" className={`font-medium ${getNavLinkClass('/about')}`}>About</Link>
+            <Link href="/fleet" className={`font-medium ${getNavLinkClass('/fleet')}`}>Fleet</Link>
             <Link href="/team" className={`font-medium ${getNavLinkClass('/team')}`}>Team</Link>
             <Link href="/careers" className={`font-medium ${getNavLinkClass('/careers')}`}>Careers</Link>
             <Link href="/contact" className={`font-medium ${getNavLinkClass('/contact')}`}>Contact</Link>

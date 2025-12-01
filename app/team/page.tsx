@@ -7,7 +7,7 @@ export default function TeamPage() {
       <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            <span className="text-yellow-400">Our</span> Team
+            <span className="text-green-500">Our</span> Team
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Meet the people driving sustainable mobility forward

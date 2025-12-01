@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
-import { HeroSlideshow } from "@/components/hero-slideshow";
 // import { FeatureCard } from "@/components/feature-card";
 import { ServiceCard } from "@/components/service-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Leaf, Heart } from "lucide-react";
@@ -38,133 +38,160 @@ export default function Home() {
       <Navigation />
       <ScrollToTop />
 
-      {/* Hero Section with Slideshow */}
-      <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden min-h-[100vh] sm:min-h-[600px] lg:min-h-[700px] flex items-center">
-        <HeroSlideshow />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-          <div className="max-w-4xl mx-auto sm:mx-0">
-            <div className="text-center sm:text-left">
-              <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-                <Award className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                India's Most Trusted Cab Service
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
-                Book Your
-                <span className="text-green-600 block">Perfect Ride</span>
-              </h1>
-              <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-xl mx-auto sm:mx-0 drop-shadow">
-                Experience premium cab services with professional drivers, clean vehicles, and transparent pricing. Available 24/7 across India.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center sm:justify-start">
-                <div className="relative w-full sm:w-auto" data-dropdown>
-                  <Button 
-                    size="lg" 
-                    className="bg-blue-600 hover:bg-blue-700 px-8 shadow-lg w-full sm:w-auto"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsAppDropdownOpen(!isAppDropdownOpen);
-                    }}
-                  >
-                    <Smartphone className="h-5 w-5 mr-2" />
-                    Download App
+      {/* Hero Section */}
+      <ScrollAnimation>
+        <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden min-h-[100vh] sm:min-h-[600px] lg:min-h-[700px] flex items-center bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
+                {/* Badge */}
+                <div className="inline-flex items-center px-6 py-3 bg-white border border-green-200 text-black rounded-full text-sm font-semibold shadow-2xl transition-all border-gray-300">
+                  <Award className="h-4 w-4 mr-2 text-green-600" />
+                  India's Most Trusted Cab Service
+                </div>
+                
+                {/* Main Heading - Uber Style */}
+                <div className="space-y-2">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight">
+                    <span className="block animate-slide-in-left">Book Your</span>
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">Perfect Ride</span>
+                  </h1>
+                  <div className="w-105 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full animate-expand-width animation-delay-400"></div>
+                </div>
+                
+                {/* Description */}
+                <p className="text-lg lg:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light animate-fade-in animation-delay-600">
+                  Experience premium cab services with <span className="font-semibold text-gray-900">EVs</span>, <span className="font-semibold text-gray-900">transparent pricing</span>, and <span className="font-semibold text-gray-900">pro drivers</span>.
+                </p>
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in animation-delay-800">
+                  <div className="relative w-full sm:w-auto" data-dropdown>
+                    <Button 
+                      size="lg" 
+                      className="bg-black hover:bg-gray-800 text-white px-8 py-4 w-full sm:w-auto rounded-xl font-semibold text-base shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsAppDropdownOpen(!isAppDropdownOpen);
+                      }}
+                    >
+                      <Smartphone className="h-5 w-5 mr-2" />
+                      Download App
+                    </Button>
+                    
+                    {isAppDropdownOpen && (
+                      <div className="absolute top-full mt-2 left-0 right-0 sm:left-0 sm:right-auto bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[220px] z-50 animate-fade-in">
+                        <Link 
+                          href="https://qrcodes.pro/2g0L5e" 
+                          target="_blank"
+                          className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-xl transition-colors duration-200"
+                          onClick={() => setIsAppDropdownOpen(false)}
+                        >
+                          <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
+                          Download for Android
+                        </Link>
+                        <Link 
+                          href="https://apps.apple.com/in/app/evera/id1625582988" 
+                          target="_blank"
+                          className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-xl transition-colors duration-200"
+                          onClick={() => setIsAppDropdownOpen(false)}
+                        >
+                          <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
+                          Download for iOS
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                  <Button size="lg" variant="outline" className="px-8 py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold text-base transition-all duration-300 hover:shadow-lg" asChild>
+                    <Link href="/book">
+                      Book Ride
+                    </Link>
                   </Button>
-                  
-                  {isAppDropdownOpen && (
-                    <div className="absolute top-full mt-2 left-0 right-0 sm:left-0 sm:right-auto bg-white rounded-lg shadow-lg border min-w-[200px] z-50">
-                      <Link 
-                        href="https://qrcodes.pro/2g0L5e" 
-                        target="_blank"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-lg"
-                        onClick={() => setIsAppDropdownOpen(false)}
-                      >
-                        <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
-                        Download for Android
-                      </Link>
-                      <Link 
-                        href="https://apps.apple.com/in/app/evera/id1625582988" 
-                        target="_blank"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-lg"
-                        onClick={() => setIsAppDropdownOpen(false)}
-                      >
-                        <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
-                        Download for iOS
-                      </Link>
-                    </div>
-                  )}
                 </div>
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg w-full sm:w-auto" asChild>
-                  <Link href="/book">
-                    <Car className="h-5 w-5 mr-2" />
-                    Book Ride
-                  </Link>
-                </Button>
-              </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-2 sm:space-y-0 text-xs sm:text-sm text-white/80 justify-center sm:justify-start">
-                <div className="flex items-center justify-center sm:justify-start">
-                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
-                  GPS Enabled
+                {/* Features */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-6 justify-center lg:justify-start animate-fade-in animation-delay-1000">
+                  <div className="flex items-center justify-center lg:justify-start group">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">GPS Enabled</span>
+                  </div>
+                  <div className="flex items-center justify-center lg:justify-start group">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">24/7 Support</span>
+                  </div>
+                  <div className="flex items-center justify-center lg:justify-start group">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Safe & Secure</span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center sm:justify-start">
-                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
-                  24/7 Support
-                </div>
-                <div className="flex items-center justify-center sm:justify-start">
-                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 mr-2" />
-                  Safe & Secure
-                </div>
+              </div>
+              
+              {/* Right Illustration */}
+              <div className="flex justify-center">
+                <Image 
+                  src="/concept.png" 
+                  alt="Book Your Perfect Ride" 
+                  width={400} 
+                  height={300} 
+                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300" 
+                  priority
+                />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollAnimation>
 
       {/* Electric Cab Service Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 mb-4">India's All Electric Cab Service</h2>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-            <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
-              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
-                Evera Cabs is soon to become India's biggest network of all-electric cabs that you can book using our App. Not only have we created an all-electric cab service to help reduce carbon emissions being released by diesel/petrol – run cabs on a daily basis, we are also addressing safety and comfort issues through a best in class commuting experience powered by our fleet of all-electric cars, professionally certified and full-time drivers combined!
-              </p>
-              
-              <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
-                Unlike other cab services, our app does not allow drivers to cancel your ride. This is only one small aspect of an all-electric cab service that will help India commute in a safe & comfortable manner.
-              </p>
-            </div>
-            
-            <div className="flex justify-center order-1 lg:order-2">
-              <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg aspect-[4/3] bg-gradient-to-br from-blue-100 to-green-100 rounded-lg overflow-hidden">
-                <Image 
-                  src="/02Charging-Station-2.jpg" 
+            <div className="flex justify-center order-1 lg:order-1">
+              <div className="flex justify-center">
+                <Image
+                  src="/charging.png" 
                   alt="Electric Cab" 
                   width={400} 
                   height={300} 
-                  className="w-full h-full object-cover" 
+                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300" 
                 />
               </div>
+            </div>
+            <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-800 leading-relaxed font-semibold">
+                Evera Cabs is soon to become India's biggest network of all-electric cabs that you can book using our App. Not only have we created an all-electric cab service to help reduce carbon emissions being released by diesel/petrol – run cabs on a daily basis, we are also addressing safety and comfort issues through a best in class commuting experience powered by our fleet of all-electric cars, professionally certified and full-time drivers combined!
+              </p>
+              
+              <p className="text-sm sm:text-base lg:text-lg text-gray-800 leading-relaxed font-semibold">
+                Unlike other cab services, our app does not allow drivers to cancel your ride. This is only one small aspect of an all-electric cab service that will help India commute in a safe & comfortable manner.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-10 sm:py-16 lg:py-20">
+      <section className="py-10 sm:py-16 lg:py-20 overflow-hidden relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">More Than Just An</h2>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black">All Electric Cab Service</h3>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600">All Electric Cab Service</h3>
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center text-black">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <CreditCard className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SURGE</h4>
@@ -173,8 +200,8 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center text-black">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <X className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SERVICE DENIALS</h4>
@@ -183,8 +210,8 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center text-black sm:col-span-2 lg:col-span-1">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Leaf className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO EMISSIONS</h4>
@@ -193,8 +220,8 @@ export default function Home() {
               </p>
             </div>
                         
-            <div className="text-center text-black">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Users className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">PROFESSIONAL DRIVERS</h4>
@@ -203,8 +230,8 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center text-black">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">COMFORT</h4>
@@ -213,8 +240,8 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="text-center text-black">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <div className="text-center text-green-600">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">SAFETY</h4>
@@ -536,8 +563,17 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Car className="h-8 w-8 text-blue-400" />
-                <span className="text-2xl font-bold">Evera Cabs</span>
+                <Link href="/" className="flex items-center">
+                <Image 
+                  src="/Evera-Logo-02-1.svg" 
+                  alt="Evera" 
+                  width={120} 
+                  height={40} 
+                  className="h-10 w-auto filter invert brightness-0 contrast-100" 
+                  style={{ imageRendering: 'crisp-edges' }}
+                  priority
+                />
+              </Link>
               </div>
               <p className="text-gray-400">Your trusted partner for safe, reliable, and comfortable mobility services.</p>
             </div>

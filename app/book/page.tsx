@@ -25,7 +25,7 @@ export default function BookPage() {
             Instant Booking • Zero Waiting
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Book Your <span className="text-yellow-400">Perfect</span> Ride
+            <span className="text-green-500">Book</span> Your <span className="text-green-500">Perfect</span> Ride
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90 leading-relaxed">
             Experience premium electric mobility with instant booking, transparent pricing, and professional service.
@@ -48,7 +48,7 @@ export default function BookPage() {
       </section>
 
       {/* Booking Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-100 via-gray-100 to-slate-50">
+      <section className="py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Booking Row */}
           <div className="grid lg:grid-cols-3 gap-12 mb-12">
@@ -186,52 +186,52 @@ export default function BookPage() {
       </section>
 
       {/* Live Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-[#48A66F] to-[#335185]">
+      <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Live Statistics</h2>
-            <p className="text-lg text-white/80">Real-time data from our platform</p>
+            <h2 className="text-4xl font-bold text-black mb-4">Live Statistics</h2>
+            <p className="text-lg text-gray-800">Real-time data from our platform</p>
           </div>
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">150+</div>
-              <p className="text-white/80">Active Drivers</p>
+            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold text-green-500 mb-2">150+</div>
+              <p className="text-black/80">Active Drivers</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">2.5k+</div>
-              <p className="text-white/80">Daily Rides</p>
+            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold text-green-500 mb-2">2.5k+</div>
+              <p className="text-black/80">Daily Rides</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">15+</div>
-              <p className="text-white/80">Cities Covered</p>
+            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold text-green-500 mb-2">15+</div>
+              <p className="text-black/80">Cities Covered</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">4.8★</div>
-              <p className="text-white/80">Average Rating</p>
+            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold text-green-500 mb-2">4.8★</div>
+              <p className="text-black/80">Average Rating</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-16 bg-white">
+      <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
-            <p className="text-lg text-gray-600">Join our community of satisfied customers</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
+            <p className="text-lg text-gray-800">Join our community of satisfied customers</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 bg-gray-50 rounded-lg">
-              <div className="text-3xl font-bold text-[#48A66F] mb-2">50K+</div>
-              <p className="text-gray-600">Happy Customers</p>
+            <div className="p-6 bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold text-green-500 mb-2">50K+</div>
+              <p className="text-gray-800">Happy Customers</p>
             </div>
-            <div className="p-6 bg-gray-50 rounded-lg">
+            <div className="p-6 bg-white backdrop-blur-sm rounded-lg border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-3xl font-bold text-[#335185] mb-2">1M+</div>
-              <p className="text-gray-600">Rides Completed</p>
+              <p className="text-gray-800">Rides Completed</p>
             </div>
-            <div className="p-6 bg-gray-50 rounded-lg">
+            <div className="p-6 bg-white rounded-lg border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-3xl font-bold text-[#48A66F] mb-2">99.5%</div>
-              <p className="text-gray-600">Customer Satisfaction</p>
+              <p className="text-gray-800">Customer Satisfaction</p>
             </div>
           </div>
         </div>
