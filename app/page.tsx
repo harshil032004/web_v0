@@ -10,11 +10,93 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Leaf, Heart } from "lucide-react";
+import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Leaf, Heart, Plane, Calendar, Navigation as NavigationIcon, Route } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
+
+interface ServiceDetails {
+  title: string;
+  description: string;
+  features: string[];
+  pricing: string;
+  availability: string;
+  bookingInfo: string;
+}
+
+const serviceDetails: Record<string, ServiceDetails> = {
+  "Airport Transfer": {
+    title: "Airport Transfer",
+    description: "Professional airport pickup and drop-off services with flight tracking and on-time guarantee.",
+    features: [
+      "Flight tracking for delayed arrivals",
+      "Meet & greet service at arrivals",
+      "Professional chauffeurs",
+      "Clean, comfortable vehicles",
+      "24/7 availability",
+      "Fixed pricing - no surge charges",
+      "Free waiting time up to 60 minutes",
+      "SMS and call notifications"
+    ],
+    pricing: "Starting from ₹899 for Delhi Airport",
+    availability: "Available 24/7 across Delhi-NCR",
+    bookingInfo: "Book 2 hours in advance for guaranteed availability"
+  },
+  "Rentals": {
+    title: "Car Rentals",
+    description: "Flexible car rental solutions for your personal and business needs with complete freedom.",
+    features: [
+      "Hourly, daily, and weekly rentals",
+      "Self-drive and chauffeur options",
+      "Multiple vehicle categories",
+      "Comprehensive insurance coverage",
+      "24/7 roadside assistance",
+      "Fuel-efficient electric vehicles",
+      "Transparent pricing",
+      "Easy online booking and payment"
+    ],
+    pricing: "Starting from ₹199/hour or ₹1,999/day",
+    availability: "Available across Delhi, Gurgaon, Noida",
+    bookingInfo: "Instant booking available with valid driving license"
+  },
+  "City Rides": {
+    title: "City Rides",
+    description: "Convenient point-to-point transportation within the city with professional drivers.",
+    features: [
+      "Quick city commutes",
+      "Professional certified drivers",
+      "Real-time GPS tracking",
+      "Multiple payment options",
+      "Clean electric vehicles",
+      "No surge pricing",
+      "Instant booking",
+      "Safe and secure rides"
+    ],
+    pricing: "Starting from ₹99 for first 5km",
+    availability: "Coming soon to Delhi-NCR",
+    bookingInfo: "Pre-register now for early access and special offers"
+  },
+  "Intercity Rides": {
+    title: "Intercity Rides",
+    description: "Long-distance travel solutions with experienced drivers and comfortable vehicles.",
+    features: [
+      "Long-distance travel comfort",
+      "Experienced highway drivers",
+      "Regular rest stops",
+      "24/7 customer support",
+      "Vehicle breakdown assistance",
+      "Flexible pickup times",
+      "Competitive fixed pricing",
+      "Safe and reliable service"
+    ],
+    pricing: "Starting from ₹12/km with driver allowance",
+    availability: "Coming soon - Delhi to major cities",
+    bookingInfo: "Book 24 hours in advance for outstation trips"
+  }
+};
 
 export default function Home() {
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<ServiceDetails | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -34,7 +116,8 @@ export default function Home() {
   }, [isAppDropdownOpen]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <>
+    <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
       <Navigation />
       <ScrollToTop />
 
@@ -62,7 +145,7 @@ export default function Home() {
                 
                 {/* Description */}
                 <p className="text-lg lg:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light animate-fade-in animation-delay-600">
-                  Experience premium cab services with <span className="font-semibold text-gray-900">EVs</span>, <span className="font-semibold text-gray-900">transparent pricing</span>, and <span className="font-semibold text-gray-900">pro drivers</span>.
+                  Experience premium cab services with <span className="font-semibold text-gray-900">EVs</span>, <span className="font-semibold text-gray-900">transparent pricing</span>, and <span className="font-semibold text-gray-900">experienced drivers</span>.
                 </p>
                 
                 {/* CTA Buttons */}
@@ -160,11 +243,11 @@ export default function Home() {
             <div className="flex justify-center order-1 lg:order-1">
               <div className="flex justify-center">
                 <Image
-                  src="/charging.png" 
-                  alt="Electric Cab" 
-                  width={400} 
-                  height={300} 
-                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300" 
+                  src="/charging.jpg" 
+                  alt="Electric Cab"
+                  width={400}
+                  height={300}
+                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300"
                 />
               </div>
             </div>
@@ -191,7 +274,7 @@ export default function Home() {
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <CreditCard className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SURGE</h4>
@@ -201,7 +284,7 @@ export default function Home() {
             </div>
             
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <X className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SERVICE DENIALS</h4>
@@ -211,7 +294,7 @@ export default function Home() {
             </div>
             
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Leaf className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO EMISSIONS</h4>
@@ -221,7 +304,7 @@ export default function Home() {
             </div>
                         
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Users className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">PROFESSIONAL DRIVERS</h4>
@@ -231,7 +314,7 @@ export default function Home() {
             </div>
             
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">COMFORT</h4>
@@ -241,7 +324,7 @@ export default function Home() {
             </div>
             
             <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 border-green-600 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">SAFETY</h4>
@@ -368,32 +451,46 @@ export default function Home() {
             </div>
             
             {/* Right side - 2x2 Grid */}
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
               <ServiceCard
                 title="Airport Transfer"
                 description="On-time pickups. Flight tracking. Stress-free travel."
-                buttonText="Book Airport Transfer"
+                buttonText="Learn More"
                 color="text-green-600"
-                href="/book"
+                onClick={() => {
+                  setSelectedService(serviceDetails["Airport Transfer"]);
+                  setIsModalOpen(true);
+                }}
               />
               <ServiceCard
                 title="Rentals"
                 description="Your vehicle. Your terms. Complete flexibility."
-                buttonText="Book Rentals"
+                buttonText="Learn More"
                 color="text-green-600"
-                href="/book"
+                onClick={() => {
+                  setSelectedService(serviceDetails["Rentals"]);
+                  setIsModalOpen(true);
+                }}
               />
               <ServiceCard
                 title="City Rides"
                 description="Professional drivers. Safe journeys. Every time."
-                buttonText="Coming Soon"
+                buttonText="Learn More"
                 color="text-green-600"
+                onClick={() => {
+                  setSelectedService(serviceDetails["City Rides"]);
+                  setIsModalOpen(true);
+                }}
               />
               <ServiceCard
                 title="Intercity Rides"
                 description="Long distances. Experienced drivers. Comfort assured."
-                buttonText="Coming Soon"
+                buttonText="Learn More"
                 color="text-green-600"
+                onClick={() => {
+                  setSelectedService(serviceDetails["Intercity Rides"]);
+                  setIsModalOpen(true);
+                }}
               />
             </div>
           </div>
@@ -514,13 +611,13 @@ export default function Home() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-green-600 text-white hover:bg-gray-100 px-8" asChild>
+                <Button size="lg" className="bg-green-600 text-white hover:bg-green-700 px-8" asChild>
                   <Link href="https://qrcodes.pro/2g0L5e" target="_blank" className="flex items-center">
                     <Smartphone className="h-5 w-5 mr-2" />
                     Download for Android
                   </Link>
                 </Button>
-                <Button size="lg" className="bg-green-600 text-white hover:bg-gray-100 px-8" asChild>
+                <Button size="lg" className="bg-green-600 text-white hover:bg-green-700 px-8" asChild>
                   <Link href="https://apps.apple.com/in/app/evera/id1625582988" target="_blank" className="flex items-center">
                     <Smartphone className="h-5 w-5 mr-2" />
                     Download for iOS
@@ -614,6 +711,94 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
     </div>
+
+    {/* Service Details Modal */}
+    {isModalOpen && selectedService && (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-gray-900">{selectedService.title}</h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="h-6 w-6 text-gray-500" />
+              </button>
+            </div>
+            
+            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              {selectedService.description}
+            </p>
+            
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                  Key Features
+                </h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {selectedService.features.map((feature, index) => (
+                    <li key={index} className="flex items-center text-gray-700">
+                      <div className="w-2 h-2 bg-green-600 rounded-full mr-3 flex-shrink-0"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-green-50 p-4 rounded-xl">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <CreditCard className="h-4 w-4 text-green-600 mr-2" />
+                    Pricing
+                  </h4>
+                  <p className="text-gray-700">{selectedService.pricing}</p>
+                </div>
+                
+                <div className="bg-blue-50 p-4 rounded-xl">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <MapPin className="h-4 w-4 text-blue-600 mr-2" />
+                    Availability
+                  </h4>
+                  <p className="text-gray-700">{selectedService.availability}</p>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-xl">
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                  <Clock className="h-4 w-4 text-gray-600 mr-2" />
+                  Booking Information
+                </h4>
+                <p className="text-gray-700">{selectedService.bookingInfo}</p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <Button 
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                  asChild
+                >
+                  <Link href="/book">
+                    Book Now
+                  </Link>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
+                  asChild
+                >
+                  <Link href="/contact">
+                    Contact Support
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

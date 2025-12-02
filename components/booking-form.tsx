@@ -50,7 +50,7 @@ export function BookingForm() {
   };
 
   return (
-    <Card className="p-4 max-w-md mx-auto bg-gradient-to-b from-cyan-400 to-blue-500 text-white border-0 shadow-xl rounded-lg">
+    <Card className="p-4 max-w-md mx-auto bg-white text-black border-0 shadow-xl rounded-lg">
       {/* Service Tabs */}
       <div className="flex mb-4 bg-black/20 rounded-lg p-1">
         {/* <button
@@ -65,7 +65,7 @@ export function BookingForm() {
         <button
           onClick={() => setActiveTab('airport')}
           className={`flex-1 py-2 px-2 text-xs font-medium rounded transition-colors ${
-            activeTab === 'airport' ? 'bg-black/40 text-white' : 'text-white/80 hover:text-white'
+            activeTab === 'airport' ? 'bg-black text-white' : 'text-black/80 hover:text-black'
           }`}
         >
           <Plane className="h-3 w-3 inline mr-1" />
@@ -74,7 +74,7 @@ export function BookingForm() {
         <button
           onClick={() => setActiveTab('rental')}
           className={`flex-1 py-2 px-2 text-xs font-medium rounded transition-colors ${
-            activeTab === 'rental' ? 'bg-black/40 text-white' : 'text-white/80 hover:text-white'
+            activeTab === 'rental' ? 'bg-black text-white' : 'text-black/80 hover:text-black'
           }`}
         >
           <CarIcon className="h-3 w-3 inline mr-1" />

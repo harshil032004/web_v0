@@ -38,21 +38,21 @@ export default function FleetPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+      <section className="text-black py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
             <Leaf className="h-4 w-4 mr-2" />
             100% Electric Fleet
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Our <span className="text-green-500">Premium</span> Electric Fleet
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+            Our Premium  <span className="text-green-600">Electric Fleet</span>
           </h1>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
+          <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto leading-relaxed drop-shadow">
             Choose from our range of eco-friendly, well-maintained electric vehicles for every occasion and budget. Zero emissions, maximum comfort.
           </p>
         </div>

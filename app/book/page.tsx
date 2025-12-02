@@ -13,34 +13,34 @@ export default function BookPage() {
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white transition-all duration-300">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+      <section className="text-black bg-white py-20 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow mb-1">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
             <Zap className="h-4 w-4 mr-2" />
             Instant Booking • Zero Waiting
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            <span className="text-green-500">Book</span> Your <span className="text-green-500">Perfect</span> Ride
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+            <span className="text-green-600">Book</span> Your <span className="text-green-600">Perfect</span> Ride
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90 leading-relaxed">
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Experience premium electric mobility with instant booking, transparent pricing, and professional service.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center">
-              <CheckCircle className="h-4 w-4 mr-2 text-green-300" />
+              <CheckCircle className="h-4 w-4 mr-2 text-green-800" />
               <span>Instant Confirmation</span>
             </div>
             <div className="flex items-center">
-              <Shield className="h-4 w-4 mr-2 text-blue-300" />
+              <Shield className="h-4 w-4 mr-2 text-green-800" />
               <span>Safe & Secure</span>
             </div>
             <div className="flex items-center">
-              <Star className="h-4 w-4 mr-2 text-yellow-300" />
+              <Star className="h-4 w-4 mr-2 text-green-800" />
               <span>4.8★ Rated Service</span>
             </div>
           </div>
@@ -113,14 +113,14 @@ export default function BookPage() {
           {/* Support Cards Row */}
           <div className="grid md:grid-cols-2 gap-8">
             {/* Support */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+            <Card className="border-3 shadow-2xl text-black hover:shadow-3xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <Phone className="h-6 w-6 mr-3" />
                   <h3 className="font-bold text-xl">Need Help?</h3>
                 </div>
-                <p className="text-blue-100 mb-6 text-base leading-relaxed">Our dedicated customer support team is available 24/7 to assist you with any queries or concerns.</p>
-                <Button className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3">
+                <p className="text-black mb-6 text-base leading-relaxed">Our dedicated customer support team is available 24/7 to assist you with any queries or concerns.</p>
+                <Button className="w-full bg-white text-white bg-black font-semibold py-3">
                   <Phone className="h-5 w-5 mr-2" />
                   Call: 01149540005
                 </Button>
@@ -128,16 +128,16 @@ export default function BookPage() {
             </Card>
 
             {/* App Download */}
-            <Card className="border-0 shadow-lg bg-gradient-to-br from-emerald-500 to-emerald-600 text-white">
+            <Card className="border-3 shadow-2xl text-black hover:shadow-3xl transition-shadow duration-300">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
                   <MapPin className="h-6 w-6 mr-3" />
                   <h3 className="font-bold text-xl">Download Our App</h3>
                 </div>
-                <p className="text-emerald-100 mb-6 text-base leading-relaxed">Get exclusive offers, faster booking experience, and real-time ride tracking on your mobile device.</p>
+                <p className="text-black mb-6 text-base leading-relaxed">Get exclusive offers, faster booking experience, and real-time ride tracking on your mobile device.</p>
                 <div className="relative">
                   <Button 
-                    className="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-semibold py-3"
+                    className="w-full bg-white text-white bg-black font-semibold py-3"
                     onClick={() => {
                       try {
                         setIsAppDropdownOpen(!isAppDropdownOpen);

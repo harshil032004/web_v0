@@ -22,27 +22,27 @@ export default function Contact() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+      <section className="text-black py-20 relative overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: HERO_PATTERN}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
             <Headphones className="h-4 w-4 mr-2" />
             24/7 Support Available
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Get in <span className="text-green-500">Touch</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+            Get in <span className="text-green-600">Touch</span>
           </h1>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
+          <p className="text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed drop-shadow">
             We're here to help you 24/7. Contact us for bookings, support, or any questions about our services.
           </p>
         </div>
       </section>
 
       {/* Main Contact Section */}
-      <section className="py-12 sm:py-16 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-12 sm:py-16 bg-white relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -56,7 +56,7 @@ export default function Contact() {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 group">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="bg-green-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -68,7 +68,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-4 group">
-                  <div className="bg-gradient-to-br from-green-500 to-green-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="bg-green-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
                     <Clock className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -80,7 +80,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-4 group">
-                  <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="bg-green-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
                     <Users className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -92,7 +92,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-4 group">
-                  <div className="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="bg-green-600 p-3 rounded-full shadow-lg group-hover:scale-110 transition-transform">
                     <Shield className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -157,7 +157,7 @@ export default function Contact() {
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
+                  <Button type="submit" size="lg" className="w-full bg-green-600 hover:from-blue-700 hover:to-purple-700 shadow-lg">
                     <Send className="h-5 w-5 mr-2" />
                     Send Message
                   </Button>

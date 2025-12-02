@@ -10,9 +10,10 @@ interface ServiceCardProps {
   buttonText: string;
   color: string;
   href?: string;
+  onClick?: () => void;
 }
 
-export function ServiceCard({ icon: Icon, title, description, buttonText, color, href }: ServiceCardProps) {
+export function ServiceCard({ icon: Icon, title, description, buttonText, color, href, onClick }: ServiceCardProps) {
   return (
     <Card className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group bg-white/80 backdrop-blur-sm border-0 shadow-lg">
       <CardContent className="p-8 relative overflow-hidden">
@@ -29,7 +30,10 @@ export function ServiceCard({ icon: Icon, title, description, buttonText, color,
             <Link href={href}>{buttonText}</Link>
           </Button>
         ) : (
-          <Button className={`w-full bg-gradient-to-r ${color === 'text-blue-600' ? 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700' : color === 'text-green-600' ? 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700' : 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700'} text-white border-0 shadow-md hover:shadow-lg transition-all duration-300`}>
+          <Button 
+            onClick={onClick}
+            className={`w-full bg-gradient-to-r ${color === 'text-blue-600' ? 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700' : color === 'text-green-600' ? 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700' : 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700'} text-white border-0 shadow-md hover:shadow-lg transition-all duration-300`}
+          >
             {buttonText}
           </Button>
         )}

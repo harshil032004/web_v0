@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Navigation } from "@/components/navigation";
+import Link from "next/link";
 
 export default function CorporatePage() {
   const [formData, setFormData] = useState({
@@ -89,10 +90,10 @@ export default function CorporatePage() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+      <section className="text-black py-20 relative overflow-hidden shadow-xl hover:shadow-2xl transition-shadow mb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            <span className="text-green-500">Corporate</span> Mobilty Solutions
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+            Corporate <span className="text-green-600">Mobility Solutions</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
             Sustainable mobility solutions designed for modern businesses
@@ -111,7 +112,7 @@ export default function CorporatePage() {
               </svg>
               ESG Leadership
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-6">Our ESG Commitments</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-6">Our ESG Commitments</h2>
             <p className="text-xl text-gray-800 max-w-4xl mx-auto leading-relaxed">
               Leading the way in sustainable mobility with environmentally responsible, 
               socially conscious, and ethically governed solutions for a greener future.
@@ -121,7 +122,7 @@ export default function CorporatePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Environmental */}
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22L6.66 19.7C7.14 19.87 7.64 20 8 20C19 20 22 3 22 3C21 5 14 5.25 9 6.25C4 7.25 2 11.5 2 13.5C2 15.5 3.75 17.25 3.75 17.25C7.5 19 17 8 17 8Z"/>
                 </svg>
@@ -149,7 +150,7 @@ export default function CorporatePage() {
             
             {/* Social */}
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M16 4C18.2 4 20 5.8 20 8C20 10.2 18.2 12 16 12C13.8 12 12 10.2 12 8C12 5.8 13.8 4 16 4ZM8 4C10.2 4 12 5.8 12 8C12 10.2 10.2 12 8 12C5.8 12 4 10.2 4 8C4 5.8 5.8 4 8 4ZM8 13C10.67 13 16 14.33 16 17V20H0V17C0 14.33 5.33 13 8 13ZM16 13C18.67 13 24 14.33 24 17V20H18V17.5C18 15.9 17.1 14.7 16 13Z"/>
                 </svg>
@@ -177,7 +178,7 @@ export default function CorporatePage() {
             
             {/* Governance */}
             <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C15.4,11.5 16,12.1 16,12.7V16.2C16,16.8 15.4,17.3 14.8,17.3H9.2C8.6,17.3 8,16.8 8,16.2V12.7C8,12.1 8.6,11.5 9.2,11.5V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.5,8.7 10.5,10V11.5H13.5V10C13.5,8.7 12.8,8.2 12,8.2Z"/>
                 </svg>
@@ -205,7 +206,7 @@ export default function CorporatePage() {
           </div>
           
           {/* Impact Stats */}
-          <div className="mt-16 bg-gradient-to-r from-green-500 to-green-600 rounded-3xl p-8 text-white">
+          <div className="mt-16 bg-green-600 rounded-3xl p-8 text-white">
             <div className="text-center mb-8">
               <h3 className="text-3xl font-bold mb-4">Our Impact So Far</h3>
               <p className="text-green-100 text-lg">Making a difference through sustainable mobility</p>
@@ -241,50 +242,138 @@ export default function CorporatePage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow border border-gray-300">
-                <CardHeader>
-                  <CardTitle className="text-[#335185] text-center text-xl font-semibold">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-gray-600">
-                        <span className="w-2 h-2 bg-[#48A66F] rounded-full mr-3"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    className="mt-6 w-full bg-[#48A66F] hover:bg-[#3d8f5f] text-white"
-                    onClick={() => {
-                      setSelectedService(service);
-                      setIsModalOpen(true);
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-            
-            <Card className="hover:shadow-lg transition-shadow">
+            {services.map((service, index) => {
+              const getServiceIcon = (title: string) => {
+                // ... (Your switch statement with SVG definitions remains the same)
+                switch (title) {
+                  case 'ETS':
+                    // Corporate mobility - briefcase with car
+                    return (
+                      <svg className="w-12 h-12 text-white bg-green-600 rounded-full p-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 2h4c.55 0 1 .45 1 1v1h4c1.1 0 2 .9 2 2v2h-2v-2h-4v1c0 .55-.45 1-1 1h-4c-.55 0-1-.45-1-1V6H5v2H3V6c0-1.1.9-2 2-2h4V3c0-.55.45-1 1-1zm8.92 8.01C18.72 9.42 18.16 9 17.5 9h-11c-.66 0-1.22.42-1.42 1.01L3 16v5c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-5l-2.08-5.99zM6.5 19c-.83 0-1.5-.67-1.5-1.5S5.67 16 6.5 16s1.5.67 1.5 1.5S7.33 19 6.5 19zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 14l1.5-3.5h11L19 14H5z" />
+                      </svg>
+                    );
+
+                  case 'Rentals':
+                    // Car key
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M7 4c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm4.5 3.5L9 14l1.5 1.5L12 14h5v-2h-5.5zM21 11v5c0 1.1-.9 2-2 2h-1v2c0 .55-.45 1-1 1s-1-.45-1-1v-2H8v2c0 .55-.45 1-1 1s-1-.45-1-1v-2H5c-1.1 0-2-.9-2-2v-5l2-6h14l2 6zm-2 0H5v5h14v-5zm-1.5-1l-1.1-3H7.6l-1.1 3h11z" />
+                      </svg>
+                    );
+
+                  case 'Airport':
+                    // Airplane taking off
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                        <path d="M2.5 19h19v2h-19z" opacity="0.3" />
+                      </svg>
+                    );
+
+                  case 'Events':
+                    // Red carpet with stars
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 2v16h12V2H6zm6 13l-2.5 1.5.75-2.85L8 11.5l2.85-.2L12 8.5l1.15 2.8 2.85.2-2.25 2.15.75 2.85L12 15z" />
+                        <path d="M4 20h16v2H4z" />
+                        <path d="M3 18h2v2H3zm16 0h2v2h-2z" />
+                      </svg>
+                    );
+
+                  case 'Intercity':
+                    // Highway road with distance markers
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M18 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm1.5-9H17V12h4.46L19.5 9.5zM6 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S4.5 16.17 4.5 17s.67 1.5 1.5 1.5zM20 8l3 4v5h-2c0 1.66-1.34 3-3 3s-3-1.34-3-3H9c0 1.66-1.34 3-3 3s-3-1.34-3-3H1V6c0-1.1.9-2 2-2h14v4h3zM8 6H3v6h5V6z" />
+                        <path d="M10 3h2v3h-2zm0 5h2v3h-2zm0 5h2v3h-2z" opacity="0.6" />
+                      </svg>
+                    );
+
+                  case 'And More':
+                    // Grid with plus/more indicator
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6z" />
+                        <path d="M19 14h-2v2h-2v2h2v2h2v-2h2v-2h-2v-2z" />
+                      </svg>
+                    );
+
+                  default:
+                    return (
+                      <svg className="w-8 h-8 text-white bg-green-600" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                      </svg>
+                    );
+                }
+              };
+
+              return (
+                <Card key={index} className="hover:shadow-xl transition-shadow border border-gray-300">
+                  <CardHeader>
+                    {/* *** MODIFIED BLOCK START *** */}
+                    <div className="flex items-center mb-5">
+                      {/* Reduced size from w-16 h-16 to w-8 h-8 */}
+                      <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-5">
+                        {/* Note: The SVG itself is w-8 h-8, so this wrapper size will make it smaller relative to the title's previous spacing */}
+                        {getServiceIcon(service.title)}
+                      </div>
+                      <CardTitle className="text-black text-xl font-bold text-2xl">{service.title}</CardTitle>
+                    </div>
+                    {/* *** MODIFIED BLOCK END *** */}
+                    <CardDescription className="text-gray-800">{service.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center text-sm text-gray-800">
+                          <span className="w-2 h-2 bg-[#48A66F] rounded-full mr-3"></span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
+
+            {/* Also applying the changes to the 'And More' Card */}
+            <Card className="hover:shadow-xl transition-shadow border border-gray-300">
               <CardHeader>
-                <CardTitle className="text-[#335185] text-center">And More</CardTitle>
-                <CardDescription>Custom solutions tailored to your specific requirements</CardDescription>
+                  {/* *** MODIFIED BLOCK START *** */}
+                  <div className="flex items-center mb-4">
+                      {/* Reduced size from w-16 h-16 to w-8 h-8 */}
+                      <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-5">
+                          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V9H16V11H13V14H11V11H8V9H11V6Z" />
+                          </svg>
+                      </div>
+                      <CardTitle className="text-black text-xl font-bold text-2xl">And More</CardTitle>
+                  </div>
+                  {/* *** MODIFIED BLOCK END *** */}
+                  <CardDescription className="text-gray-800">Custom solutions tailored to your specific requirements</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600">
-                  Contact us to discuss your mobility needs and discover 
-                  how we can create a customized solution for your organization.
-                  We're here to help you.
-                </p>
-                <Button className="mt-6 w-full bg-[#48A66F] hover:bg-[#3d8f5f] text-white">
-                  Contact Us
-                </Button>
+              <CardContent className="flex flex-col">
+                  <p className="text-sm text-gray-800">
+                      Contact us to discuss your mobility needs and discover.
+                      We're here to help you.
+                  </p>
+                  {/* <Link 
+                    href="/contact" 
+                    className="text-white  hover:underline mt-4 inline-block"
+                    >
+                    Contact Us
+                  </Link> */}
               </CardContent>
-            </Card>
+              <Button size="sm" variant="outline"
+                className="px-5 py-3 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold text-base transition-all duration-300 hover:shadow-lg mt-0 mx-auto"
+                asChild
+              >
+                <Link href="/contact">
+                    Contact Us
+                </Link>
+              </Button>
+          </Card>
           </div>
         </div>
       </section>
@@ -376,7 +465,7 @@ export default function CorporatePage() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full bg-[#48A66F] hover:bg-[#3d8f5f]">
+                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
                   Submit Request
                 </Button>
               </form>
@@ -385,67 +474,6 @@ export default function CorporatePage() {
         </div>
       </section>
 
-      {/* Modal */}
-      {isModalOpen && selectedService && (
-        <div className="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold text-gray-900">{selectedService.title}</h2>
-                <button 
-                  onClick={() => setIsModalOpen(false)}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
-                >
-                  ×
-                </button>
-              </div>
-              
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Overview</h3>
-                  <p className="text-gray-600 leading-relaxed">{selectedService.details.overview}</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Key Benefits</h3>
-                  <ul className="space-y-2">
-                    {selectedService.details.benefits.map((benefit: string, idx: number) => (
-                      <li key={idx} className="flex items-center text-gray-600">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Pricing</h3>
-                    <p className="text-green-600 font-semibold">{selectedService.details.pricing}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Coverage</h3>
-                    <p className="text-gray-600">{selectedService.details.coverage}</p>
-                  </div>
-                </div>
-                
-                <div className="flex gap-4 pt-4">
-                  <Button className="flex-1 bg-[#48A66F] hover:bg-[#3d8f5f] text-white">
-                    Get Quote
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="flex-1"
-                    onClick={() => setIsModalOpen(false)}
-                  >
-                    Close
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

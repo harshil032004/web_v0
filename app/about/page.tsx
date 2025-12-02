@@ -12,20 +12,20 @@ export default function About() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+      <section className="text-black py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
             <Award className="h-4 w-4 mr-2" />
             Our Story & Values
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            About <span className="text-green-500">Evera Cabs</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+            <span className="text-green-600">About</span> Evera Cabs
           </h1>
-          <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
+          <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto leading-relaxed drop-shadow">
             India's most trusted electric cab service, committed to providing safe, reliable, and sustainable mobility solutions.
           </p>
         </div>
@@ -106,29 +106,29 @@ export default function About() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Mission & Vision</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-5xl font-bold text-green-600 mb-4">Our Mission & Vision</h2>
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto">
               Driving towards a sustainable and comfortable future
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
                 <Target className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-2xl font-bold text-green-600 mb-4">Our Mission</h3>
+              <p className="text-gray-800 leading-relaxed">
                 To revolutionize India's mobility by building the nation's largest all-electric cab network that prioritizes safety, comfort, and environmental sustainability while eliminating common pain points like driver cancellations and surge pricing.
               </p>
             </Card>
 
             <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
                 <Eye className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-2xl font-bold text-green-600 mb-4">Our Vision</h3>
+              <p className="text-gray-800 leading-relaxed">
                 To become India's most trusted and preferred electric mobility partner, setting new benchmarks in customer experience, environmental responsibility, and urban mobility while helping cities breathe cleaner air.
               </p>
             </Card>
