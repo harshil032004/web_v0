@@ -6,10 +6,11 @@ let testimonials: any[] = [];
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const body = await request.json();
-  const testimonialIndex = testimonials.findIndex(t => t.id === params.id);
+  const testimonialIndex = testimonials.findIndex(t => t.id === id);
   
   if (testimonialIndex === -1) {
     return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
@@ -21,9 +22,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const testimonialIndex = testimonials.findIndex(t => t.id === params.id);
+  const { id } = await params;
+  const testimonialIndex = testimonials.findIndex(t => t.id === id);
   
   if (testimonialIndex === -1) {
     return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
