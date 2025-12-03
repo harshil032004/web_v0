@@ -6,24 +6,26 @@ let jobs: any[] = [];
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const body = await request.json();
-  const jobIndex = jobs.findIndex(job => job.id === params.id);
+  const jobIndex = jobs.findIndex(job => job.id === id);
   
   if (jobIndex === -1) {
     return NextResponse.json({ error: 'Job not found' }, { status: 404 });
   }
   
-  jobs[jobIndex] = { id: params.id, ...body };
+  jobs[jobIndex] = { id, ...body };
   return NextResponse.json(jobs[jobIndex]);
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const jobIndex = jobs.findIndex(job => job.id === params.id);
+  const { id } = await params;
+  const jobIndex = jobs.findIndex(job => job.id === id);
   
   if (jobIndex === -1) {
     return NextResponse.json({ error: 'Job not found' }, { status: 404 });
@@ -35,10 +37,11 @@ export async function DELETE(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const body = await request.json();
-  const jobIndex = jobs.findIndex(job => job.id === params.id);
+  const jobIndex = jobs.findIndex(job => job.id === id);
   
   if (jobIndex === -1) {
     return NextResponse.json({ error: 'Job not found' }, { status: 404 });
