@@ -71,117 +71,119 @@ export default function TrackRide() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-scree overflow-hidden relative">
       <Navigation />
       
       {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> */}
-        <section className="bg-linear-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <section className="text-black bg-white py-20 relative overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6">
               <Award className="h-4 w-4 mr-2" />
               Track Your Ride with Ease
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Track <span className="text-yellow-400">Your</span> Ride
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight drop-shadow-lg">
+              Track <span className="text-green-600">Your</span> Ride
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
+            <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto leading-relaxed drop-shadow">
               Enter your Ride ID below to get real-time updates on your electric vehicle's location and estimated arrival time.
             </p>
           </div>
         </section>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="bg-blue-200 rounded-lg shadow-lg p-8 mb-8">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="flex-1">
-                <Input
-                  type="text"
-                  placeholder="Enter Ride ID (e.g., EVR123456)"
-                  value={rideId}
-                  onChange={handleInputChange}
-                  className="border-2 border-gray-500 text-lg py-3"
-                />
+        <section className="py-12 overflow-hidden relative ">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="bg-blue-200 rounded-lg shadow-lg p-8 mb-8">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <Input
+                    type="text"
+                    placeholder="Enter Ride ID (e.g., EVR123456)"
+                    value={rideId}
+                    onChange={handleInputChange}
+                    className="border-2 border-gray-500 text-lg py-3"
+                  />
+                </div>
+                <Button 
+                  onClick={handleTrack}
+                  disabled={!rideId.trim() || isTracking}
+                  className="bg-green-400 hover:bg-green-800 text-black-500 px-8 py-3"
+                >
+                  {isTracking ? (
+                    <>
+                      <Clock className="h-5 w-5 mr-2 animate-spin" />
+                      Tracking...
+                    </>
+                  ) : (
+                    <>
+                      <Search className="h-5 w-5 mr-2" />
+                      Track Ride
+                    </>
+                  )}
+                </Button>
               </div>
-              <Button 
-                onClick={handleTrack}
-                disabled={!rideId.trim() || isTracking}
-                className="bg-green-400 hover:bg-green-800 text-black-500 px-8 py-3"
-              >
-                {isTracking ? (
-                  <>
-                    <Clock className="h-5 w-5 mr-2 animate-spin" />
-                    Tracking...
-                  </>
-                ) : (
-                  <>
-                    <Search className="h-5 w-5 mr-2" />
-                    Track Ride
-                  </>
-                )}
-              </Button>
             </div>
+
+            {showRideStatus && rideId && (
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">Ride Status</h2>
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    rideData?.status === 'Arrived' ? 'bg-blue-100 text-blue-800' :
+                    rideData?.status === 'Starting' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-green-100 text-green-800'
+                  }`}>
+                    {rideData?.status}
+                  </span>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center">
+                      <Car className="h-5 w-5 text-[#48A66F] mr-3" />
+                      <div>
+                        <p className="font-medium">Driver: {rideData?.driver}</p>
+                        <p className="text-gray-600">{rideData?.vehicle}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <Phone className="h-5 w-5 text-[#48A66F] mr-3" />
+                      <div>
+                        <p className="font-medium">Contact: {rideData?.phone}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center">
+                      <MapPin className="h-5 w-5 text-[#48A66F] mr-3" />
+                      <div>
+                        <p className="font-medium">Current Location</p>
+                        <p className="text-gray-600">{rideData?.location}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-100 rounded-lg overflow-hidden">
+                    <div className="relative h-64">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d77.6!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzEyLjAiTiA3N8KwMzYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="rounded-lg"
+                      ></iframe>
+                      <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-sm font-medium">
+                        ETA: {rideData?.eta}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-
-          {showRideStatus && rideId && (
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Ride Status</h2>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  rideData?.status === 'Arrived' ? 'bg-blue-100 text-blue-800' :
-                  rideData?.status === 'Starting' ? 'bg-yellow-100 text-yellow-800' :
-                  'bg-green-100 text-green-800'
-                }`}>
-                  {rideData?.status}
-                </span>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <Car className="h-5 w-5 text-[#48A66F] mr-3" />
-                    <div>
-                      <p className="font-medium">Driver: {rideData?.driver}</p>
-                      <p className="text-gray-600">{rideData?.vehicle}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center">
-                    <Phone className="h-5 w-5 text-[#48A66F] mr-3" />
-                    <div>
-                      <p className="font-medium">Contact: {rideData?.phone}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <MapPin className="h-5 w-5 text-[#48A66F] mr-3" />
-                    <div>
-                      <p className="font-medium">Current Location</p>
-                      <p className="text-gray-600">{rideData?.location}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-100 rounded-lg overflow-hidden">
-                  <div className="relative h-64">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d77.6!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzEyLjAiTiA3N8KwMzYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded-lg"
-                    ></iframe>
-                    <div className="absolute bottom-2 left-2 bg-white px-2 py-1 rounded text-sm font-medium">
-                      ETA: {rideData?.eta}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        </section>
 
         <div className="mt-12 text-center">
           <h3 className="text-xl font-bold text-gray-900 mb-4">Need Help?</h3>
