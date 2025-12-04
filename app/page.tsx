@@ -123,7 +123,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <ScrollAnimation>
-        <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden flex items-center bg-white">
+        <section className=" relative py-12 sm:py-16 lg:py-20 overflow-hidden flex items-center bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
@@ -423,75 +423,101 @@ export default function Home() {
       </section> */}
 
       {/* Services */}
-      <section id="services" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.3\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            {/* Left side - Headings */}
-            <div>
-              <div className="mb-8 relative">
-                {/* <div className="relative w-20 h-20 bg-linear-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-300">
-                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                  </svg>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-pulse">
-                    <svg className="w-3 h-3 text-white ml-0.5 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-                    </svg>
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Premium Services</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
+          </div>
+          
+          {/* Vertical Cards Row */}
+          <div className="flex gap-4 overflow-x-auto pb-4">
+            {/* Airport Transfer Card */}
+            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 onClick={() => {
+                   setSelectedService(serviceDetails["Airport Transfer"]);
+                   setIsModalOpen(true);
+                 }}>
+              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
+              <div className="relative h-full p-6 flex flex-col justify-end">
+                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
+                    <p className="text-blue-100 mb-3 text-sm">Professional airport pickup and drop-off services with flight tracking and on-time guarantee.</p>
+                    <ul className="text-xs text-blue-100 space-y-1">
+                      <li>• Flight tracking for delayed arrivals</li>
+                      <li>• Meet & greet service at arrivals</li>
+                      <li>• Professional chauffeurs</li>
+                    </ul>
                   </div>
-                </div> */}
-                {/* <div className="flex justify-center mt-2 space-x-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
-                  <div className="w-2 h-2 bg-green-600 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
-                </div> */}
+                  <h3 className="text-xl font-bold text-white mb-4">Airport Transfer</h3>
+                </div>
               </div>
-              <h2 className="text-4xl md:text-5xl text-black font-bold bg-clip-text mb-6">Our Premium Services</h2>
-              <p className="text-xl text-gray-800 leading-relaxed">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
             </div>
-            
-            {/* Right side - 2x2 Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
-              <ServiceCard
-                title="Airport Transfer"
-                description="On-time pickups. Flight tracking. Stress-free travel."
-                buttonText="Learn More"
-                color="text-green-600"
-                onClick={() => {
-                  setSelectedService(serviceDetails["Airport Transfer"]);
-                  setIsModalOpen(true);
-                }}
-              />
-              <ServiceCard
-                title="Rentals"
-                description="Your vehicle. Your terms. Complete flexibility."
-                buttonText="Learn More"
-                color="text-green-600"
-                onClick={() => {
-                  setSelectedService(serviceDetails["Rentals"]);
-                  setIsModalOpen(true);
-                }}
-              />
-              <ServiceCard
-                title="City Rides"
-                description="Professional drivers. Safe journeys. Every time."
-                buttonText="Learn More"
-                color="text-green-600"
-                onClick={() => {
-                  setSelectedService(serviceDetails["City Rides"]);
-                  setIsModalOpen(true);
-                }}
-              />
-              <ServiceCard
-                title="Intercity Rides"
-                description="Long distances. Experienced drivers. Comfort assured."
-                buttonText="Learn More"
-                color="text-green-600"
-                onClick={() => {
-                  setSelectedService(serviceDetails["Intercity Rides"]);
-                  setIsModalOpen(true);
-                }}
-              />
+
+            {/* Rentals Card */}
+            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 onClick={() => {
+                   setSelectedService(serviceDetails["Rentals"]);
+                   setIsModalOpen(true);
+                 }}>
+              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
+              <div className="relative h-full p-6 flex flex-col justify-end">
+                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
+                    <p className="text-green-100 mb-3 text-sm">Flexible car rental solutions for your personal and business needs with complete freedom.</p>
+                    <ul className="text-xs text-green-100 space-y-1">
+                      <li>• Hourly, daily, and weekly rentals</li>
+                      <li>• Self-drive and chauffeur options</li>
+                      <li>• Multiple vehicle categories</li>
+                    </ul>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4">Car Rentals</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* City Rides Card */}
+            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 onClick={() => {
+                   setSelectedService(serviceDetails["City Rides"]);
+                   setIsModalOpen(true);
+                 }}>
+              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
+              <div className="relative h-full p-6 flex flex-col justify-end">
+                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
+                    <p className="text-purple-100 mb-3 text-sm">Convenient point-to-point transportation within the city with professional drivers.</p>
+                    <ul className="text-xs text-purple-100 space-y-1">
+                      <li>• Quick city commutes</li>
+                      <li>• Professional certified drivers</li>
+                      <li>• Real-time GPS tracking</li>
+                    </ul>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4">City Rides</h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Intercity Rides Card */}
+            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                 onClick={() => {
+                   setSelectedService(serviceDetails["Intercity Rides"]);
+                   setIsModalOpen(true);
+                 }}>
+              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
+              <div className="relative h-full p-6 flex flex-col justify-end">
+                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
+                    <p className="text-orange-100 mb-3 text-sm">Long-distance travel solutions with experienced drivers and comfortable vehicles.</p>
+                    <ul className="text-xs text-orange-100 space-y-1">
+                      <li>• Long-distance travel comfort</li>
+                      <li>• Experienced highway drivers</li>
+                      <li>• Regular rest stops</li>
+                    </ul>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4">Intercity Rides</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
