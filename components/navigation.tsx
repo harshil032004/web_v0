@@ -40,7 +40,7 @@ export function Navigation() {
 
   return (
     <header className="shadow-lg sticky top-0 z-50 border-b 
-      bg-gradient-to-r from-[#48A66F] to-[#335185] border-[#48A66F]">
+      bg-linear-to-r from-[#48A66F] to-[#335185] border-[#48A66F]">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -134,7 +134,7 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden border-t py-4 border-white bg-gradient-to-r from-[#48A66F] to-[#335185]">
+          <div className="lg:hidden border-t py-4 border-white bg-linear-to-r from-[#48A66F] to-[#335185]">
             <nav className="flex flex-col space-y-4">
               <Link href="/" className={getMobileNavLinkClass('/')}>Home</Link>
               <Link href="/services" className={getMobileNavLinkClass('/services')}>Services</Link>

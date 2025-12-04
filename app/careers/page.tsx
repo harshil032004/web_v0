@@ -419,7 +419,7 @@ export default function CareersPage() {
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-8">
                   <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="flex-shrink-0">
+                    <div className="shrink-0">
                       <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center">
                         <Users className="w-10 h-10 text-gray-600" />
                       </div>

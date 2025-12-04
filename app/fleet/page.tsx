@@ -15,7 +15,7 @@ export default function FleetPage() {
       seats: "4 Seats",
       luggage: "3 Bags",
       features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
-      gradient: "from-white to-white",
+      linear: "from-white to-white",
       // icon: "🚙",
       // price: "$45/day",
       imageSrc: "/Tata-land.png"
@@ -26,7 +26,7 @@ export default function FleetPage() {
       seats: "4 Seats",
       luggage: "4 Bags",
       features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
-      gradient: "from-white to-white",
+      linear: "from-white to-white",
       // icon: "🚘",
       // price: "$65/day",
       imageSrc: "/MG-land.png"
@@ -81,7 +81,7 @@ export default function FleetPage() {
               <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
                 <CardContent className="p-0">
                   <div className="relative">
-                    <div className={`bg-gradient-to-br ${vehicle.gradient} p-8 text-center relative overflow-hidden`}>
+                    <div className={`bg-linear-to-br ${vehicle.linear} p-8 text-center relative overflow-hidden`}>
                       <div className="absolute inset-0 opacity-20">
                         <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
                       </div>
@@ -123,7 +123,7 @@ export default function FleetPage() {
                           </div>
                         </div>
                         {/* <div className="text-right">
-                          <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                          <div className="text-3xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             {vehicle.price}
                           </div>
                           <div className="text-sm text-gray-500">Starting from</div>
@@ -138,7 +138,7 @@ export default function FleetPage() {
                         <div className="grid grid-cols-2 gap-3">
                           {vehicle.features.map((feature, idx) => (
                             <div key={idx} className="flex items-center text-sm text-gray-700">
-                              <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                              <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
                               <span>{feature}</span>
                             </div>
                           ))}
@@ -146,7 +146,7 @@ export default function FleetPage() {
                       </div>
                       
                       <Link href="/book" className="block">
-                        <Button className="w-full bg-gradient-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 shadow-lg">
+                        <Button className="w-full bg-linear-to-r from-green-600 to-green-600 hover:from-green-700 hover:to-green-700 shadow-lg">
                           Book {vehicle.name}
                         </Button>
                       </Link>

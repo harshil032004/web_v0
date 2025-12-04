@@ -75,7 +75,7 @@ export default function TrackRide() {
       <Navigation />
       
       {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> */}
-        <section className="bg-gradient-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <section className="bg-linear-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
               <Award className="h-4 w-4 mr-2" />

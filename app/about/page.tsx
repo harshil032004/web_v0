@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 transition-all duration-300">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 transition-all duration-300">
       <Navigation />
 
       <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden flex items-center bordeer-3 border-black shadow-sm hover:shadow-lg transition-shadow">
@@ -49,27 +49,27 @@ export default function About() {
               </p>
               <div className="space-y-3">
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 shrink-0" />
                   <span className="text-black">100% Electric Fleet - Zero Emissions</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 shrink-0" />
                   <span className="text-black">No Driver Cancellations Policy</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 shrink-0" />
                   <span className="text-black">Professionally Certified Full-time Drivers</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 shrink-0" />
                   <span className="text-black">Pan-India Service Coverage</span>
                 </div>
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-blue-100 to-green-100 p-8 rounded-2xl">
+            <div className="bg-linear-to-br from-blue-100 to-green-100 p-8 rounded-2xl">
               {/* Large Impact Card */}
-              <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-3xl p-10 shadow-2xl text-white relative overflow-hidden">
+              <div className="bg-linear-to-br from-green-600 to-emerald-700 rounded-3xl p-10 shadow-2xl text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16"></div>
                 
@@ -98,7 +98,7 @@ export default function About() {
       </section>
 
       {/* Environmental Impact Section */}
-      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+      <section className="py-20 relative overflow-hidden bg-linear-to-br from-emerald-50 via-green-50 to-teal-50">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-green-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -152,7 +152,7 @@ export default function About() {
             </div>
           </div>
           {/* Main Content Grid */}
-          <div className="py-20 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+          <div className="py-20 bg-linear-to-br from-emerald-50 via-green-50 to-teal-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Header */}
               <div className="text-center mb-16">
@@ -162,7 +162,7 @@ export default function About() {
               </div>
 
               {/* Grid Layout - Mimicking the image structure */}
-              <div className="relative">
+              <div className="relative max-w-7xl mx-auto">
                 {/* Connecting Lines (decorative) */}
                 <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{zIndex: 0}}>
                   <defs>

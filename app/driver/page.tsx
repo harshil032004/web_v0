@@ -7,7 +7,7 @@ import { DollarSign, Headphones, MapPin, Shield, CheckCircle } from "lucide-reac
 
 export default function DriverOnboarding() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-green-900">
+    <div className="min-h-screen bg-linear-to-br from-gray-900 via-blue-900 to-green-900">
       <Navigation />
 
       {/* Hero Section */}
@@ -72,7 +72,7 @@ export default function DriverOnboarding() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-linear-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <DollarSign className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">Daily payments 365 days</h3>
@@ -80,7 +80,7 @@ export default function DriverOnboarding() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-linear-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Headphones className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">24/7 helpline for your support</h3>
@@ -88,7 +88,7 @@ export default function DriverOnboarding() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-linear-to-br from-pink-400 to-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">Get a booking on your way home</h3>
@@ -96,7 +96,7 @@ export default function DriverOnboarding() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-linear-to-br from-green-400 to-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-2">Insurance Coverage</h3>
@@ -183,7 +183,7 @@ export default function DriverOnboarding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-green-600">
+      <section className="py-20 bg-linear-to-r from-blue-600 to-green-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">Ready to Start Earning?</h2>
           <p className="text-xl text-blue-100 mb-8">

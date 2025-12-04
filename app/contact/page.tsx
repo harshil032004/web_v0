@@ -22,7 +22,7 @@ export default function Contact() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="text-black py-20 relative overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow">
+      <section className="text-black py-20 overflow-hidden relative shadow-lg hover:shadow-xl transition-shadow">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: HERO_PATTERN}}></div>
         </div>

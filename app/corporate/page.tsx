@@ -130,19 +130,19 @@ export default function CorporatePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Environmental</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   100% electric vehicle fleet by 2025
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Carbon neutral operations
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Renewable energy charging stations
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Waste reduction initiatives
                 </li>
               </ul>
@@ -158,19 +158,19 @@ export default function CorporatePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Social</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Fair employment practices
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Driver welfare programs
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Community development initiatives
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Accessible mobility solutions
                 </li>
               </ul>
@@ -186,19 +186,19 @@ export default function CorporatePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Governance</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Transparent business practices
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Ethical data management
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Regulatory compliance
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Stakeholder accountability
                 </li>
               </ul>
@@ -318,7 +318,7 @@ export default function CorporatePage() {
                         {/* Note: The SVG itself is w-8 h-8, so this wrapper size will make it smaller relative to the title's previous spacing */}
                         {getServiceIcon(service.title)}
                       </div>
-                      <CardTitle className="text-black text-xl font-bold text-2xl">{service.title}</CardTitle>
+                      <CardTitle className="text-black font-bold text-2xl">{service.title}</CardTitle>
                     </div>
                     {/* *** MODIFIED BLOCK END *** */}
                     <CardDescription className="text-gray-800">{service.description}</CardDescription>
@@ -348,7 +348,7 @@ export default function CorporatePage() {
                               <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V9H16V11H13V14H11V11H8V9H11V6Z" />
                           </svg>
                       </div>
-                      <CardTitle className="text-black text-xl font-bold text-2xl">And More</CardTitle>
+                      <CardTitle className="text-black font-bold text-2xl">And More</CardTitle>
                   </div>
                   {/* *** MODIFIED BLOCK END *** */}
                   <CardDescription className="text-gray-800">Custom solutions tailored to your specific requirements</CardDescription>

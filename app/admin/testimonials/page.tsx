@@ -227,7 +227,7 @@ export default function TestimonialsManagement() {
             <CardContent className="p-6">
               <div className="flex justify-between items-start">
                 <div className="flex gap-4 flex-1">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
                       <Users className="w-8 h-8 text-gray-600" />
                     </div>

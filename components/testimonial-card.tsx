@@ -18,7 +18,7 @@ export function TestimonialCard({ name, location, rating, comment }: Testimonial
         </div>
         
         <div className="flex items-center mb-6">
-          <div className="w-14 h-14 bg-gradient-to-br from-green-600 to-green-400 rounded-full flex items-center justify-center mr-4 shadow-lg">
+          <div className="w-14 h-14 bg-linear-to-br from-green-600 to-green-400 rounded-full flex items-center justify-center mr-4 shadow-lg">
             <span className="text-white font-bold text-lg">{name.charAt(0)}</span>
           </div>
           <div>
@@ -45,7 +45,7 @@ export function TestimonialCard({ name, location, rating, comment }: Testimonial
           <p className="text-gray-700 italic leading-relaxed pl-4 font-medium">{comment}</p>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-amber-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
       </CardContent>
     </Card>
   );

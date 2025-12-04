@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
 // import { FeatureCard } from "@/components/feature-card";
@@ -117,19 +117,19 @@ export default function Home() {
 
   return (
     <>
-    <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
+    <div className={`min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
       <Navigation />
       <ScrollToTop />
 
       {/* Hero Section */}
       <ScrollAnimation>
-        <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden min-h-[100vh] sm:min-h-[600px] lg:min-h-[700px] flex items-center bg-white">
+        <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden flex items-center bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
               <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
                 {/* Badge */}
-                <div className="inline-flex items-center px-6 py-3 bg-white border border-green-200 text-black rounded-full text-sm font-semibold shadow-2xl transition-all border-gray-300">
+                <div className="inline-flex items-center px-6 py-3 bg-white border border-gray-300 text-black rounded-full text-sm font-semibold shadow-2xl transition-all">
                   <Award className="h-4 w-4 mr-2 text-green-600" />
                   India's Most Trusted Cab Service
                 </div>
@@ -138,9 +138,9 @@ export default function Home() {
                 <div className="space-y-2">
                   <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight">
                     <span className="block animate-slide-in-left">Book Your</span>
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">Perfect Ride</span>
+                    <span className="block text-transparent bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">Perfect Ride</span>
                   </h1>
-                  <div className="w-105 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full animate-expand-width animation-delay-400"></div>
+                  <div className="w-105 h-1 bg-linear-to-r from-green-400 to-green-600 rounded-full animate-expand-width animation-delay-400"></div>
                 </div>
                 
                 {/* Description */}
@@ -430,7 +430,7 @@ export default function Home() {
             {/* Left side - Headings */}
             <div>
               <div className="mb-8 relative">
-                {/* <div className="relative w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-300">
+                {/* <div className="relative w-20 h-20 bg-linear-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-all duration-300">
                   <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11C5.84 5 5.28 5.42 5.08 6.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
                   </svg>
@@ -498,7 +498,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.4\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1.5\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -512,10 +512,10 @@ export default function Home() {
           
           <div className="grid md:grid-cols-3 gap-12 relative">
             {/* Connection Lines */}
-            <div className="hidden md:block absolute top-16 left-1/3 right-1/3 h-0.5 bg-gradient-to-r from-blue-300 via-green-300 to-purple-300"></div>
+            <div className="hidden md:block absolute top-16 left-1/3 right-1/3 h-0.5 bg-linear-to-r from-blue-300 via-green-300 to-purple-300"></div>
             
             <div className="text-center relative">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
+              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <span className="text-3xl font-bold text-white">1</span>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
@@ -525,7 +525,7 @@ export default function Home() {
             </div>
             
             <div className="text-center relative">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
+              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <span className="text-3xl font-bold text-white">2</span>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
@@ -535,7 +535,7 @@ export default function Home() {
             </div>
             
             <div className="text-center relative">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
+              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
                 <span className="text-3xl font-bold text-white">3</span>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
@@ -548,7 +548,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
+      <section className="py-20 bg-linear-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -556,7 +556,7 @@ export default function Home() {
               <Star className="h-4 w-4 mr-2" />
               Customer Reviews
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-black to-black bg-clip-text text-transparent mb-6">What Our Customers Say</h2>
+            <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6">What Our Customers Say</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.</p>
           </div>
           
@@ -742,7 +742,7 @@ export default function Home() {
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {selectedService.features.map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-green-600 rounded-full mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-green-600 rounded-full mr-3 shrink-0"></div>
                       {feature}
                     </li>
                   ))}
