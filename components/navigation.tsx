@@ -47,7 +47,7 @@ export function Navigation() {
           
           <Link href="/" className="flex items-center">
             <Image 
-              src="/Evera-Logo-02-1.svg" 
+              src="/Evera-Logo-02-svg.svg" 
               alt="Evera" 
               width={120} 
               height={40} 

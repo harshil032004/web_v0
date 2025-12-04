@@ -2,12 +2,10 @@
 
 import { Navigation } from "@/components/navigation";
 import { BookingForm } from "@/components/booking-form";
-import { Button } from "@/components/ui/button";
+import {  } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Clock, Star, Phone, CheckCircle, Zap, Award, MapPin, ChevronDown } from "lucide-react";
+import { Shield, Clock, Star, CheckCircle, Zap, Award } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 export default function BookPage() {
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
@@ -17,7 +15,7 @@ export default function BookPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="text-black bg-white py-20 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow mb-1">
+      <section className="text-black bg-white py-12 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow mb-1">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
@@ -25,7 +23,7 @@ export default function BookPage() {
             Instant Booking • Zero Waiting
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
-            <span className="text-green-600">Book</span> Your <span className="text-green-600">Perfect</span> Ride
+            <span className="text-green-600">Book</span> Your <span className="text-green-600">Best</span> Ride
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Experience premium electric mobility with instant booking, transparent pricing, and professional service.
@@ -48,7 +46,7 @@ export default function BookPage() {
       </section>
 
       {/* Booking Section */}
-      <section className="py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-12 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Main Booking Row */}
           <div className="grid lg:grid-cols-3 gap-12 mb-12">
@@ -59,7 +57,7 @@ export default function BookPage() {
                   <h2 className="text-2xl font-bold text-white mb-2">Book Your Ride</h2>
                   <p className="text-slate-200">Fill in the details below for instant booking</p>
                 </div>
-                <div className="p-8">
+                <div className="p-8 text-md text-black">
                   <BookingForm />
                 </div>
               </div>
@@ -109,129 +107,32 @@ export default function BookPage() {
               </Card>
             </div>
           </div>
-
-          {/* Support Cards Row */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Support */}
-            <Card className="border-3 shadow-2xl text-black hover:shadow-3xl transition-shadow duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <Phone className="h-6 w-6 mr-3" />
-                  <h3 className="font-bold text-xl">Need Help?</h3>
-                </div>
-                <p className="text-black mb-6 text-base leading-relaxed">Our dedicated customer support team is available 24/7 to assist you with any queries or concerns.</p>
-                <Button className="w-full bg-white text-white bg-black font-semibold py-3">
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call: 01149540005
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* App Download */}
-            <Card className="border-3 shadow-2xl text-black hover:shadow-3xl transition-shadow duration-300">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <MapPin className="h-6 w-6 mr-3" />
-                  <h3 className="font-bold text-xl">Download Our App</h3>
-                </div>
-                <p className="text-black mb-6 text-base leading-relaxed">Get exclusive offers, faster booking experience, and real-time ride tracking on your mobile device.</p>
-                <div className="relative">
-                  <Button 
-                    className="w-full bg-white text-white bg-black font-semibold py-3"
-                    onClick={() => {
-                      try {
-                        setIsAppDropdownOpen(!isAppDropdownOpen);
-                      } catch (error) {
-                        console.error('Failed to toggle dropdown:', error);
-                      }
-                    }}
-                  >
-                    Get Mobile App
-                    <ChevronDown className="h-4 w-4 ml-2" />
-                  </Button>
-                  
-                  {isAppDropdownOpen && (
-                    <div className="absolute top-full mt-2 left-0 right-0 bg-white rounded-lg shadow-lg border z-50">
-                      <Link 
-                        href="https://qrcodes.pro/2g0L5e" 
-                        target="_blank"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-lg"
-                        onClick={() => {
-                          try {
-                            setIsAppDropdownOpen(false);
-                          } catch (error) {
-                            console.error('Failed to close dropdown:', error);
-                          }
-                        }}
-                      >
-                        <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
-                        Download for Android
-                      </Link>
-                      <Link 
-                        href="https://apps.apple.com/in/app/evera/id1625582988" 
-                        target="_blank"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-lg"
-                        onClick={() => setIsAppDropdownOpen(false)}
-                      >
-                        <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
-                        Download for iOS
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Live Stats Section */}
-      <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-black mb-4">Live Statistics</h2>
-            <p className="text-lg text-gray-800">Real-time data from our platform</p>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-green-500 mb-2">150+</div>
-              <p className="text-black/80">Active Drivers</p>
-            </div>
-            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-green-500 mb-2">2.5k+</div>
-              <p className="text-black/80">Daily Rides</p>
-            </div>
-            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-green-500 mb-2">15+</div>
-              <p className="text-black/80">Cities Covered</p>
-            </div>
-            <div className="bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-green-500 mb-2">4.8★</div>
-              <p className="text-black/80">Average Rating</p>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Trust Indicators */}
       <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 col span-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
-            <p className="text-lg text-gray-800">Join our community of satisfied customers</p>
+            <h2 className="text-5xl font-bold text-gray-900 mb-4">Trusted by Thousands</h2>
+            <p className="text-xl text-gray-800">Join our community of satisfied customers</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 bg-white backdrop-blur-sm rounded-lg p-6 border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-green-500 mb-2">50K+</div>
-              <p className="text-gray-800">Happy Customers</p>
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div className="p-6 bg-green-600 text-white backdrop-blur-sm rounded-lg p-6 border-3 border-gray-300 shadow-2xl hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold mb-2">50K+</div>
+              <p className="p-2">Happy Customers</p>
             </div>
-            <div className="p-6 bg-white backdrop-blur-sm rounded-lg border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-[#335185] mb-2">1M+</div>
-              <p className="text-gray-800">Rides Completed</p>
+            <div className="p-6 bg-green-600 text-white backdrop-blur-sm rounded-lg border-3 border-gray-300 shadow-2xl hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold mb-2">1M+</div>
+              <p className="p-2">Rides Completed</p>
             </div>
-            <div className="p-6 bg-white rounded-lg border border-gray-300 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-3xl font-bold text-[#48A66F] mb-2">99.5%</div>
-              <p className="text-gray-800">Customer Satisfaction</p>
+            <div className="p-6 bg-green-600 text-white backdrop-blur-sm rounded-lg border-3 border-gray-300 shadow-2xl hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold mb-2">99.5%</div>
+              <p className="p-2">Customer Satisfaction</p>
+            </div>
+            <div className="p-6 bg-green-600 text-white backdrop-blur-sm rounded-lg border-3 border-gray-300 shadow-2xl hover:shadow-md transition-shadow">
+              <div className="text-3xl font-bold mb-2">4.8★</div>
+              <p className="p-2">Average Rating</p>
             </div>
           </div>
         </div>

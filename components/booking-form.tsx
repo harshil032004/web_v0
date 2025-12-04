@@ -50,7 +50,7 @@ export function BookingForm() {
   };
 
   return (
-    <Card className="p-4 max-w-md mx-auto bg-white text-black border-0 shadow-xl rounded-lg">
+    <Card className="p-3 max-w-2xl mx-auto bg-white text-black border-3 shadow-xl rounded-lg">
       {/* Service Tabs */}
       <div className="flex mb-4 bg-black/20 rounded-lg p-1">
         {/* <button
@@ -86,7 +86,7 @@ export function BookingForm() {
         <form className="space-y-3">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs font-medium block mb-1">City</label>
+              <label className="text-lg font-medium block mb-1">City</label>
               <select className="w-full p-2 text-sm text-gray-800 rounded bg-white border-0 focus:ring-2 focus:ring-white/50">
                 <option>Choose city</option>
                 <option>Delhi</option>
@@ -95,7 +95,7 @@ export function BookingForm() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-medium block mb-1">Select Trip</label>
+              <label className="text-lg font-medium block mb-1">Select Trip</label>
               <select 
                 className="w-full p-2 text-sm text-gray-800 rounded bg-white border-0 focus:ring-2 focus:ring-white/50"
                 onChange={(e) => setTripType(e.target.value)}
@@ -107,7 +107,7 @@ export function BookingForm() {
           </div>
 
           <div>
-            <label className="text-xs font-medium block mb-1">Airport Terminal</label>
+            <label className="text-lg font-medium block mb-1">Airport Terminal</label>
             <select className="w-full p-2 text-sm text-gray-800 rounded bg-white border-0 focus:ring-2 focus:ring-white/50">
               <option>Select Terminal</option>
               <option>Terminal 1</option>
@@ -117,7 +117,7 @@ export function BookingForm() {
           </div>
 
           <div>
-            <label className="text-xs font-medium block mb-1">Pickup Date & Time</label>
+            <label className="text-lg font-medium block mb-1">Pickup Date & Time</label>
             <Input 
               type="datetime-local" 
               className="w-full p-2 text-sm text-gray-800 bg-white border-0 focus:ring-2 focus:ring-white/50" 
@@ -125,7 +125,7 @@ export function BookingForm() {
           </div>
 
           <div>
-            <label className="text-xs font-medium block mb-1">
+            <label className="text-lg font-medium block mb-1">
               {tripType === 'pickup' ? 'Drop Address' : 'Pickup Address'}
             </label>
             <div className="relative">

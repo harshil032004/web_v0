@@ -3,16 +3,16 @@
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, Users, Car, Award, Clock, Star, Phone, CheckCircle, Target, Eye, Heart } from "lucide-react";
+import { Shield, Car, Award, Clock, CheckCircle, Target, Eye, Heart, Leaf, Sparkles, TrendingUp, Globe, Wind, Droplets, Section } from "lucide-react";
 import Link from "next/link";
-import { AnimatedCounter } from "@/components/animated-counter";
+// import { AnimatedCounter } from "@/components/animated-counter";
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 transition-all duration-300">
       <Navigation />
 
-      <section className="text-black py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden flex items-center bordeer-3 border-black shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
@@ -41,58 +41,55 @@ export default function About() {
                 Our Journey
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Revolutionizing Urban Mobility</h2>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              <p className="text-lg text-black mb-6 leading-relaxed">
                 Evera Cabs is pioneering India's transition to all-electric mobility. We're not just another cab service – we're building a cleaner, safer, and more reliable commuting experience for millions of Indians.
               </p>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+              <p className="text-lg text-black mb-6 leading-relaxed">
                 Unlike traditional cab services, our app ensures drivers can't cancel your ride. Combined with our all-electric fleet and professionally certified full-time drivers, we're addressing the core issues of safety, comfort, and environmental responsibility.
               </p>
               <div className="space-y-3">
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">100% Electric Fleet - Zero Emissions</span>
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <span className="text-black">100% Electric Fleet - Zero Emissions</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">No Driver Cancellations Policy</span>
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <span className="text-black">No Driver Cancellations Policy</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Professionally Certified Full-time Drivers</span>
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <span className="text-black">Professionally Certified Full-time Drivers</span>
                 </div>
                 <div className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Pan-India Service Coverage</span>
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-3 flex-shrink-0" />
+                  <span className="text-black">Pan-India Service Coverage</span>
                 </div>
               </div>
             </div>
             
             <div className="bg-gradient-to-br from-blue-100 to-green-100 p-8 rounded-2xl">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
-                  <Car className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">
-                    <AnimatedCounter end={25000000} />
+              {/* Large Impact Card */}
+              <div className="bg-gradient-to-br from-green-600 to-emerald-700 rounded-3xl p-10 shadow-2xl text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -mr-20 -mt-20"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16"></div>
+                
+                <div className="relative z-10">
+                  <Globe className="h-16 w-16 mb-6 opacity-90" />
+                  <h3 className="text-3xl font-bold mb-4">Our Carbon Impact</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center py-3 border-b border-white/20">
+                      <span className="text-lg font-medium">CO₂ Saved</span>
+                      <span className="text-2xl font-bold">1.25M+ kg</span>
+                    </div>
+                    <div className="flex justify-between items-center py-3 border-b border-white/20">
+                      <span className="text-lg font-medium">Trees Equivalent</span>
+                      <span className="text-2xl font-bold">50,000+</span>
+                    </div>
+                    <div className="flex justify-between items-center py-3">
+                      <span className="text-lg font-medium">Green KM</span>
+                      <span className="text-2xl font-bold">25M+</span>
+                    </div>
                   </div>
-                  <div className="text-sm text-gray-600">Green KM Travelled</div>
-                </div>
-                
-                <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
-                  <Users className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">50K+</div>
-                  <div className="text-sm text-gray-600">Happy Customers</div>
-                </div>
-                
-                <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
-                  <Shield className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">500+</div>
-                  <div className="text-sm text-gray-600">Certified Drivers</div>
-                </div>
-                
-                <div className="text-center bg-white/50 backdrop-blur-sm rounded-xl p-6">
-                  <Star className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-                  <div className="text-3xl font-bold text-gray-900 mb-1">4.8★</div>
-                  <div className="text-sm text-gray-600">Average Rating</div>
                 </div>
               </div>
             </div>
@@ -100,38 +97,135 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-        <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-5xl font-bold text-green-600 mb-4">Our Mission & Vision</h2>
-            <p className="text-xl text-gray-800 max-w-3xl mx-auto">
-              Driving towards a sustainable and comfortable future
+      {/* Environmental Impact Section */}
+      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-green-200/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-teal-200/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/20 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-lg backdrop-blur-sm">
+              <Leaf className="h-4 w-4 mr-2 animate-pulse" />
+              Driving Towards a Greener Future
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+              Every Ride Makes a
+              <span className="block text-transparent bg-clip-text bg-green-600 mt-2">
+                Difference
+              </span>
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              Join us in our mission to revolutionize urban mobility while protecting the planet.
+              With every electric ride, you're contributing to cleaner air and a sustainable future.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
-                <Target className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-green-600 mb-4">Our Mission</h3>
-              <p className="text-gray-800 leading-relaxed">
-                To revolutionize India's mobility by building the nation's largest all-electric cab network that prioritizes safety, comfort, and environmental sustainability while eliminating common pain points like driver cancellations and surge pricing.
-              </p>
-            </Card>
+          {/* Mission & Vision Cards */}
+          <div className="absolute inset-0 opacity-40" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e7ff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-1">
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
+                  <Target className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-green-600 mb-4">Our Mission</h3>
+                <p className="text-gray-800 leading-relaxed">
+                  To revolutionize India's mobility by building the nation's largest all-electric cab network that prioritizes safety, comfort, and environmental sustainability while eliminating common pain points like driver cancellations and surge pricing.
+                </p>
+              </Card>
 
-            <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
-                <Eye className="h-8 w-8 text-white" />
+              <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-white/80 backdrop-blur-sm">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl border-4 border-black/20">
+                  <Eye className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-green-600 mb-4">Our Vision</h3>
+                <p className="text-gray-800 leading-relaxed">
+                  To become India's most trusted and preferred electric mobility partner, setting new benchmarks in customer experience, environmental responsibility, and urban mobility while helping cities breathe cleaner air.
+                </p>
+              </Card>
+            </div>
+          </div>
+          {/* Main Content Grid */}
+          <div className="py-20 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Header */}
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                  Our <span className="text-green-600">Sustainability</span> Journey
+                </h2>
               </div>
-              <h3 className="text-2xl font-bold text-green-600 mb-4">Our Vision</h3>
-              <p className="text-gray-800 leading-relaxed">
-                To become India's most trusted and preferred electric mobility partner, setting new benchmarks in customer experience, environmental responsibility, and urban mobility while helping cities breathe cleaner air.
-              </p>
-            </Card>
+
+              {/* Grid Layout - Mimicking the image structure */}
+              <div className="relative">
+                {/* Connecting Lines (decorative) */}
+                <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{zIndex: 0}}>
+                  <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                      <polygon points="0 0, 10 3.5, 0 7" fill="#0b8a1cff" />
+                    </marker>
+                  </defs>
+                  {/* Curved connecting paths between cards */}
+                  {/* Card 1 to Card 2 - downward curve */}
+                  {/* <path d="M 280 180 Q 340 100, 380 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" /> */}
+                  <path d="M 100 180 Q 440 0, 380 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
+                  
+                  {/* Card 2 to Card 3 - downward curve */}
+                  <path d="M 560 280 Q 620 310, 660 360" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
+                  
+                  {/* Card 3 to Card 4 - upward curve */}
+                  <path d="M 840 360 Q 920 320, 980 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
+                </svg>
+
+                {/* Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-15 relative" style={{zIndex: 1}}>
+                  {/* Card 1 - Top Left */}
+                  <div className="lg:pt-0">
+                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Wind className="h-10 w-10 text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Zero Emissions</h3>
+                    </div>
+                  </div>
+
+                  {/* Card 2 - Slightly Lower */}
+                  <div className="lg:pt-36">
+                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Sparkles className="h-10 w-10 text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Energy Efficiency</h3>
+                    </div>
+                  </div>
+
+                  {/* Card 3 - Even Lower */}
+                  <div className="lg:pt-0">
+                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <TrendingUp className="h-10 w-10 text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Growing Impact</h3>
+                    </div>
+                  </div>
+
+                  {/* Card 4 - Back Up (Top Right) */}
+                  <div className="lg:pt-36">
+                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Droplets className="h-10 w-10 text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Renewable Energy</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -194,40 +288,29 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-        <div className="absolute inset-0 opacity-10">
-          <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6">
-            Join the Evera Cabs Family
-          </h2>
-          <p className="text-lg sm:text-xl text-black mb-8 max-w-2xl mx-auto leading-relaxed">
-            Experience the future of mobility with India's leading all-electric cab service.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 px-8 shadow-lg" asChild>
-              <Link href="/book">
-                <Car className="h-5 w-5 mr-2" />
-                Book Your First Ride
-              </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              className="bg-white text-black hover:bg-gray-300 px-8 shadow-lg"
-              onClick={() => {
-                try {
-                  window.location.href = 'tel:01149540005';
-                } catch (error) {
-                  console.error('Failed to initiate call:', error);
-                }
-              }}
-            >
-              <Phone className="h-5 w-5 mr-2" />
-              Contact Us
-            </Button>
+      {/* Bottom CTA */}
+      <section className="py-16 sm:py-20  bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+        <div className="rounded-3xl p-12 text-center shadow-2xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-bold text-green-600 mb-4">
+              Ready to Make an Impact?
+            </h3>
+            <p className="text-xl text-black mb-8 max-w-2xl mx-auto">
+              Every journey with Evera Cabs contributes to a cleaner environment. 
+              Download our app and start your sustainable commute today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-green-600 hover:bg-green-600 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" asChild>
+                <Link href="/book">
+                  Book Your Green Ride
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-2 border-white text-black hover:bg-black hover:text-white px-8 py-6 text-lg rounded-xl transition-all duration-300" asChild>
+                <Link href="/contact">
+                  Contact Us
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

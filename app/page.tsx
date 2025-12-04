@@ -10,7 +10,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Leaf, Heart, Plane, Calendar, Navigation as NavigationIcon, Route } from "lucide-react";
+import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
 
 interface ServiceDetails {
@@ -661,12 +661,12 @@ export default function Home() {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Link href="/" className="flex items-center">
-                <Image 
-                  src="/Evera-Logo-02-1.svg" 
-                  alt="Evera" 
-                  width={120} 
+                <Image
+                  src="/Evera-Logo-02-svg.svg"
+                  alt="Evera"
+                  width={120}
                   height={40} 
-                  className="h-10 w-auto filter invert brightness-0 contrast-100" 
+                  className="h-10 w-auto filter invert brightness-0 contrast-100"
                   style={{ imageRendering: 'crisp-edges' }}
                   priority
                 />
