@@ -71,20 +71,20 @@ export default function TrackRide() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen overflow-hidden relative">
       <Navigation />
       
       {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> */}
-        <section className="bg-linear-to-r from-[#48A66F] to-[#335185] text-white py-20 relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
               <Award className="h-4 w-4 mr-2" />
               Track Your Ride with Ease
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-              Track <span className="text-yellow-400">Your</span> Ride
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight drop-shadow-lg">
+              Track <span className="text-green-600">Your</span> Ride
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow">
+            <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto leading-relaxed drop-shadow">
               Enter your Ride ID below to get real-time updates on your electric vehicle's location and estimated arrival time.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function TrackRide() {
               <Button 
                 onClick={handleTrack}
                 disabled={!rideId.trim() || isTracking}
-                className="bg-green-400 hover:bg-green-800 text-black-500 px-8 py-3"
+                className="bg-green-500 hover:bg-green-800 text-black-500 px-8 py-3"
               >
                 {isTracking ? (
                   <>
