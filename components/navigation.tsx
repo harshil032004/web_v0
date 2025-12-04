@@ -42,40 +42,41 @@ export function Navigation() {
     <header className="shadow-lg sticky top-0 z-50 border-b 
       bg-linear-to-r from-[#48A66F] to-[#335185] border-[#48A66F]">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center py-6">
           
-          <Link href="/" className="flex items-center">
-            <Image 
-              src="/Evera-Logo-02-svg.svg" 
-              alt="Evera" 
-              width={120} 
-              height={40} 
-              className="h-10 w-auto filter invert brightness-0 contrast-100" 
-              style={{ imageRendering: 'crisp-edges' }}
-              priority
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-6">
-            <Link href="/" className={`font-medium ${getNavLinkClass('/')}`}>Home</Link>
-            {/* <Link href="/services" className={`font-medium ${getNavLinkClass('/services')}`}>Services</Link> */}
-            <Link href="/corporate" className={`font-medium ${getNavLinkClass('/corporate')}`}>Evera Corporate</Link>
-            <Link href="/about" className={`font-medium ${getNavLinkClass('/about')}`}>About</Link>
-            <Link href="/fleet" className={`font-medium ${getNavLinkClass('/fleet')}`}>Fleet</Link>
-            <Link href="/team" className={`font-medium ${getNavLinkClass('/team')}`}>Team</Link>
-            <Link href="/careers" className={`font-medium ${getNavLinkClass('/careers')}`}>Careers</Link>
-            <Link href="/contact" className={`font-medium ${getNavLinkClass('/contact')}`}>Contact</Link>
-
-            <Link href="/track" className={`font-medium flex items-center ${getNavLinkClass('/track')}`}>
-              <MapPin className="h-4 w-4 mr-1" />
-              Track Ride
+          {/* Left Side - Logo and Navigation */}
+          <div className="flex items-center space-x-8">
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/Evera-Logo-02-svg.svg" 
+                alt="Evera" 
+                width={120} 
+                height={40} 
+                className="h-10 w-auto filter invert brightness-0 contrast-100" 
+                style={{ imageRendering: 'crisp-edges' }}
+                priority
+              />
             </Link>
-          </nav>
 
-          {/* Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-6">
+              <Link href="/" className={`font-medium ${getNavLinkClass('/')}`}>Home</Link>
+              <Link href="/corporate" className={`font-medium ${getNavLinkClass('/corporate')}`}>Evera Corporate</Link>
+              <Link href="/about" className={`font-medium ${getNavLinkClass('/about')}`}>About</Link>
+              <Link href="/fleet" className={`font-medium ${getNavLinkClass('/fleet')}`}>Fleet</Link>
+              <Link href="/team" className={`font-medium ${getNavLinkClass('/team')}`}>Team</Link>
+              <Link href="/careers" className={`font-medium ${getNavLinkClass('/careers')}`}>Careers</Link>
+              <Link href="/contact" className={`font-medium ${getNavLinkClass('/contact')}`}>Contact</Link>
+              <Link href="/track" className={`font-medium flex items-center ${getNavLinkClass('/track')}`}>
+                <MapPin className="h-4 w-4 mr-1" />
+                Track
+              </Link>
+            </nav>
+          </div>
+
+          {/* Right Side - Action Buttons */}
+          <div className="hidden lg:flex items-center space-x-3 ml-auto">
             <div className="relative" data-dropdown>
               <Button
                 variant="outline"
@@ -119,6 +120,14 @@ export function Navigation() {
                 <Car className="h-4 w-4 mr-2" />
                 Book Ride
               </Link>
+            </Button>
+            
+            <Button variant="ghost" size="sm" className="text-white hover:text-black hover:bg-white" asChild>
+              <Link href="/signin">Sign In</Link>
+            </Button>
+            
+            <Button size="sm" className="bg-white text-[#48A66F] hover:bg-gray-100" asChild>
+              <Link href="/signup">Sign Up</Link>
             </Button>
           </div>
 
@@ -169,12 +178,21 @@ export function Navigation() {
                   </Link>
                 </div>
 
-                <Button className="w-full bg-[#335185] hover:bg-[#2A426E]">
+                <Button className="w-full bg-[#335185] hover:bg-[#2A426E]" asChild>
                   <Link href="/book" className="flex items-center">
-                  <Car className="h-4 w-4 mr-2" />
-                  Book Ride
+                    <Car className="h-4 w-4 mr-2" />
+                    Book Ride
                   </Link>
                 </Button>
+                
+                <div className="flex space-x-2">
+                  <Button variant="outline" size="sm" className="flex-1 border-white text-white hover:bg-white hover:text-[#48A66F]" asChild>
+                    <Link href="/signin">Sign In</Link>
+                  </Button>
+                  <Button size="sm" className="flex-1 bg-white text-[#48A66F] hover:bg-gray-100" asChild>
+                    <Link href="/signup">Sign Up</Link>
+                  </Button>
+                </div>
               </div>
             </nav>
           </div>
