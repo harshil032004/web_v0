@@ -32,7 +32,7 @@ export default function About() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 sm:py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-8 sm:py-16 lg:py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -98,7 +98,7 @@ export default function About() {
       </section>
 
       {/* Environmental Impact Section */}
-      <section className="py-20 relative overflow-hidden bg-linear-to-br from-emerald-50 via-green-50 to-teal-50">
+      <section className="py-8 sm:py-16 lg:py-20 relative overflow-hidden ">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-green-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -152,7 +152,7 @@ export default function About() {
             </div>
           </div>
           {/* Main Content Grid */}
-          <div className="py-20 bg-linear-to-br from-emerald-50 via-green-50 to-teal-50">
+          <div className="py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Header */}
               <div className="text-center mb-16">
@@ -161,66 +161,51 @@ export default function About() {
                 </h2>
               </div>
 
-              {/* Grid Layout - Mimicking the image structure */}
-              <div className="relative max-w-7xl mx-auto">
-                {/* Connecting Lines (decorative) */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{zIndex: 0}}>
-                  <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                      <polygon points="0 0, 10 3.5, 0 7" fill="#0b8a1cff" />
-                    </marker>
-                  </defs>
-                  {/* Curved connecting paths between cards */}
-                  {/* Card 1 to Card 2 - downward curve */}
-                  {/* <path d="M 280 180 Q 340 100, 380 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" /> */}
-                  <path d="M 100 180 Q 440 0, 380 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
-                  
-                  {/* Card 2 to Card 3 - downward curve */}
-                  <path d="M 560 280 Q 620 310, 660 360" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
-                  
-                  {/* Card 3 to Card 4 - upward curve */}
-                  <path d="M 840 360 Q 920 320, 980 240" stroke="#0b8a1cff" strokeWidth="5" fill="none" strokeDasharray="8,6" markerEnd="url(#arrowhead)" opacity="1" />
-                </svg>
-
+              {/* Grid Layout - Clean and Aligned */}
+              <div className="relative max-w-6xl mx-auto">
                 {/* Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-15 relative" style={{zIndex: 1}}>
-                  {/* Card 1 - Top Left */}
-                  <div className="lg:pt-0">
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <Wind className="h-10 w-10 text-green-600" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                  {/* Card 1 */}
+                  <div className="flex justify-center">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xs">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Wind className="h-8 w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Zero Emissions</h3>
+                      <h3 className="text-lg font-bold text-gray-900 text-center">Zero Emissions</h3>
+                      <p className="text-sm text-gray-600 text-center mt-2">100% electric fleet reducing carbon footprint</p>
                     </div>
                   </div>
 
-                  {/* Card 2 - Slightly Lower */}
-                  <div className="lg:pt-36">
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <Sparkles className="h-10 w-10 text-green-600" />
+                  {/* Card 2 */}
+                  <div className="flex justify-center">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xs">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Sparkles className="h-8 w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Energy Efficiency</h3>
+                      <h3 className="text-lg font-bold text-gray-900 text-center">Energy Efficiency</h3>
+                      <p className="text-sm text-gray-600 text-center mt-2">Optimized routes and smart charging systems</p>
                     </div>
                   </div>
 
-                  {/* Card 3 - Even Lower */}
-                  <div className="lg:pt-0">
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <TrendingUp className="h-10 w-10 text-green-600" />
+                  {/* Card 3 */}
+                  <div className="flex justify-center">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xs">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <TrendingUp className="h-8 w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Growing Impact</h3>
+                      <h3 className="text-lg font-bold text-gray-900 text-center">Growing Impact</h3>
+                      <p className="text-sm text-gray-600 text-center mt-2">Expanding network for greater environmental benefit</p>
                     </div>
                   </div>
 
-                  {/* Card 4 - Back Up (Top Right) */}
-                  <div className="lg:pt-36">
-                    <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <Droplets className="h-10 w-10 text-green-600" />
+                  {/* Card 4 */}
+                  <div className="flex justify-center">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-xs">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Droplets className="h-8 w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Renewable Energy</h3>
+                      <h3 className="text-lg font-bold text-gray-900 text-center">Renewable Energy</h3>
+                      <p className="text-sm text-gray-600 text-center mt-2">Solar-powered charging infrastructure</p>
                     </div>
                   </div>
                 </div>
