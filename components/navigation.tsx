@@ -77,7 +77,7 @@ export function Navigation() {
 
           {/* Right Side - Action Buttons */}
           <div className="hidden lg:flex items-center space-x-3 ml-auto">
-            <div className="relative" data-dropdown>
+            {/* <div className="relative" data-dropdown>
               <Button
                 variant="outline"
                 size="sm"
@@ -113,16 +113,16 @@ export function Navigation() {
                   </Link>
                 </div>
               )}
-            </div>
+            </div> */}
 
-            <Button className="bg-white hover:bg-blue-100 text-[#335185]" size="sm" asChild>
+            {/* <Button className="bg-white hover:bg-blue-100 text-[#335185]" size="sm" asChild>
               <Link href="/book" className="flex items-center">
                 <Car className="h-4 w-4 mr-2" />
                 Book Ride
               </Link>
-            </Button>
+            </Button> */}
             
-            <Button variant="ghost" size="sm" className="text-white hover:text-black hover:bg-white" asChild>
+            <Button variant="ghost" size="sm" className="text-white bg-green-600" asChild>
               <Link href="/signin">Sign In</Link>
             </Button>
             

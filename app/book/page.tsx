@@ -18,7 +18,7 @@ export default function BookPage() {
       <section className="text-black bg-white py-12 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow mb-1">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
             <Zap className="h-4 w-4 mr-2" />
             Instant Booking • Zero Waiting
           </div>
@@ -30,16 +30,16 @@ export default function BookPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center">
-              <CheckCircle className="h-4 w-4 mr-2 text-green-800" />
-              <span>Instant Confirmation</span>
+              <CheckCircle className="h-6 w-6 mr-2 text-white bg-green-600 rounded-full p-0" />
+              <span className="font-semibold">Instant Confirmation</span>
             </div>
             <div className="flex items-center">
-              <Shield className="h-4 w-4 mr-2 text-green-800" />
-              <span>Safe & Secure</span>
+              <Shield className="h-6 w-6 mr-2 text-white bg-green-600 rounded-full p-0" />
+              <span className="font-semibold">Safe & Secure</span>
             </div>
             <div className="flex items-center">
-              <Star className="h-4 w-4 mr-2 text-green-800" />
-              <span>4.8★ Rated Service</span>
+              <Star className="h-6 w-6 mr-2 text-white bg-green-600 rounded-full p-0" />
+              <span className="font-semibold">4.8★ Rated Service</span>
             </div>
           </div>
         </div>

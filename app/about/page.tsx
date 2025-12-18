@@ -12,13 +12,13 @@ export default function About() {
     <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 transition-all duration-300">
       <Navigation />
 
-      <section className="relative py-8 sm:py-16 lg:py-20 overflow-hidden flex items-center bordeer-3 border-black shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20zm-20-16c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z'/%3E%3C/g%3E%3C/svg%3E')"}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
             <Award className="h-4 w-4 mr-2" />
             Our Story & Values
           </div>
@@ -32,11 +32,11 @@ export default function About() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-8 sm:py-16 lg:py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-8 sm:py-16 lg:py-20 bg-white/20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
                 <Car className="h-4 w-4 mr-2" />
                 Our Journey
               </div>
@@ -98,7 +98,7 @@ export default function About() {
       </section>
 
       {/* Environmental Impact Section */}
-      <section className="py-8 sm:py-16 lg:py-20 relative overflow-hidden ">
+      <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 left-10 w-72 h-72 bg-green-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -109,7 +109,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/20 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-lg backdrop-blur-sm">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
               <Leaf className="h-4 w-4 mr-2 animate-pulse" />
               Driving Towards a Greener Future
             </div>
@@ -216,10 +216,10 @@ export default function About() {
       </section>
 
       {/* Our Values */}
-      <section className="py-16 sm:py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-16 sm:py-20 bg-white/20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
               <Heart className="h-4 w-4 mr-2" />
               What Drives Us
             </div>
@@ -231,7 +231,7 @@ export default function About() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Safety First</h3>
@@ -241,7 +241,7 @@ export default function About() {
             </div>
             
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Clock className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Reliability</h3>
@@ -251,7 +251,7 @@ export default function About() {
             </div>
             
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Customer Care</h3>
@@ -261,7 +261,7 @@ export default function About() {
             </div>
 
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Award className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Excellence</h3>
@@ -274,8 +274,8 @@ export default function About() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 sm:py-20  bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
-        <div className="rounded-3xl p-12 text-center shadow-2xl relative overflow-hidden">
+      <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+        <div className="p-12 text-center py-10 relative overflow-hidden inset-0 opacity-100">
           <div className="relative z-10">
             <h3 className="text-3xl md:text-4xl font-bold text-green-600 mb-4">
               Ready to Make an Impact?

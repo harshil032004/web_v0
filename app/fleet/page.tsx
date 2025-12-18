@@ -45,7 +45,7 @@ export default function FleetPage() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
             <Leaf className="h-4 w-4 mr-2" />
             100% Electric Fleet
           </div>
@@ -64,7 +64,7 @@ export default function FleetPage() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-black/10 text-black rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
               <Car className="h-4 w-4 mr-2" />
               Choose Your Vehicle
             </div>
@@ -163,7 +163,7 @@ export default function FleetPage() {
       <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
               <Award className="h-4 w-4 mr-2" />
               Premium Quality
             </div>
@@ -175,7 +175,7 @@ export default function FleetPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Leaf className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">100% Electric</h3>
@@ -185,7 +185,7 @@ export default function FleetPage() {
             </div>
 
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Safety First</h3>
@@ -195,7 +195,7 @@ export default function FleetPage() {
             </div>
 
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Star className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Premium Quality</h3>
@@ -205,7 +205,7 @@ export default function FleetPage() {
             </div>
 
             <div className="text-center text-black bg-black/10 backdrop-blur-sm rounded-xl p-6 border border-black/20 hover:bg-black/20 transition-all">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 border-2 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <Zap className="h-8 w-8 sm:h-10 sm:w-10" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Latest Tech</h3>
