@@ -13,12 +13,12 @@ export function TestimonialCard({ name, location, rating, comment }: Testimonial
   return (
     <Card className="h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group bg-white/90 backdrop-blur-sm border-0 shadow-lg relative overflow-hidden">
       <CardContent className="p-8 relative">
-        <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
-          <Quote className="h-12 w-12 text-amber-500" />
+        <div className="absolute top-4 right-4 opacity-60 group-hover:opacity-80 transition-opacity">
+          <Quote className="h-12 w-12 text-green-600" />
         </div>
         
         <div className="flex items-center mb-6">
-          <div className="w-14 h-14 bg-linear-to-br from-green-600 to-green-400 rounded-full flex items-center justify-center mr-4 shadow-lg">
+          <div className="w-14 h-14 bg-linear-to-br from-green-600 to-green-600 rounded-full flex items-center justify-center mr-4 shadow-lg">
             <span className="text-white font-bold text-lg">{name.charAt(0)}</span>
           </div>
           <div>
@@ -32,20 +32,20 @@ export function TestimonialCard({ name, location, rating, comment }: Testimonial
             <Star
               key={i}
               className={`h-5 w-5 ${
-                i < rating ? "text-amber-400 fill-current" : "text-gray-300"
+                i < rating ? "text-green-500 fill-current" : "text-gray-300"
               } transition-colors`}
             />
           ))}
         </div>
         
         <div className="relative">
-          <div className="absolute -left-2 -top-2 text-amber-400 opacity-50">
+          <div className="absolute -left-2 -top-2 text-green-600 opacity-50">
             <Quote className="h-6 w-6" />
           </div>
           <p className="text-gray-700 italic leading-relaxed pl-4 font-medium">{comment}</p>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-amber-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-green-4  00 to-green-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
       </CardContent>
     </Card>
   );

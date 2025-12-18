@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
 // import { FeatureCard } from "@/components/feature-card";
@@ -10,7 +10,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf } from "lucide-react";
+import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf, Quote } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
 
 interface ServiceDetails {
@@ -21,6 +21,13 @@ interface ServiceDetails {
   availability: string;
   bookingInfo: string;
 }
+
+const HERO_VIDEOS = [
+  // "/hero_vid/vid_1.mp4",
+  // "/hero_vid/vid_2.mp4",
+  // "/hero_vid/vid_3.mp4",
+  "/hero_vid/f1.mp4",
+];
 
 const serviceDetails: Record<string, ServiceDetails> = {
   "Airport Transfer": {
@@ -97,6 +104,8 @@ export default function Home() {
   const [isAppDropdownOpen, setIsAppDropdownOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceDetails | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentVideo, setCurrentVideo] = useState(0);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -115,6 +124,32 @@ export default function Home() {
     };
   }, [isAppDropdownOpen]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => {
+      if (HERO_VIDEOS.length === 1) {
+        videoRef.current!.currentTime = 0;
+        videoRef.current!.play();
+      } else{
+        setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
+      }
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => video.removeEventListener("ended", handleEnded);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.load();
+    video.play().catch(() => {});
+  }, [currentVideo]);
+
+
   return (
     <>
     <div className={`min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
@@ -123,110 +158,124 @@ export default function Home() {
 
       {/* Hero Section */}
       <ScrollAnimation>
-        <section className=" relative py-12 sm:py-16 lg:py-20 overflow-hidden flex items-center bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <section className="min-w-full relative min-h-[65vh] overflow-hidden flex items-center bg-white">
+
+          {/* Background Video */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <video
+              ref={videoRef}
+              src={HERO_VIDEOS[currentVideo]}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Overlay */}
+          <div className="absolute inset-0 z-5 bg-linear-to-r from-gray-900/10 via-gray-900/10 to-gray-900/10"></div>
+
+          {/* Content */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-0 sm:px-1 lg:px-2">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
+
               {/* Left Content */}
               <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
+
                 {/* Badge */}
-                <div className="inline-flex items-center px-6 py-3 bg-white border border-gray-300 text-black rounded-full text-sm font-semibold shadow-2xl transition-all">
-                  <Award className="h-4 w-4 mr-2 text-green-600" />
+                <div className="inline-flex items-center px-6 py-3 bg-gray-900/30 border border-gray-100 text-white rounded-full text-sm font-semibold shadow-xl backdrop-blur-sm">
+                  <Award className="h-4 w-4 mr-2 text-white" />
                   India's Most Trusted Cab Service
                 </div>
-                
-                {/* Main Heading - Uber Style */}
-                <div className="space-y-2">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight">
-                    <span className="block animate-slide-in-left">Book Your</span>
-                    <span className="block text-transparent bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">Perfect Ride</span>
-                  </h1>
-                  <div className="w-105 h-1 bg-linear-to-r from-green-400 to-green-600 rounded-full animate-expand-width animation-delay-400"></div>
-                </div>
-                
-                {/* Description */}
-                <p className="text-lg lg:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light animate-fade-in animation-delay-600">
-                  Experience premium cab services with <span className="font-semibold text-gray-900">EVs</span>, <span className="font-semibold text-gray-900">transparent pricing</span>, and <span className="font-semibold text-gray-900">experienced drivers</span>.
-                </p>
-                
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in animation-delay-800">
-                  <div className="relative w-full sm:w-auto" data-dropdown>
-                    <Button 
-                      size="lg" 
-                      className="bg-black hover:bg-gray-800 text-white px-8 py-4 w-full sm:w-auto rounded-xl font-semibold text-base shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsAppDropdownOpen(!isAppDropdownOpen);
-                      }}
-                    >
-                      <Smartphone className="h-5 w-5 mr-2" />
-                      Download App
-                    </Button>
-                    
-                    {isAppDropdownOpen && (
-                      <div className="absolute top-full mt-2 left-0 right-0 sm:left-0 sm:right-auto bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[220px] z-50 animate-fade-in">
-                        <Link 
-                          href="https://qrcodes.pro/2g0L5e" 
-                          target="_blank"
-                          className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-xl transition-colors duration-200"
-                          onClick={() => setIsAppDropdownOpen(false)}
-                        >
-                          <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
-                          Download for Android
-                        </Link>
-                        <Link 
-                          href="https://apps.apple.com/in/app/evera/id1625582988" 
-                          target="_blank"
-                          className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-xl transition-colors duration-200"
-                          onClick={() => setIsAppDropdownOpen(false)}
-                        >
-                          <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
-                          Download for iOS
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                  <Button size="lg" variant="outline" className="px-8 py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold text-base transition-all duration-300 hover:shadow-lg" asChild>
-                    <Link href="/book">
-                      Book Ride
-                    </Link>
-                  </Button>
-                </div>
 
-                {/* Features */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-6 justify-center lg:justify-start animate-fade-in animation-delay-1000">
-                  <div className="flex items-center justify-center lg:justify-start group">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700">GPS Enabled</span>
+                {/* Main Content with Blurred Background */}
+                <div className="bg-white/10 backdrop-blur-xs rounded-3xl p-6 sm:p-8 border border-white/30 shadow-xl">
+                  {/* Heading */}
+                  <div className="space-y-5 mb-6">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight">
+                      <span className="block animate-slide-in-left">Book Your</span>
+                      <span className="block text-transparent  bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">
+                        Perfect Ride
+                      </span>
+                    </h1>
+                    <div className="w-105 h-1.5 bg-linear-to-r from-gray-600 to-gray-900 rounded-full animate-expand-width animation-delay-400"></div>
                   </div>
-                  <div className="flex items-center justify-center lg:justify-start group">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+
+                  {/* Subtext */}
+                  <p className="text-lg lg:text-xl text-gray-800 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light animate-fade-in animation-delay-600 mb-6">
+                    <span className="font-semibold text-gray-900">
+                      Electric Vehicles | Experienced Drivers | Premium
+                    </span>
+                  </p>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in animation-delay-800 mb-6">
+
+                    {/* Download App */}
+                    <div className="relative w-full sm:w-auto" data-dropdown>
+                      <Button
+                        size="lg"
+                        className="bg-black hover:bg-gray-800 text-white px-8 py-4 w-full sm:w-auto rounded-xl font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIsAppDropdownOpen(!isAppDropdownOpen);
+                        }}
+                      >
+                        <Smartphone className="h-5 w-5 mr-2" />
+                        Download App
+                      </Button>
+
+                      {isAppDropdownOpen && (
+                        <div className="absolute top-full mt-2 left-0 bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[220px] z-50 animate-fade-in">
+                          <Link
+                            href="https://qrcodes.pro/2g0L5e"
+                            target="_blank"
+                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-xl"
+                            onClick={() => setIsAppDropdownOpen(false)}
+                          >
+                            <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
+                            Download for Android
+                          </Link>
+                          <Link
+                            href="https://apps.apple.com/in/app/evera/id1625582988"
+                            target="_blank"
+                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-xl"
+                            onClick={() => setIsAppDropdownOpen(false)}
+                          >
+                            <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
+                            Download for iOS
+                          </Link>
+                        </div>
+                      )}
                     </div>
-                    <span className="text-sm font-medium text-gray-700">24/7 Support</span>
+
+                    {/* Book Ride */}
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="px-8 py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold transition-all duration-300"
+                      asChild
+                    >
+                      <Link href="/book">Book Ride</Link>
+                    </Button>
                   </div>
-                  <div className="flex items-center justify-center lg:justify-start group">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 group-hover:bg-green-200 transition-colors duration-300">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700">Safe & Secure</span>
+
+                  {/* Features */}
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start animate-fade-in animation-delay-1000">
+                    {["GPS Enabled", "24/7 Support", "Safe & Secure"].map((item) => (
+                      <div key={item} className="flex items-center group">
+                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                          <CheckCircle className="h-4 w-4 text-white" />
+                        </div>
+                        <span className="text-sm font-medium text-white">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-              
-              {/* Right Illustration */}
-              <div className="flex justify-center">
-                <Image 
-                  src="/concept.png" 
-                  alt="Book Your Perfect Ride" 
-                  width={400} 
-                  height={300} 
-                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300" 
-                  priority
-                />
-              </div>
+              {/* Right column empty for layout balance */}
+              <div className="hidden lg:block"></div>
             </div>
           </div>
         </section>
@@ -236,28 +285,37 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-20 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 mb-4">India's All Electric Cab Service</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">Driving India’s Electric Mobility Revolution</h2>
+            <div className="relative inline-block">
+              <Quote className="h-6 w-5 text-green-600 absolute left-1 -top-1 scale-x-[-1]" />
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 pl-8">Electric Cabs You Can Count On</h3>
+              <Quote className="h-6 w-5 text-green-600 absolute -right-7 -top-1" />
+            </div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="flex justify-center order-1 lg:order-1">
               <div className="flex justify-center">
                 <Image
-                  src="/charging.jpg" 
+                  src="/section_2.jpg"
                   alt="Electric Cab"
                   width={400}
                   height={300}
-                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300"
+                  className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300 hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
             <div className="space-y-4 sm:space-y-6 order-2 lg:order-2">
               <p className="text-sm sm:text-base lg:text-lg text-gray-800 leading-relaxed font-semibold">
-                Evera Cabs is soon to become India's biggest network of all-electric cabs that you can book using our App. Not only have we created an all-electric cab service to help reduce carbon emissions being released by diesel/petrol – run cabs on a daily basis, we are also addressing safety and comfort issues through a best in class commuting experience powered by our fleet of all-electric cars, professionally certified and full-time drivers combined!
+                Evera Cabs is building India’s largest network of all-electric cabs, designed to make everyday commuting cleaner, safer, and more reliable. Bookable exclusively through the Evera Cabs app, our 100% electric fleet helps significantly reduce carbon emissions while delivering a quiet, comfortable, and modern ride experience.
               </p>
               
               <p className="text-sm sm:text-base lg:text-lg text-gray-800 leading-relaxed font-semibold">
-                Unlike other cab services, our app does not allow drivers to cancel your ride. This is only one small aspect of an all-electric cab service that will help India commute in a safe & comfortable manner.
+                Unlike traditional cab services, drivers on Evera cannot cancel your ride—ensuring complete reliability and peace of mind. Every Evera cab is driven by professionally trained, full-time drivers and powered by certified electric vehicles, offering superior safety standards and a best-in-class commuting experience.
+              </p>
+
+              <p className="text-sm sm:text-base lg:text-lg text-gray-800 leading-relaxed font-semibold">
+                By combining sustainable mobility, zero cancellations, and premium comfort, Evera Cabs is redefining how India moves—one electric ride at a time.
               </p>
             </div>
           </div>
@@ -268,8 +326,12 @@ export default function Home() {
       <section className="py-10 sm:py-16 lg:py-20 overflow-hidden relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">More Than Just An</h2>
-            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600">All Electric Cab Service</h3>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">More Than a Cab</h2>
+            <div className="relative inline-block">
+              <Quote className="h-6 w-5 text-green-600 absolute -left-5 -top-1 scale-x-[-1]" />
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">A Better Way to Commute</h3>
+              <Quote className="h-6 w-5 text-green-600 absolute -right-6 -top-1" />
+            </div>
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -425,97 +487,94 @@ export default function Home() {
       {/* Services */}
       <section id="services" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Premium Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
-          </div>
-          
-          {/* Vertical Cards Row */}
-          <div className="flex gap-4 overflow-x-auto pb-4">
-            {/* Airport Transfer Card */}
-            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                 onClick={() => {
-                   setSelectedService(serviceDetails["Airport Transfer"]);
-                   setIsModalOpen(true);
-                 }}>
-              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
-              <div className="relative h-full p-6 flex flex-col justify-end">
-                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
-                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
-                    <p className="text-blue-100 mb-3 text-sm">Professional airport pickup and drop-off services with flight tracking and on-time guarantee.</p>
-                    <ul className="text-xs text-blue-100 space-y-1">
-                      <li>• Flight tracking for delayed arrivals</li>
-                      <li>• Meet & greet service at arrivals</li>
-                      <li>• Professional chauffeurs</li>
-                    </ul>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Header */}
+            <div>
+              <h2 className="text-2xl sm:text-5xl font-bold text-black mb-6">Our <span className="text-green-600">Services</span></h2>
+              <p className="text-xl text-gray-800">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
+            </div>
+            
+            {/* Right: 2x2 Cards Grid */}
+            <div className="grid grid-cols-2 gap-6">
+              {/* Airport Transfer Card */}
+              <div className="group cursor-pointer"
+                   onClick={() => {
+                     setSelectedService(serviceDetails["Airport Transfer"]);
+                     setIsModalOpen(true);
+                   }}>
+                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
+                      <Car className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Airport Transfer</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">Airport Transfer</h3>
+                  <p className="text-black font-semibold text-xs mb-3">Professional airport services ...</p>
+                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
+                    Learn More
+                  </Button>
                 </div>
               </div>
-            </div>
 
-            {/* Rentals Card */}
-            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                 onClick={() => {
-                   setSelectedService(serviceDetails["Rentals"]);
-                   setIsModalOpen(true);
-                 }}>
-              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
-              <div className="relative h-full p-6 flex flex-col justify-end">
-                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
-                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
-                    <p className="text-green-100 mb-3 text-sm">Flexible car rental solutions for your personal and business needs with complete freedom.</p>
-                    <ul className="text-xs text-green-100 space-y-1">
-                      <li>• Hourly, daily, and weekly rentals</li>
-                      <li>• Self-drive and chauffeur options</li>
-                      <li>• Multiple vehicle categories</li>
-                    </ul>
+              {/* Rentals Card */}
+              <div className="group cursor-pointer"
+                   onClick={() => {
+                     setSelectedService(serviceDetails["Rentals"]);
+                     setIsModalOpen(true);
+                   }}>
+                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
+                      <CreditCard className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Car Rentals</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">Car Rentals</h3>
+                  <p className="text-black font-semibold text-xs mb-3">Flexible rental solutions ...</p>
+                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
+                    Learn More
+                  </Button>
                 </div>
               </div>
-            </div>
 
-            {/* City Rides Card */}
-            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                 onClick={() => {
-                   setSelectedService(serviceDetails["City Rides"]);
-                   setIsModalOpen(true);
-                 }}>
-              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
-              <div className="relative h-full p-6 flex flex-col justify-end">
-                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
-                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
-                    <p className="text-purple-100 mb-3 text-sm">Convenient point-to-point transportation within the city with professional drivers.</p>
-                    <ul className="text-xs text-purple-100 space-y-1">
-                      <li>• Quick city commutes</li>
-                      <li>• Professional certified drivers</li>
-                      <li>• Real-time GPS tracking</li>
-                    </ul>
+              {/* City Rides Card */}
+              <div className="group cursor-pointer"
+                   onClick={() => {
+                     setSelectedService(serviceDetails["City Rides"]);
+                     setIsModalOpen(true);
+                   }}>
+                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300 relative">
+                  <div className="absolute top-2 right-2 bg-green-600 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">Coming Soon</div>
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
+                      <MapPin className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">City Rides</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">City Rides</h3>
+                  <p className="text-black font-semibold text-xs mb-3">Quick city commutes ...</p>
+                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
+                    Learn More
+                  </Button>
                 </div>
               </div>
-            </div>
 
-            {/* Intercity Rides Card */}
-            <div className="group relative min-w-[280px] h-[400px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                 onClick={() => {
-                   setSelectedService(serviceDetails["Intercity Rides"]);
-                   setIsModalOpen(true);
-                 }}>
-              <div className="absolute inset-0 bg-black transition-all duration-500"></div>
-              <div className="relative h-full p-6 flex flex-col justify-end">
-                <div className="transform group-hover:-translate-y-12 transition-transform duration-500">
-                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 mb-6 max-h-0 group-hover:max-h-48 overflow-hidden">
-                    <p className="text-orange-100 mb-3 text-sm">Long-distance travel solutions with experienced drivers and comfortable vehicles.</p>
-                    <ul className="text-xs text-orange-100 space-y-1">
-                      <li>• Long-distance travel comfort</li>
-                      <li>• Experienced highway drivers</li>
-                      <li>• Regular rest stops</li>
-                    </ul>
+              {/* Intercity Rides Card */}
+              <div className="group cursor-pointer"
+                   onClick={() => {
+                     setSelectedService(serviceDetails["Intercity Rides"]);
+                     setIsModalOpen(true);
+                   }}>
+                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300 relative">
+                  <div className="absolute top-2 right-2 bg-green-600 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">Coming Soon</div>
+                  <div className="flex items-center mb-3">
+                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900">Intercity Rides</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">Intercity Rides</h3>
+                  <p className="text-black font-semibold text-xs mb-3">Long-distance travel ...</p>
+                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
+                    Learn More
+                  </Button>
                 </div>
               </div>
             </div>
@@ -528,11 +587,11 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.4\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1.5\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-black/10 text-black rounded-full text-sm font-semibold mb-6 shadow-sm">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
               <Clock className="h-4 w-4 mr-2" />
               Simple Process
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">How It Works</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">How It <span className="text-green-600"> Works</span></h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Book your ride in just 3 simple steps and enjoy a hassle-free travel experience.</p>
           </div>
           
@@ -578,11 +637,11 @@ export default function Home() {
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-black/10 text-black rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
               <Star className="h-4 w-4 mr-2" />
               Customer Reviews
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6">What Our Customers Say</h2>
+            <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6">What <span className="text-green-600"> Our Customers</span> Say</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.</p>
           </div>
           
@@ -659,7 +718,7 @@ export default function Home() {
                       src="/AKP02057-Enhanced-NR.jpg" 
                       alt="EveraCabs App Background" 
                       fill
-                      className="object-cover rounded-2xl mb-6" 
+                      className="object-cover rounded-2xl mb-6 shadow-2xl hover:scale-105 transition-transform duration-300" 
                     />
                   {/* </div> */}
                 <h3 className="text-2xl font-bold text-black mb-4">EveraCabs</h3>

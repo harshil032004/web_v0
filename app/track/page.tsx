@@ -5,6 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MapPin, Search, Clock, Car, Phone, Award } from "lucide-react";
+import Link from "next/link";
 
 type RideData = {
   driver: string;
@@ -77,7 +78,7 @@ export default function TrackRide() {
       {/* <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> */}
         <section className="py-20 relative overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div className="inline-flex items-center px-4 py-2 bg-black/20 backdrop-blur-sm text-black rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
               <Award className="h-4 w-4 mr-2" />
               Track Your Ride with Ease
             </div>
@@ -188,8 +189,10 @@ export default function TrackRide() {
           <p className="text-gray-600 mb-6">
             Can't find your ride ID? Check your booking confirmation SMS or email.
           </p>
-          <Button variant="outline" className="border-[#48166] text-[#48166]">
-            Contact Support
+          <Button variant="outline" className="border-[#48166] text-[#48166]" asChild>
+            <Link href="/contact">
+              Contact Support
+            </Link>
           </Button>
           <p className="text-sm text-gray-500 mt-2">
             We're here to help you every step of the way.

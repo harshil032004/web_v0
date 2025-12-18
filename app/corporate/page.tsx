@@ -90,23 +90,68 @@ export default function CorporatePage() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
 
-      <section className="text-black py-20 relative overflow-hidden shadow-xl hover:shadow-2xl transition-shadow mb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
-            Corporate <span className="text-green-600">Mobility Solutions</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Sustainable mobility solutions designed for modern businesses
-          </p>
+      {/* Hero Section with Corporate Image */}
+      <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Content */}
+            <div className="text-left">
+              <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
+                </svg>
+                Enterprise Solutions
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
+                Corporate <span className="text-green-600">Mobility Solutions</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Sustainable, reliable, and cost-effective mobility solutions designed for modern businesses. Transform your corporate transportation with our comprehensive services.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4">
+                  Get Quote
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4"
+                  onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  View Services
+                </Button>
+              </div>
+            </div>
+            
+            {/* Right: Corporate Image */}
+            <div className="flex justify-center">
+              <div className="relative">
+                <img 
+                  src="/corporate/corporate.png" 
+                  alt="Corporate Mobility Solutions" 
+                  className="w-full max-w-lg h-120 object-cover rounded-2xl shadow-2 hover:scale-105 transition-transform duration-300"
+                />
+                {/* Floating Stats */}
+                <div className="absolute -bottom-6 -left-6 bg-white rounded-xl p-4 shadow-lg border">
+                  <div className="text-2xl font-bold text-green-600">500+</div>
+                  <div className="text-sm text-gray-600">Corporate Clients</div>
+                </div>
+                <div className="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-lg border">
+                  <div className="text-2xl font-bold text-green-600">99.8%</div>
+                  <div className="text-sm text-gray-600">Uptime</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Our ESG Commitments */}
-      <section className="py-20 bg-white relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6 shadow-sm">
+            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
               </svg>
@@ -158,19 +203,19 @@ export default function CorporatePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Social</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Fair employment practices
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Driver welfare programs
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Community development initiatives
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Accessible mobility solutions
                 </li>
               </ul>
@@ -186,19 +231,19 @@ export default function CorporatePage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Governance</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Transparent business practices
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Ethical data management
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Regulatory compliance
                 </li>
                 <li className="flex items-start">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 shrink-0"></span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 shrink-0"></span>
                   Stakeholder accountability
                 </li>
               </ul>
@@ -234,7 +279,7 @@ export default function CorporatePage() {
       </section>
 
       {/* Services Offered */}
-      <section className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
+      <section id="services" className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-5xl font-bold text-black mb-4">Our Services</h2>
