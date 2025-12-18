@@ -20,9 +20,10 @@ let bookings: Booking[] = [];
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const booking = bookings.find(b => b.id === params.id);
+  const { id } = await params;
+  const booking = bookings.find(b => b.id === id);
   if (!booking) {
     return NextResponse.json({ error: 'Booking not found' }, { status: 404 });
   }
@@ -31,11 +32,12 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
-    const bookingIndex = bookings.findIndex(b => b.id === params.id);
+    const bookingIndex = bookings.findIndex(b => b.id === id);
     
     if (bookingIndex === -1) {
       return NextResponse.json({ error: 'Booking not found' }, { status: 404 });
@@ -50,9 +52,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const bookingIndex = bookings.findIndex(b => b.id === params.id);
+  const { id } = await params;
+  const bookingIndex = bookings.findIndex(b => b.id === id);
   
   if (bookingIndex === -1) {
     return NextResponse.json({ error: 'Booking not found' }, { status: 404 });
