@@ -10,8 +10,9 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf, Quote } from "lucide-react";
+import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf, Quote, Plane } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { motion } from 'framer-motion';
 
 interface ServiceDetails {
   title: string;
@@ -107,6 +108,42 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentVideo, setCurrentVideo] = useState(0);
 
+  // Hanging card data with images
+  const hangingCards = [
+    { 
+      icon: Car, 
+      top: '10%', 
+      left: '10%',
+      delay: 0,
+      stringHeight: 80,
+      image: '🚗'
+    },
+    { 
+      icon: Plane, 
+      top: '15%', 
+      right: '12%',
+      delay: 0.5,
+      stringHeight: 100,
+      image: '✈️'
+    },
+    { 
+      icon: MapPin, 
+      top: '60%', 
+      left: '5%',
+      delay: 1,
+      stringHeight: 90,
+      image: '📍'
+    },
+    { 
+      icon: Users, 
+      top: '70%', 
+      right: '8%',
+      delay: 1.5,
+      stringHeight: 110,
+      image: '👥'
+    }
+  ];
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -158,7 +195,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <ScrollAnimation>
-        <section className="min-w-full relative min-h-[65vh] overflow-hidden flex items-center bg-white">
+        <section className="relative min-h-[65vh] sm:min-h-[65vh] overflow-hidden flex items-center bg-white">
 
           {/* Background Video */}
           <div className="absolute inset-0 z-0 overflow-hidden">
@@ -177,73 +214,70 @@ export default function Home() {
           <div className="absolute inset-0 z-5 bg-linear-to-r from-gray-900/10 via-gray-900/10 to-gray-900/10"></div>
 
           {/* Content */}
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-0 sm:px-1 lg:px-2">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative z-10 w-full max-w-[95%] sm:max-w-full lg:w-full lg:max-w-xl mx-auto lg:ml-105 text-left lg:text-left">
+            <div className="w-full lg:w-xl max-w-7xl gap-12 items-center">
 
-              {/* Left Content */}
-              <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
+              {/* Badge */}
+              <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-4 bg-gray-900/40 border border-gray-100/50 text-white rounded-full text-xs sm:text-sm font-semibold shadow-xl backdrop-blur-sm mb-4 sm:mb-6">
+                <Award className="h-4 w-4 sm:h-5 sm:w-5 mr-4 text-white" />
+                India's Most Trusted Cab Service
+              </div>
 
-                {/* Badge */}
-                <div className="inline-flex items-center px-6 py-3 bg-gray-900/30 border border-gray-100 text-white rounded-full text-sm font-semibold shadow-xl backdrop-blur-sm">
-                  <Award className="h-4 w-4 mr-2 text-white" />
-                  India's Most Trusted Cab Service
+              {/* Main Content with Blurred Background */}
+              <div className="bg-white/10 backdrop-blur-xs rounded-3xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 border border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300">
+                {/* Heading */}
+                <div className="space-y-2 sm:space-y-1 mb-3 sm:mb-4">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-gray-900 leading-[1.1] sm:leading-none tracking-[-0.01em]">
+                    <span className="block animate-slide-in-left">Book Your</span>
+                    <span className="block text-transparent bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">
+                      Perfect Ride
+                    </span>
+                  </h1>
+                  <div className="w-55 sm:w-110 h-1.5 sm:h-2 bg-linear-to-r from-gray-600 to-gray-900 rounded-full mx-full lg:mx-0 animate-expand-width animation-delay-400"></div>
                 </div>
 
-                {/* Main Content with Blurred Background */}
-                <div className="bg-white/10 backdrop-blur-xs rounded-3xl p-6 sm:p-8 border border-white/30 shadow-xl">
-                  {/* Heading */}
-                  <div className="space-y-5 mb-6">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-[0.9] tracking-tight">
-                      <span className="block animate-slide-in-left">Book Your</span>
-                      <span className="block text-transparent  bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">
-                        Perfect Ride
-                      </span>
-                    </h1>
-                    <div className="w-105 h-1.5 bg-linear-to-r from-gray-600 to-gray-900 rounded-full animate-expand-width animation-delay-400"></div>
-                  </div>
-
                   {/* Subtext */}
-                  <p className="text-lg lg:text-xl text-gray-800 max-w-lg mx-auto lg:mx-0 leading-relaxed font-light animate-fade-in animation-delay-600 mb-6">
-                    <span className="font-semibold text-gray-900">
-                      Electric Vehicles | Experienced Drivers | Premium
-                    </span>
-                  </p>
+                <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-800 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium animate-fade-in animation-delay-600 mb-6 sm:mb-8">
+                  <span className="font-semibold text-gray-900">
+                    Electric Vehicles | Experienced Drivers | Premium
+                  </span>
+                </p>
 
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in animation-delay-800 mb-6">
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center animate-fade-in animation-delay-800 mb-6 sm:mb-8">
 
                     {/* Download App */}
                     <div className="relative w-full sm:w-auto" data-dropdown>
-                      <Button
-                        size="lg"
-                        className="bg-black hover:bg-gray-800 text-white px-8 py-4 w-full sm:w-auto rounded-xl font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setIsAppDropdownOpen(!isAppDropdownOpen);
-                        }}
-                      >
-                        <Smartphone className="h-5 w-5 mr-2" />
-                        Download App
-                      </Button>
+                    <Button
+                      size="lg"
+                      className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto rounded-xl font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsAppDropdownOpen(!isAppDropdownOpen);
+                      }}
+                    >
+                      <Smartphone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                      Download App
+                    </Button>
 
                       {isAppDropdownOpen && (
-                        <div className="absolute top-full mt-2 left-0 bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[220px] z-50 animate-fade-in">
+                        <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 sm:left-0 sm:transform-none bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[200px] sm:min-w-[220px] z-50 animate-fade-in">
                           <Link
                             href="https://qrcodes.pro/2g0L5e"
                             target="_blank"
-                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-xl"
+                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-t-xl text-sm"
                             onClick={() => setIsAppDropdownOpen(false)}
                           >
-                            <Image src="/Android-icon.png" alt="Android" width={20} height={20} className="mr-3" />
+                            <Image src="/Android-icon.png" alt="Android" width={18} height={18} className="mr-3" />
                             Download for Android
                           </Link>
                           <Link
                             href="https://apps.apple.com/in/app/evera/id1625582988"
                             target="_blank"
-                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-xl"
+                            className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-b-xl text-sm"
                             onClick={() => setIsAppDropdownOpen(false)}
                           >
-                            <Image src="/apple.png" alt="iOS" width={20} height={20} className="mr-3" />
+                            <Image src="/apple.png" alt="iOS" width={18} height={18} className="mr-3" />
                             Download for iOS
                           </Link>
                         </div>
@@ -251,30 +285,28 @@ export default function Home() {
                     </div>
 
                     {/* Book Ride */}
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="px-8 py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold transition-all duration-300"
-                      asChild
-                    >
-                      <Link href="/book">Book Ride</Link>
-                    </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base"
+                    asChild
+                  >
+                    <Link href="/book">Book Ride</Link>
+                  </Button>
                   </div>
 
                   {/* Features */}
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start animate-fade-in animation-delay-1000">
-                    {["GPS Enabled", "24/7 Support", "Safe & Secure"].map((item) => (
-                      <div key={item} className="flex items-center group">
-                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
-                          <CheckCircle className="h-4 w-4 text-white" />
-                        </div>
-                        <span className="text-sm font-medium text-white">{item}</span>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-left animate-fade-in animation-delay-1000">
+                  {["GPS Enabled", "24/7 Support", "Safe & Secure"].map((item) => (
+                    <div key={item} className="flex items-center group">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
                       </div>
-                    ))}
-                  </div>
+                      <span className="text-xs sm:text-sm font-semibold text-black">{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              {/* Right column empty for layout balance */}
               <div className="hidden lg:block"></div>
             </div>
           </div>
@@ -287,9 +319,9 @@ export default function Home() {
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">Driving India’s Electric Mobility Revolution</h2>
             <div className="relative inline-block">
-              <Quote className="h-6 w-5 text-green-600 absolute left-1 -top-1 scale-x-[-1]" />
+              {/* <Quote className="h-6 w-5 text-green-600 absolute left-3 sm:left-1 -top-1 scale-x-[-1]" /> */}
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 pl-8">Electric Cabs You Can Count On</h3>
-              <Quote className="h-6 w-5 text-green-600 absolute -right-7 -top-1" />
+              {/* <Quote className="h-6 w-5 text-green-600 absolute -right-7 sm:-right-5 -top-1" /> */}
             </div>
           </div>
           
@@ -323,138 +355,124 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-10 sm:py-16 lg:py-20 overflow-hidden relative bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 xl:py-20 overflow-hidden relative bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-2 sm:mb-4">More Than a Cab</h2>
+          <div className="text-center mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
+            {/* Floating badge */}
+            <motion.div
+              className="inline-block mb-4"
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+            >
+              <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                ✨ Why Choose Us
+              </div>
+            </motion.div>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-black mb-2 sm:mb-4">More Than a Cab</h2>
             <div className="relative inline-block">
-              <Quote className="h-6 w-5 text-green-600 absolute -left-5 -top-1 scale-x-[-1]" />
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">A Better Way to Commute</h3>
-              <Quote className="h-6 w-5 text-green-600 absolute -right-6 -top-1" />
+              <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-green-600">A Better Way to Commute</h3>
             </div>
           </div>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <CreditCard className="h-8 w-8 sm:h-10 sm:w-10" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              { icon: CreditCard, title: "NO SURGE", desc: "Fixed pricing regardless of traffic or demand. No surprise charges." },
+              { icon: X, title: "NO SERVICE DENIALS", desc: "Professional drivers can't cancel your ride. Only you control your trip." },
+              { icon: Leaf, title: "NO EMISSIONS", desc: "100% electric fleet. Zero emissions. Cleaner cities." },
+              { icon: Users, title: "PROFESSIONAL DRIVERS", desc: "Trained, certified drivers. Hassle-free rides guaranteed." },
+              { icon: Heart, title: "COMFORT", desc: "Smooth electric vehicles. No gears, no jerks, maximum comfort." },
+              { icon: Shield, title: "SAFETY", desc: "Background-checked drivers. Advanced safety features. Your security first." }
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className="text-center text-green-600"
+              >
+                <motion.div 
+                  className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 border-2 sm:border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 lg:mb-6"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ 
+                    scale: [0, 1],
+                    rotate: [0, 360]
+                  }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
+                  <item.icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
+                </motion.div>
+                <h4 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 lg:mb-4">{item.title}</h4>
+                <p className="text-sm sm:text-base text-black leading-relaxed px-2">
+                  {item.desc}
+                </p>
               </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SURGE</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                Fixed pricing regardless of traffic or demand. No surprise charges.
-              </p>
-            </div>
-            
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <X className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO SERVICE DENIALS</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                Professional drivers can't cancel your ride. Only you control your trip.
-              </p>
-            </div>
-            
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Leaf className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">NO EMISSIONS</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                100% electric fleet. Zero emissions. Cleaner cities.
-              </p>
-            </div>
-                        
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Users className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">PROFESSIONAL DRIVERS</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                Trained, certified drivers. Hassle-free rides guaranteed.
-              </p>
-            </div>
-            
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Heart className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">COMFORT</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                Smooth electric vehicles. No gears, no jerks, maximum comfort.
-              </p>
-            </div>
-            
-            <div className="text-center text-green-600">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <Shield className="h-8 w-8 sm:h-10 sm:w-10" />
-              </div>
-              <h4 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">SAFETY</h4>
-              <p className="text-sm sm:text-base text-black leading-relaxed">
-                Background-checked drivers. Advanced safety features. Your security first.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Animated Statistics Section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url(/Website-banner-2.jpg)'}}></div>
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center text-white">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center text-white">
             <div>
-              <div className="mb-4">
-                <Car className="h-16 w-16 mx-auto text-white drop-shadow-lg" />
+              <div className="mb-3 sm:mb-4">
+                <Car className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto text-white drop-shadow-lg" />
               </div>
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={25000000} />
               </div>
-              <div className="text-lg font-bold tracking-wide drop-shadow-lg">GREEN KM TRAVELLED</div>
+              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">GREEN KM TRAVELLED</div>
             </div>
             
             <div>
-              <div className="mb-4">
-                <div className="h-16 w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-16 w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-3 sm:mb-4">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={50000} />
               </div>
-              <div className="text-lg font-bold tracking-wide drop-shadow-lg">TREES SAVED</div>
+              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">TREES SAVED</div>
             </div>
             
             <div>
-              <div className="mb-4">
-                <div className="h-16 w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-16 w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-3 sm:mb-4">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7V9C15 10.1 14.1 11 13 11V22H11V11C9.9 11 9 10.1 9 9V7H3V9C3 10.1 2.1 11 1 11V22H23V11C21.9 11 21 10.1 21 9Z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={1250000} />
               </div>
-              <div className="text-lg font-bold tracking-wide drop-shadow-lg">CARBON EMISSIONS SAVED</div>
+              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">CARBON EMISSIONS SAVED</div>
             </div>
             
             <div>
-              <div className="mb-4">
-                <div className="h-16 w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-16 w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-3 sm:mb-4">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M16.5 3c.28 0 .5.22.5.5V6h2.5c.28 0 .5.22.5.5v14c0 .28-.22.5-.5.5s-.5-.22-.5-.5V18h-2v2.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-17c0-.28.22-.5.5-.5zM17 7v10h2V7h-2zM5 3c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4h10v-4H7c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h7c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-4H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4zm2 3l-3 5h2v3l3-5H7V6z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-5xl font-bold mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={200} />
               </div>
-              <div className="text-lg font-bold tracking-wide drop-shadow-lg">CHARGING STATIONS</div>
+              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">CHARGING STATIONS</div>
             </div>
           </div>
         </div>
@@ -484,100 +502,150 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* Services */}
-      <section id="services" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Header */}
-            <div>
-              <h2 className="text-2xl sm:text-5xl font-bold text-black mb-6">Our <span className="text-green-600">Services</span></h2>
-              <p className="text-xl text-gray-800">From quick city rides to long-distance travel, we offer comprehensive mobility solutions tailored to your needs.</p>
+      {/* Services Section */}
+      <section
+        id="services"
+        className="relative py-16 sm:py-20 lg:py-28 bg-linear-to-b from-gray-50 via-green-50/20 to-white"
+      >
+        {/* Soft ambient background – very subtle */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-green-500/10 blur-3xl rounded-full" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <motion.div
+            className="max-w-2xl mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {/* Hanging "OUR SERVICES" */}
+            <div className="flex justify-center mb-6">
+              <motion.div
+                className="flex flex-col items-center"
+                initial={{ y: -100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                {/* String */}
+                <motion.div
+                  className="w-0.5 h-16 bg-green-600/30"
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  style={{ transformOrigin: 'top' }}
+                />
+                {/* Hanging text */}
+                <motion.p
+                  className="text-sm font-semibold tracking-widest text-green-600 uppercase bg-white px-4 py-2 rounded-lg shadow-md border border-green-100 cursor-pointer select-none"
+                  initial={{ rotate: -5 }}
+                  whileInView={{ rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  whileHover={{ 
+                    rotate: [0, -3, 3, -2, 2, 0],
+                    transition: { duration: 0.6 }
+                  }}
+                  whileTap={{ 
+                    rotate: [0, -15, 15, -10, 10, -5, 5, 0],
+                    transition: { duration: 1.2 }
+                  }}
+                  style={{ transformOrigin: 'top center' }}
+                >
+                  Our Services
+                </motion.p>
+              </motion.div>
             </div>
-            
-            {/* Right: 2x2 Cards Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {/* Airport Transfer Card */}
-              <div className="group cursor-pointer"
-                   onClick={() => {
-                     setSelectedService(serviceDetails["Airport Transfer"]);
-                     setIsModalOpen(true);
-                   }}>
-                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-center mb-3">
-                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
-                      <Car className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Airport Transfer</h3>
-                  </div>
-                  <p className="text-black font-semibold text-xs mb-3">Professional airport services ...</p>
-                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
 
-              {/* Rentals Card */}
-              <div className="group cursor-pointer"
-                   onClick={() => {
-                     setSelectedService(serviceDetails["Rentals"]);
-                     setIsModalOpen(true);
-                   }}>
-                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-center mb-3">
-                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
-                      <CreditCard className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Car Rentals</h3>
-                  </div>
-                  <p className="text-black font-semibold text-xs mb-3">Flexible rental solutions ...</p>
-                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight mb-4">
+              Reliable electric mobility,
+              <br className="hidden sm:block" />
+              built for real journeys
+            </h2>
 
-              {/* City Rides Card */}
-              <div className="group cursor-pointer"
-                   onClick={() => {
-                     setSelectedService(serviceDetails["City Rides"]);
-                     setIsModalOpen(true);
-                   }}>
-                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300 relative">
-                  <div className="absolute top-2 right-2 bg-green-600 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">Coming Soon</div>
-                  <div className="flex items-center mb-3">
-                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
-                      <MapPin className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">City Rides</h3>
-                  </div>
-                  <p className="text-black font-semibold text-xs mb-3">Quick city commutes ...</p>
-                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
+            <p className="text-gray-600 text-base sm:text-lg">
+              Whether it’s a short city commute or a long intercity ride, EveraCabs
+              delivers dependable, all-electric transportation with professional
+              service at every step.
+            </p>
+          </motion.div>
 
-              {/* Intercity Rides Card */}
-              <div className="group cursor-pointer"
-                   onClick={() => {
-                     setSelectedService(serviceDetails["Intercity Rides"]);
-                     setIsModalOpen(true);
-                   }}>
-                <div className="bg-white rounded-2xl p-4 shadow-2xl hover:shadow-xl transition-all duration-300 relative">
-                  <div className="absolute top-2 right-2 bg-green-600 text-white px-1.5 py-0.5 rounded-full text-xs font-semibold">Coming Soon</div>
-                  <div className="flex items-center mb-3">
-                    <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-3">
-                      <Users className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900">Intercity Rides</h3>
-                  </div>
-                  <p className="text-black font-semibold text-xs mb-3">Long-distance travel ...</p>
-                  <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-white text-xs">
-                    Learn More
-                  </Button>
+          {/* Services Grid */}
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                key: "Airport Transfer",
+                title: "Airport Transfers",
+                desc: serviceDetails["Airport Transfer"].description,
+                tag: "Live",
+              },
+              {
+                key: "Rentals",
+                title: "Car Rentals",
+                desc: serviceDetails["Rentals"].description,
+                tag: "Live",
+              },
+              {
+                key: "City Rides",
+                title: "City Rides",
+                desc: serviceDetails["City Rides"].description,
+                tag: "Coming Soon",
+              },
+              {
+                key: "Intercity Rides",
+                title: "Intercity Travel",
+                desc: serviceDetails["Intercity Rides"].description,
+                tag: "Coming Soon",
+              },
+            ].map((service, i) => (
+              <motion.div
+                key={i}
+                className="group relative bg-white rounded-2xl border border-gray-200 p-6 lg:p-7 transition-all duration-300 shadow-2xl hover:shadow-xl hover:border-green-200 cursor-pointer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                onClick={() => {
+                  setSelectedService(serviceDetails[service.key]);
+                  setIsModalOpen(true);
+                }}
+                whileTap={{ 
+                  rotateY: 180,
+                  transition: { duration: 0.6, ease: "easeInOut" }
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Status tag */}
+                <span
+                  className={`inline-block mb-4 text-xs font-semibold px-3 py-1 rounded-full ${
+                    service.tag === "Live"
+                      ? "bg-green-100 text-green-700"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {service.tag}
+                </span>
+
+                <h3 className="text-2xl font-semibold text-green-600 mb-2">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-black leading-relaxed mb-6">
+                  {service.desc}
+                </p>
+
+                <div className="flex items-center text-md font-medium text-green-700 group-hover:text-green-800 transition-colors">
+                  Learn more
+                  <span className="ml-2 transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -587,47 +655,84 @@ export default function Home() {
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e0e7ff\' fill-opacity=\'0.4\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1.5\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
               <Clock className="h-4 w-4 mr-2" />
               Simple Process
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">How It <span className="text-green-600"> Works</span></h2>
+            </motion.div>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              How It <span className="text-green-600"> Works</span>
+            </motion.h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Book your ride in just 3 simple steps and enjoy a hassle-free travel experience.</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-12 relative">
-            {/* Connection Lines */}
-            <div className="hidden md:block absolute top-16 left-1/3 right-1/3 h-0.5 bg-linear-to-r from-blue-300 via-green-300 to-purple-300"></div>
+            {/* Animated Connection Lines */}
+            <motion.div 
+              className="hidden md:block absolute top-16 left-1/3 right-1/3 h-0.5 bg-linear-to-r from-blue-300 via-green-300 to-purple-300"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+            />
             
-            <div className="text-center relative">
-              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <span className="text-3xl font-bold text-white">1</span>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Book Your Ride</h3>
-                <p className="text-gray-800 leading-relaxed text-lg">Enter your pickup and drop location, select your preferred vehicle type, and confirm your booking with ease.</p>
-              </div>
-            </div>
-            
-            <div className="text-center relative">
-              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <span className="text-3xl font-bold text-white">2</span>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Track Your Driver</h3>
-                <p className="text-gray-800 leading-relaxed text-lg">Get real-time updates on your driver's location and estimated arrival time with live GPS tracking.</p>
-              </div>
-            </div>
-            
-            <div className="text-center relative">
-              <div className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <span className="text-3xl font-bold text-white">3</span>
-              </div>
-              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">Enjoy Your Ride</h3>
-                <p className="text-gray-800 leading-relaxed text-lg">Sit back and relax in our clean, comfortable vehicles with professional drivers and safe journey.</p>
-              </div>
-            </div>
+            {[1, 2, 3].map((step, index) => (
+              <motion.div 
+                key={step}
+                className="text-center relative"
+                initial={{ opacity: 0, y: 100, rotateY: -90 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 10,
+                  transition: { duration: 0.3 }
+                }}
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                <motion.div 
+                  className="w-24 h-24 bg-linear-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl"
+                  whileHover={{ 
+                    rotate: 360,
+                    scale: 1.1,
+                    transition: { duration: 0.8 }
+                  }}
+                >
+                  <span className="text-3xl font-bold text-white">{step}</span>
+                </motion.div>
+                <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-300 hover:shadow-xl transition-shadow duration-300">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                    {step === 1 ? "Book Your Ride" : step === 2 ? "Track Your Driver" : "Enjoy Your Ride"}
+                  </h3>
+                  <p className="text-gray-800 leading-relaxed text-lg">
+                    {step === 1 
+                      ? "Enter your pickup and drop location, select your preferred vehicle type, and confirm your booking with ease."
+                      : step === 2 
+                      ? "Get real-time updates on your driver's location and estimated arrival time with live GPS tracking."
+                      : "Sit back and relax in our clean, comfortable vehicles with professional drivers and safe journey."
+                    }
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -637,34 +742,124 @@ export default function Home() {
         <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm"
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring" }}
+            >
               <Star className="h-4 w-4 mr-2" />
               Customer Reviews
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6">What <span className="text-green-600"> Our Customers</span> Say</h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.</p>
+            </motion.div>
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              What <span className="text-green-600">Our Customers</span> Say
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.
+            </motion.p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <TestimonialCard
-              name="Rajesh Kumar"
-              location="Gurgaon"
-              rating={5}
-              comment="Excellent service! The driver was punctual and the car was clean. Will definitely use again."
-            />
-            <TestimonialCard
-              name="Priya Sharma"
-              location="Delhi"
-              rating={5}
-              comment="Safe and reliable. I use Evera Cabs for all my airport transfers. Highly recommended!"
-            />
-            <TestimonialCard
-              name="Amit Patel"
-              location="Noida"
-              rating={4}
-              comment="Great experience with outstation travel. Professional drivers and fair pricing."
-            />
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                name: "Rajesh Kumar",
+                location: "Gurgaon",
+                rating: 5,
+                comment: "Excellent service! The driver was punctual and the car was clean. The electric vehicle was so quiet and comfortable. Will definitely use again."
+              },
+              {
+                name: "Priya Sharma",
+                location: "Delhi",
+                rating: 5,
+                comment: "Safe and reliable. I use Evera Cabs for all my airport transfers. Never had a cancellation issue. Highly recommended!"
+              },
+              {
+                name: "Amit Patel",
+                location: "Noida",
+                rating: 5,
+                comment: "Great experience with car rentals. Professional drivers and fair pricing. The electric cars are amazing for the environment too."
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50, rotateY: -30 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <TestimonialCard {...testimonial} />
+              </motion.div>
+            ))}
           </div>
+
+          {/* Additional testimonials row */}
+          {/* <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                name: "Sneha Gupta",
+                location: "Faridabad",
+                rating: 5,
+                comment: "Amazing experience! The app is so easy to use and the drivers are very professional. Love that they're using electric vehicles."
+              },
+              {
+                name: "Vikram Singh",
+                location: "Ghaziabad",
+                rating: 4,
+                comment: "Reliable service for my daily office commute. No surge pricing is a huge plus. The electric cars are smooth and comfortable."
+              }
+            ].map((testimonial, index) => (
+              <motion.div
+                key={index + 3}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+              >
+                <TestimonialCard {...testimonial} />
+              </motion.div>
+            ))}
+          </div> */}
+
+          {/* Trust indicators */}
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-600">
+              <div className="flex items-center">
+                <div className="flex text-green-500 mr-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-current" />
+                  ))}
+                </div>
+                <span className="font-semibold">4.8/5 Average Rating</span>
+              </div>
+              <div className="flex items-center">
+                <Users className="h-5 w-5 mr-2 text-green-600" />
+                <span className="font-semibold">50,000+ Happy Customers</span>
+              </div>
+              <div className="flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+                <span className="font-semibold">99% On-Time Performance</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -712,25 +907,25 @@ export default function Home() {
             </div>
             
             <div className="text-center">
-              <div className="bg-transparent backdrop-blur-sm rounded-2xl p-20 shadow-xl border border-gray-300">
-                  {/* <div className="absolute inset-0 opacity-50"> */}
-                    <Image 
-                      src="/AKP02057-Enhanced-NR.jpg" 
-                      alt="EveraCabs App Background" 
-                      fill
-                      className="object-cover rounded-2xl mb-6 shadow-2xl hover:scale-105 transition-transform duration-300" 
-                    />
-                  {/* </div> */}
-                <h3 className="text-2xl font-bold text-black mb-4">EveraCabs</h3>
-                <p className="text-black mb-6">Your trusted ride partner</p>
-                <div className="flex justify-center space-x-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-black">4.8★</div>
-                    <div className="text-sm text-black">App Rating</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-black">1M+</div>
-                    <div className="text-sm text-black">Downloads</div>
+              <div className="bg-transparent backdrop-blur-sm rounded-2xl p-20 shadow-xl border border-gray-300 relative">
+                <Image 
+                  src="/AKP02057-Enhanced-NR.jpg" 
+                  alt="EveraCabs App Background" 
+                  fill
+                  className="object-cover rounded-2xl mb-6 shadow-2xl hover:scale-105 transition-transform duration-300" 
+                />
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-black mb-4">EveraCabs</h3>
+                  <p className="text-black mb-6">Your trusted ride partner</p>
+                  <div className="flex justify-center space-x-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-black">4.8★</div>
+                      <div className="text-sm text-black">App Rating</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-black">1M+</div>
+                      <div className="text-sm text-black">Downloads</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -763,10 +958,10 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Services</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">City Rides</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Airport Transfer</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Outstation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Car Rental</a></li>
+                <li><a href="#" className="hover:text-green-600 transition-colors">City Rides</a></li>
+                <li><a href="#" className="hover:text-green-600 transition-colors">Airport Transfer</a></li>
+                <li><a href="#" className="hover:text-green-600 transition-colors">Outstation</a></li>
+                <li><a href="#" className="hover:text-green-600 transition-colors">Car Rental</a></li>
               </ul>
             </div>
             
@@ -801,8 +996,41 @@ export default function Home() {
 
     {/* Service Details Modal */}
     {isModalOpen && selectedService && (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <motion.div 
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div 
+          className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          initial={{ 
+            scale: 0.8, 
+            rotateY: -90, 
+            opacity: 0,
+            transformPerspective: 1000
+          }}
+          animate={{ 
+            scale: 1, 
+            rotateY: 0, 
+            opacity: 1,
+            transformPerspective: 1000
+          }}
+          exit={{ 
+            scale: 0.8, 
+            rotateY: 90, 
+            opacity: 0,
+            transformPerspective: 1000
+          }}
+          transition={{ 
+            duration: 0.6, 
+            ease: "easeInOut",
+            type: "spring",
+            stiffness: 100
+          }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
           <div className="p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-gray-900">{selectedService.title}</h2>
@@ -881,8 +1109,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     )}
     </>
   );
