@@ -13,7 +13,6 @@ import { AnimatedCounter } from "@/components/animated-counter";
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 // Lazy load heavy components with preload
 const TestimonialCard = lazy(() => import("@/components/testimonial-card").then(m => ({ default: m.TestimonialCard })));
-import { LoadingSkeleton, SectionSkeleton } from "@/components/loading-skeleton";
 
 interface ServiceDetails {
   title: string;
@@ -956,7 +955,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <Suspense fallback={<SectionSkeleton />}>
+      <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
         <section className="py-20 bg-linear-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
           <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
