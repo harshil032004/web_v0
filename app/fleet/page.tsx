@@ -3,6 +3,7 @@
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Car, Users, Luggage, Star, Shield, CheckCircle, Award, Zap, Leaf } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export default function FleetPage() {
       linear: "from-white to-white",
       // icon: "🚙",
       // price: "$45/day",
-      imageSrc: "/Tata-land.png"
+      imageSrc: "/Tata-land.jpg"
     },
     {
       name: "Electric SUV",
@@ -29,7 +30,15 @@ export default function FleetPage() {
       linear: "from-white to-white",
       // icon: "🚘",
       // price: "$65/day",
-      imageSrc: "/MG-land.png"
+      imageSrc: "/MG-land.jpg"
+    },
+    {
+      name: "Electric Citroen",
+      seats: "4 Seats",
+      luggage: "3 Bags",
+      features: ["Premium AC", "GPS Navigation", "Premium Interior", "USB Charging"],
+      linear: "from-white to-white",
+      imageSrc: "/Citroen-land.jpg"
     },
   ];
 
@@ -45,10 +54,22 @@ export default function FleetPage() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+          {/* Bouncing badge */}
+          <motion.div
+            className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+            initial={{ y: -50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: [0, -5, 5, 0],
+              transition: { duration: 0.5 }
+            }}
+          >
             <Leaf className="h-4 w-4 mr-2" />
             100% Electric Fleet
-          </div>
+          </motion.div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
             Our Premium  <span className="text-green-600">Electric Fleet</span>
           </h1>
@@ -64,10 +85,22 @@ export default function FleetPage() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
               <Car className="h-4 w-4 mr-2" />
               Choose Your Vehicle
-            </div>
+            </motion.div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Vehicle for Every Journey
             </h2>
@@ -76,7 +109,7 @@ export default function FleetPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {vehicles.map((vehicle, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-2xl transition-all duration-300 bg-white/90 backdrop-blur-sm">
                 <CardContent className="p-0">
@@ -107,10 +140,10 @@ export default function FleetPage() {
                       </div>
                     </div>
                     
-                    <div className="p-8">
-                      <div className="flex justify-between items-start mb-6">
+                    <div className="p-6">
+                      <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-2xl font-bold text-gray-900 mb-3">{vehicle.name}</h3>
+                          <h3 className="text-2xl font-bold text-green-600 mb-3">{vehicle.name}</h3>
                           <div className="flex items-center space-x-4 text-gray-600">
                             <div className="flex items-center bg-gray-100 px-3 py-1 rounded-full">
                               <Users className="h-4 w-4 mr-1" />
@@ -163,11 +196,23 @@ export default function FleetPage() {
       <section className="py-16 sm:py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm">
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
               <Award className="h-4 w-4 mr-2" />
               Premium Quality
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">Why Choose Our Fleet?</h2>
+            </motion.div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">Why <span className="text-green-600">Choose</span> Our <span className="text-green-600">Fleet</span>?</h2>
             <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto">
               Every vehicle meets the highest standards of quality, safety, and sustainability
             </p>
@@ -225,7 +270,7 @@ export default function FleetPage() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-6">
-            Ready to Book Your Electric Ride?
+            Ready to <span className="text-green-600">Book</span> Your <span className="text-green-600">Electric</span> Ride?
           </h2>
           <p className="text-lg sm:text-xl text-black mb-8 max-w-2xl mx-auto leading-relaxed">
             Choose your preferred electric vehicle and enjoy a comfortable, eco-friendly journey.
