@@ -3,6 +3,7 @@
 import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Shield, Car, Award, Clock, CheckCircle, Target, Eye, Heart, Leaf, Sparkles, TrendingUp, Globe, Wind, Droplets, Section } from "lucide-react";
 import Link from "next/link";
 // import { AnimatedCounter } from "@/components/animated-counter";
@@ -18,10 +19,22 @@ export default function About() {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+          {/* Bouncing badge */}
+          <motion.div
+            className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+            initial={{ y: -50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: [0, -5, 5, 0],
+              transition: { duration: 0.5 }
+            }}
+          >
             <Award className="h-4 w-4 mr-2" />
             Our Story & Values
-          </div>
+          </motion.div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
             <span className="text-green-600">About</span> Evera Cabs
           </h1>
@@ -36,10 +49,22 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+              {/* Bouncing badge */}
+              <motion.div
+                className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+                initial={{ y: -50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, -5, 5, 0],
+                  transition: { duration: 0.5 }
+                }}
+              >
                 <Car className="h-4 w-4 mr-2" />
                 Our Journey
-              </div>
+              </motion.div>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Revolutionizing Urban Mobility</h2>
               <p className="text-lg text-black mb-6 leading-relaxed">
                 Evera Cabs is pioneering India's transition to all-electric mobility. We're not just another cab service – we're building a cleaner, safer, and more reliable commuting experience for millions of Indians.
@@ -109,10 +134,22 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
-              <Leaf className="h-4 w-4 mr-2 animate-pulse" />
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
+              <Leaf className="h-4 w-4 mr-2" />
               Driving Towards a Greener Future
-            </div>
+            </motion.div>
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Every Ride Makes a
               <span className="block text-transparent bg-clip-text bg-green-600 mt-2">
@@ -219,10 +256,22 @@ export default function About() {
       <section className="py-16 sm:py-20 bg-white/20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
               <Heart className="h-4 w-4 mr-2" />
               What Drives Us
-            </div>
+            </motion.div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-4">Our Core Values</h2>
             <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto">
               The principles that guide everything we do

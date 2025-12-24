@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, lazy, Suspense, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
-// import { FeatureCard } from "@/components/feature-card";
-import { ServiceCard } from "@/components/service-card";
-import { TestimonialCard } from "@/components/testimonial-card";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ScrollAnimation } from "@/components/scroll-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { Shield, Star, Car, Users, CreditCard, Clock, MapPin, Phone, CheckCircle, Award, Smartphone, Headphones, X, Heart, Leaf, Quote, Plane } from "lucide-react";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { motion } from 'framer-motion';
+
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+// Lazy load heavy components with preload
+const TestimonialCard = lazy(() => import("@/components/testimonial-card").then(m => ({ default: m.TestimonialCard })));
+import { LoadingSkeleton, SectionSkeleton } from "@/components/loading-skeleton";
 
 interface ServiceDetails {
   title: string;
@@ -107,8 +108,50 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const { scrollYProgress } = useScroll();
+  const heroRef = useRef(null);
+  const isHeroInView = useInView(heroRef, { once: true, margin: "-100px" });
+  const [screenSize, setScreenSize] = useState('lg');
 
-  // Hanging card data with images
+  useEffect(() => {
+    const updateScreenSize = () => {
+      if (window.innerWidth < 640) setScreenSize('sm');
+      else if (window.innerWidth < 768) setScreenSize('md');
+      else if (window.innerWidth < 1024) setScreenSize('lg');
+      else setScreenSize('xl');
+    };
+    
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+
+  const getResponsiveWidth = () => {
+    switch(screenSize) {
+      case 'sm': return '14rem';
+      case 'md': return '18rem';
+      case 'lg': return '22rem';
+      case 'xl': return '28rem';
+      default: return '20rem';
+    }
+  };
+
+  // Optimized animations with reduced motion support
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  // Hanging card data with enhanced animations
   const hangingCards = [
     { 
       icon: Car, 
@@ -116,7 +159,8 @@ export default function Home() {
       left: '10%',
       delay: 0,
       stringHeight: 80,
-      image: '🚗'
+      image: '🚗',
+      color: 'from-blue-500 to-blue-600'
     },
     { 
       icon: Plane, 
@@ -124,7 +168,8 @@ export default function Home() {
       right: '12%',
       delay: 0.5,
       stringHeight: 100,
-      image: '✈️'
+      image: '✈️',
+      color: 'from-green-500 to-green-600'
     },
     { 
       icon: MapPin, 
@@ -132,7 +177,8 @@ export default function Home() {
       left: '5%',
       delay: 1,
       stringHeight: 90,
-      image: '📍'
+      image: '📍',
+      color: 'from-red-500 to-red-600'
     },
     { 
       icon: Users, 
@@ -140,18 +186,26 @@ export default function Home() {
       right: '8%',
       delay: 1.5,
       stringHeight: 110,
-      image: '👥'
+      image: '👥',
+      color: 'from-purple-500 to-purple-600'
     }
   ];
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest('[data-dropdown]')) {
-        setIsAppDropdownOpen(false);
-      }
-    };
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as Element;
+    if (!target.closest('[data-dropdown]')) {
+      setIsAppDropdownOpen(false);
+    }
+  }, []);
 
+  const handleModalClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as Element;
+    if (!target.closest('[data-modal-content]')) {
+      setIsModalOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isAppDropdownOpen) {
       document.addEventListener('click', handleClickOutside);
     }
@@ -159,7 +213,17 @@ export default function Home() {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isAppDropdownOpen]);
+  }, [isAppDropdownOpen, handleClickOutside]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleModalClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleModalClickOutside);
+    };
+  }, [isModalOpen, handleModalClickOutside]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -167,9 +231,12 @@ export default function Home() {
 
     const handleEnded = () => {
       if (HERO_VIDEOS.length === 1) {
-        videoRef.current!.currentTime = 0;
-        videoRef.current!.play();
-      } else{
+        const currentVideo = videoRef.current;
+        if (currentVideo) {
+          currentVideo.currentTime = 0;
+          currentVideo.play().catch(console.error);
+        }
+      } else {
         setCurrentVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
       }
     };
@@ -182,86 +249,199 @@ export default function Home() {
     const video = videoRef.current;
     if (!video) return;
 
-    video.load();
-    video.play().catch(() => {});
+    let isLoading = false;
+
+    const loadAndPlay = async () => {
+      if (isLoading) return;
+      isLoading = true;
+      
+      try {
+        video.load();
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await video.play();
+      } catch (error) {
+        if (error instanceof Error && error.name !== 'AbortError') {
+          console.error('Video playback failed:', error);
+        }
+      } finally {
+        isLoading = false;
+      }
+    };
+
+    loadAndPlay();
   }, [currentVideo]);
 
 
   return (
     <>
-    <div className={`min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
+    <div className={`min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 overflow-x-hidden ${isModalOpen ? 'blur-sm' : ''} transition-all duration-300`}>
       <Navigation />
       <ScrollToTop />
 
       {/* Hero Section */}
-      <ScrollAnimation>
-        <section className="relative min-h-[65vh] sm:min-h-[65vh] overflow-hidden flex items-center bg-white">
+      <motion.section 
+        ref={heroRef}
+        className="relative min-h-[65vh] sm:min-h-[65vh] overflow-hidden flex items-center bg-white"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            ref={videoRef}
+            src={HERO_VIDEOS[currentVideo]}
+            autoPlay
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-          {/* Background Video */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <video
-              ref={videoRef}
-              src={HERO_VIDEOS[currentVideo]}
-              autoPlay
-              muted
-              playsInline
-              preload="auto"
-              className="w-full h-full object-cover"
-            />
-          </div>
+        {/* Overlay */}
+        <div className="absolute inset-0 z-5 bg-linear-to-r from-gray-900/10 via-gray-900/10 to-gray-900/10"></div>
 
-          {/* Overlay */}
-          <div className="absolute inset-0 z-5 bg-linear-to-r from-gray-900/10 via-gray-900/10 to-gray-900/10"></div>
+        {/* Content */}
+        <motion.div 
+          className="relative z-10 w-full max-w-[95%] sm:max-w-full lg:w-full lg:max-w-xl mx-auto lg:ml-105 text-left lg:text-left"
+          variants={staggerContainer}
+          initial="initial"
+          animate={isHeroInView ? "animate" : "initial"}
+        >
+          <div className="w-full lg:w-xl max-w-7xl gap-12 items-center">
 
-          {/* Content */}
-          <div className="relative z-10 w-full max-w-[95%] sm:max-w-full lg:w-full lg:max-w-xl mx-auto lg:ml-105 text-left lg:text-left">
-            <div className="w-full lg:w-xl max-w-7xl gap-12 items-center">
-
-              {/* Badge */}
-              <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-4 bg-gray-900/40 border border-gray-100/50 text-white rounded-full text-xs sm:text-sm font-semibold shadow-xl backdrop-blur-sm mb-4 sm:mb-6">
+            {/* Badge */}
+            <motion.div 
+              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-4 bg-gray-900/40 border border-gray-100/50 text-white rounded-full text-xs sm:text-sm font-semibold shadow-xl backdrop-blur-sm mb-4 sm:mb-6"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+              }}
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
                 <Award className="h-4 w-4 sm:h-5 sm:w-5 mr-4 text-white" />
-                India's Most Trusted Cab Service
+              </motion.div>
+              India's Most Trusted Cab Service
+            </motion.div>
+
+            {/* Main Content with Blurred Background */}
+            <motion.div 
+              className="bg-white/10 backdrop-blur-xs rounded-3xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 border border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300"
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+              }}
+            >
+              {/* Heading */}
+              <div className="space-y-2 sm:space-y-1 mb-3 sm:mb-4">
+                <motion.h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-gray-900 leading-[1.1] sm:leading-none tracking-[-0.01em]"
+                  variants={staggerContainer}
+                  initial="initial"
+                  animate={isHeroInView ? "animate" : "initial"}
+                >
+                  <motion.span
+                    className="block"
+                    variants={{
+                      initial: { opacity: 0, x: -100, rotateY: -90 },
+                      animate: { opacity: 1, x: 0, rotateY: 0 }
+                    }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    Book Your
+                  </motion.span>
+                  <motion.span
+                    className="block text-transparent bg-clip-text bg-linear-to-r from-green-600 to-green-600"
+                    variants={{
+                      initial: { opacity: 0, x: 100, rotateY: 90 },
+                      animate: { opacity: 1, x: 0, rotateY: 0 }
+                    }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  >
+                    Perfect Ride
+                  </motion.span>
+                </motion.h1>
+                <motion.div 
+                  className="h-1.5 sm:h-2 bg-linear-to-r from-gray-600 to-gray-900 rounded-full mx-full lg:mx-0"
+                  initial={{ width: 0 }}
+                  animate={{ width: isHeroInView ? getResponsiveWidth() : 0 }}
+                  transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+                />
               </div>
 
-              {/* Main Content with Blurred Background */}
-              <div className="bg-white/10 backdrop-blur-xs rounded-3xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 border border-white/30 shadow-xl hover:shadow-2xl transition-all duration-300">
-                {/* Heading */}
-                <div className="space-y-2 sm:space-y-1 mb-3 sm:mb-4">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-black text-gray-900 leading-[1.1] sm:leading-none tracking-[-0.01em]">
-                    <span className="block animate-slide-in-left">Book Your</span>
-                    <span className="block text-transparent bg-clip-text bg-linear-to-r from-green-600 to-green-600 animate-slide-in-right animation-delay-200">
-                      Perfect Ride
-                    </span>
-                  </h1>
-                  <div className="w-55 sm:w-110 h-1.5 sm:h-2 bg-linear-to-r from-gray-600 to-gray-900 rounded-full mx-full lg:mx-0 animate-expand-width animation-delay-400"></div>
-                </div>
+              {/* Subtext */}
+              <motion.p 
+                className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-800 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium mb-6 sm:mb-8"
+                variants={fadeInUp}
+                transition={{ delay: 0.6 }}
+              >
+                <motion.span 
+                  className="font-semibold text-gray-900"
+                  animate={{ 
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  style={{
+                    background: "linear-gradient(90deg, #1f2937, #059669, #1f2937)",
+                    backgroundSize: "200% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent"
+                  }}
+                >
+                  Electric Vehicles | Experienced Drivers | Premium
+                </motion.span>
+              </motion.p>
 
-                  {/* Subtext */}
-                <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-800 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium animate-fade-in animation-delay-600 mb-6 sm:mb-8">
-                  <span className="font-semibold text-gray-900">
-                    Electric Vehicles | Experienced Drivers | Premium
-                  </span>
-                </p>
+              {/* CTA Buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center mb-6 sm:mb-8"
+                variants={fadeInUp}
+                transition={{ delay: 0.8 }}
+              >
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center animate-fade-in animation-delay-800 mb-6 sm:mb-8">
-
-                    {/* Download App */}
-                    <div className="relative w-full sm:w-auto" data-dropdown>
+                {/* Download App */}
+                <div className="relative w-full sm:w-auto" data-dropdown>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <Button
                       size="lg"
-                      className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto rounded-xl font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                      className="bg-black hover:bg-gray-800 text-white px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 text-sm sm:text-base"
                       onClick={(e) => {
                         e.stopPropagation();
                         setIsAppDropdownOpen(!isAppDropdownOpen);
                       }}
                     >
-                      <Smartphone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                      <motion.div
+                        animate={{ rotate: isAppDropdownOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Smartphone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                      </motion.div>
                       Download App
                     </Button>
+                  </motion.div>
 
-                      {isAppDropdownOpen && (
-                        <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 sm:left-0 sm:transform-none bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[200px] sm:min-w-[220px] z-50 animate-fade-in">
+                  <AnimatePresence>
+                    {isAppDropdownOpen && (
+                      <motion.div 
+                        className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 sm:left-0 sm:transform-none bg-white rounded-xl shadow-2xl border border-gray-100 min-w-[200px] sm:min-w-[220px] z-50"
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <motion.div
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
                           <Link
                             href="https://qrcodes.pro/2g0L5e"
                             target="_blank"
@@ -271,6 +451,11 @@ export default function Home() {
                             <Image src="/Android-icon.png" alt="Android" width={18} height={18} className="mr-3" />
                             Download for Android
                           </Link>
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
                           <Link
                             href="https://apps.apple.com/in/app/evera/id1625582988"
                             target="_blank"
@@ -280,38 +465,67 @@ export default function Home() {
                             <Image src="/apple.png" alt="iOS" width={18} height={18} className="mr-3" />
                             Download for iOS
                           </Link>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Book Ride */}
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white w-full sm:w-auto rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base"
-                    asChild
-                  >
-                    <Link href="/book">Book Ride</Link>
-                  </Button>
-                  </div>
-
-                  {/* Features */}
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-left animate-fade-in animation-delay-1000">
-                  {["GPS Enabled", "24/7 Support", "Safe & Secure"].map((item) => (
-                    <div key={item} className="flex items-center group">
-                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center mr-2 sm:mr-3">
-                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
-                      </div>
-                      <span className="text-xs sm:text-sm font-semibold text-black">{item}</span>
-                    </div>
-                  ))}
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              </div>
-              <div className="hidden lg:block"></div>
-            </div>
+
+                {/* Book Ride */}
+                <div className="relative w-full sm:w-auto">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base"
+                      asChild
+                    >
+                      <Link href="/book">Book Ride</Link>
+                    </Button>
+                  </motion.div>
+                </div>  
+              </motion.div>
+
+              {/* Features */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-left"
+                variants={staggerContainer}
+                initial="initial"
+                animate={isHeroInView ? "animate" : "initial"}
+              >
+                {["GPS Enabled", "24/7 Support", "Safe & Secure"].map((item, index) => (
+                  <motion.div 
+                    key={item} 
+                    className="flex items-center group"
+                    variants={{
+                      initial: { opacity: 0, x: -20 },
+                      animate: { opacity: 1, x: 0 }
+                    }}
+                    transition={{ delay: 1 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <motion.div 
+                      className="w-6 h-6 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center mr-2 sm:mr-3"
+                      whileHover={{ 
+                        rotate: 360,
+                        scale: 1.2
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
+                    </motion.div>
+                    <span className="text-xs sm:text-sm font-semibold text-black">{item}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+            <div className="hidden lg:block"></div>
           </div>
-        </section>
-      </ScrollAnimation>
+        </motion.div>
+      </motion.section>
 
       {/* Electric Cab Service Section */}
       <section className="py-12 sm:py-16 lg:py-20 overflow-hidden relative">
@@ -333,6 +547,8 @@ export default function Home() {
                   alt="Electric Cab"
                   width={400}
                   height={300}
+                  priority={false}
+                  loading="lazy"
                   className="w-full max-w-full h-auto object-contain rounded-xl shadow-2xl border border-gray-300 hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -355,9 +571,10 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-8 sm:py-12 lg:py-16 xl:py-20 overflow-hidden relative bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
+      <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
+        <section className="py-8 sm:py-12 lg:py-16 xl:py-20 overflow-hidden relative bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-6 sm:mb-8 lg:mb-12 xl:mb-16">
             {/* Floating badge */}
             <motion.div
               className="inline-block mb-4"
@@ -366,29 +583,29 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
             >
-              <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
-                ✨ Why Choose Us
-              </div>
+                <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+                  ✨ Why Choose Us
+                </div>
             </motion.div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-black mb-2 sm:mb-4">More Than a Cab</h2>
-            <div className="relative inline-block">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-green-600">A Better Way to Commute</h3>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-black mb-2 sm:mb-4">More Than a Cab</h2>
+              <div className="relative inline-block">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-green-600">A Better Way to Commute</h3>
+              </div>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              { icon: CreditCard, title: "NO SURGE", desc: "Fixed pricing regardless of traffic or demand. No surprise charges." },
-              { icon: X, title: "NO SERVICE DENIALS", desc: "Professional drivers can't cancel your ride. Only you control your trip." },
-              { icon: Leaf, title: "NO EMISSIONS", desc: "100% electric fleet. Zero emissions. Cleaner cities." },
-              { icon: Users, title: "PROFESSIONAL DRIVERS", desc: "Trained, certified drivers. Hassle-free rides guaranteed." },
-              { icon: Heart, title: "COMFORT", desc: "Smooth electric vehicles. No gears, no jerks, maximum comfort." },
-              { icon: Shield, title: "SAFETY", desc: "Background-checked drivers. Advanced safety features. Your security first." }
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="text-center text-green-600"
-              >
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {[
+                { icon: CreditCard, title: "NO SURGE", desc: "Fixed pricing regardless of traffic or demand. No surprise charges." },
+                { icon: X, title: "NO SERVICE DENIALS", desc: "Professional drivers can't cancel your ride. Only you control your trip." },
+                { icon: Leaf, title: "NO EMISSIONS", desc: "100% electric fleet. Zero emissions. Cleaner cities." },
+                { icon: Users, title: "PROFESSIONAL DRIVERS", desc: "Trained, certified drivers. Hassle-free rides guaranteed." },
+                { icon: Heart, title: "COMFORT", desc: "Smooth electric vehicles. No gears, no jerks, maximum comfort." },
+                { icon: Shield, title: "SAFETY", desc: "Background-checked drivers. Advanced safety features. Your security first." }
+              ].map((item, index) => (
+                <div 
+                  key={index}
+                  className="text-center text-green-600"
+                >
                 <motion.div 
                   className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 border-2 sm:border-3 text-white border-black bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 lg:mb-6"
                   initial={{ scale: 0, rotate: -180 }}
@@ -404,75 +621,76 @@ export default function Home() {
                     stiffness: 200
                   }}
                 >
-                  <item.icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
-                </motion.div>
-                <h4 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 lg:mb-4">{item.title}</h4>
-                <p className="text-sm sm:text-base text-black leading-relaxed px-2">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+                    <item.icon className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
+                  </motion.div>
+                  <h4 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 lg:mb-4">{item.title}</h4>
+                  <p className="text-sm sm:text-base text-black leading-relaxed px-2">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Suspense>
 
       {/* Animated Statistics Section */}
-      <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url(/Website-banner-2.jpg)'}}></div>
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center text-white">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center text-white">
             <div>
-              <div className="mb-3 sm:mb-4">
-                <Car className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto text-white drop-shadow-lg" />
+              <div className="mb-2 sm:mb-4">
+                <Car className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto text-white drop-shadow-lg" />
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={25000000} />
               </div>
-              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">GREEN KM TRAVELLED</div>
+              <div className="text-xs sm:text-sm lg:text-lg font-bold tracking-wide drop-shadow-lg">GREEN KM TRAVELLED</div>
             </div>
             
             <div>
-              <div className="mb-3 sm:mb-4">
-                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-2 sm:mb-4">
+                <div className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={50000} />
               </div>
-              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">TREES SAVED</div>
+              <div className="text-xs sm:text-sm lg:text-lg font-bold tracking-wide drop-shadow-lg">TREES SAVED</div>
             </div>
             
             <div>
-              <div className="mb-3 sm:mb-4">
-                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-2 sm:mb-4">
+                <div className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 7V9C15 10.1 14.1 11 13 11V22H11V11C9.9 11 9 10.1 9 9V7H3V9C3 10.1 2.1 11 1 11V22H23V11C21.9 11 21 10.1 21 9Z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={1250000} />
               </div>
-              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">CARBON EMISSIONS SAVED</div>
+              <div className="text-xs sm:text-sm lg:text-lg font-bold tracking-wide drop-shadow-lg">CARBON EMISSIONS SAVED</div>
             </div>
             
             <div>
-              <div className="mb-3 sm:mb-4">
-                <div className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
-                  <svg className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+              <div className="mb-2 sm:mb-4">
+                <div className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto flex items-center justify-center">
+                  <svg className="h-8 w-8 sm:h-12 sm:w-12 lg:h-16 lg:w-16 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M16.5 3c.28 0 .5.22.5.5V6h2.5c.28 0 .5.22.5.5v14c0 .28-.22.5-.5.5s-.5-.22-.5-.5V18h-2v2.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-17c0-.28.22-.5.5-.5zM17 7v10h2V7h-2zM5 3c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4h10v-4H7c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h7c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1h-1v4c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-4H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4zm2 3l-3 5h2v3l3-5H7V6z" />
                   </svg>
                 </div>
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
+              <div className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
                 <AnimatedCounter end={200} />
               </div>
-              <div className="text-xs sm:text-sm lg:text-base xl:text-lg font-bold tracking-wide drop-shadow-lg">CHARGING STATIONS</div>
+              <div className="text-xs sm:text-sm lg:text-lg font-bold tracking-wide drop-shadow-lg">CHARGING STATIONS</div>
             </div>
           </div>
         </div>
@@ -562,7 +780,7 @@ export default function Home() {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black leading-tight mb-4">
-              Reliable electric mobility,
+              Reliable <span className="text-green-600">electric mobility</span>,
               <br className="hidden sm:block" />
               built for real journeys
             </h2>
@@ -575,7 +793,7 @@ export default function Home() {
           </motion.div>
 
           {/* Services Grid */}
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 key: "Airport Transfer",
@@ -604,7 +822,7 @@ export default function Home() {
             ].map((service, i) => (
               <motion.div
                 key={i}
-                className="group relative bg-white rounded-2xl border border-gray-200 p-6 lg:p-7 transition-all duration-300 shadow-2xl hover:shadow-xl hover:border-green-200 cursor-pointer"
+                className="group relative bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-4 sm:p-5 lg:p-6 xl:p-7 transition-all duration-300 shadow-lg hover:shadow-xl hover:border-green-200 cursor-pointer w-full"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -621,7 +839,7 @@ export default function Home() {
               >
                 {/* Status tag */}
                 <span
-                  className={`inline-block mb-4 text-xs font-semibold px-3 py-1 rounded-full ${
+                  className={`inline-block mb-3 sm:mb-4 text-xs font-semibold px-2 sm:px-3 py-1 rounded-full ${
                     service.tag === "Live"
                       ? "bg-green-100 text-green-700"
                       : "bg-gray-100 text-gray-600"
@@ -630,15 +848,15 @@ export default function Home() {
                   {service.tag}
                 </span>
 
-                <h3 className="text-2xl font-semibold text-green-600 mb-2">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-green-600 mb-2">
                   {service.title}
                 </h3>
 
-                <p className="text-sm text-black leading-relaxed mb-6">
+                <p className="text-sm text-black leading-relaxed mb-4 sm:mb-6">
                   {service.desc}
                 </p>
 
-                <div className="flex items-center text-md font-medium text-green-700 group-hover:text-green-800 transition-colors">
+                <div className="flex items-center text-sm sm:text-md font-medium text-green-700 group-hover:text-green-800 transition-colors">
                   Learn more
                   <span className="ml-2 transition-transform group-hover:translate-x-1">
                     →
@@ -738,130 +956,85 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-linear-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <motion.div
-              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-4 shadow-xl backdrop-blur-sm"
-              initial={{ scale: 0, rotate: -180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, type: "spring" }}
-            >
-              <Star className="h-4 w-4 mr-2" />
-              Customer Reviews
-            </motion.div>
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              What <span className="text-green-600">Our Customers</span> Say
-            </motion.h2>
-            <motion.p 
-              className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.
-            </motion.p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                name: "Rajesh Kumar",
-                location: "Gurgaon",
-                rating: 5,
-                comment: "Excellent service! The driver was punctual and the car was clean. The electric vehicle was so quiet and comfortable. Will definitely use again."
-              },
-              {
-                name: "Priya Sharma",
-                location: "Delhi",
-                rating: 5,
-                comment: "Safe and reliable. I use Evera Cabs for all my airport transfers. Never had a cancellation issue. Highly recommended!"
-              },
-              {
-                name: "Amit Patel",
-                location: "Noida",
-                rating: 5,
-                comment: "Great experience with car rentals. Professional drivers and fair pricing. The electric cars are amazing for the environment too."
-              }
-            ].map((testimonial, index) => (
+      <Suspense fallback={<SectionSkeleton />}>
+        <section className="py-20 bg-linear-to-br from-slate-50 via-stone-50 to-zinc-50 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-60" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23fbbf24\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16"> 
+              {/* Bouncing badge */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, rotateY: -30 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+                initial={{ y: -50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, -5, 5, 0],
+                  transition: { duration: 0.5 }
+                }}
               >
-                <TestimonialCard {...testimonial} />
+                <Star className="h-4 w-4 mr-2" />
+                Customer Reviews
               </motion.div>
-            ))}
-          </div>
-
-          {/* Additional testimonials row */}
-          {/* <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Sneha Gupta",
-                location: "Faridabad",
-                rating: 5,
-                comment: "Amazing experience! The app is so easy to use and the drivers are very professional. Love that they're using electric vehicles."
-              },
-              {
-                name: "Vikram Singh",
-                location: "Ghaziabad",
-                rating: 4,
-                comment: "Reliable service for my daily office commute. No surge pricing is a huge plus. The electric cars are smooth and comfortable."
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index + 3}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              >
-                <TestimonialCard {...testimonial} />
-              </motion.div>
-            ))}
-          </div> */}
-
-          {/* Trust indicators */}
-          <motion.div 
-            className="mt-16 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-600">
-              <div className="flex items-center">
-                <div className="flex text-green-500 mr-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-current" />
-                  ))}
+              <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-black to-black bg-clip-text text-transparent mb-6">
+                What <span className="text-green-600">Our Customers</span> Say
+              </h2>
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                Don't just take our word for it. Here's what our satisfied customers have to say about their experience with Evera Cabs.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {[
+                {
+                  name: "Rajesh Kumar",
+                  location: "Gurgaon",
+                  rating: 5,
+                  comment: "Excellent service! The driver was punctual and the car was clean. The electric vehicle was so quiet and comfortable. Will definitely use again."
+                },
+                {
+                  name: "Priya Sharma",
+                  location: "Delhi",
+                  rating: 5,
+                  comment: "Safe and reliable. I use Evera Cabs for all my airport transfers. Never had a cancellation issue. Highly recommended!"
+                },
+                {
+                  name: "Amit Patel",
+                  location: "Noida",
+                  rating: 5,
+                  comment: "Great experience with car rentals. Professional drivers and fair pricing. The electric cars are amazing for the environment too."
+                }
+              ].map((testimonial, index) => (
+                <div key={index}>
+                  <TestimonialCard {...testimonial} />
                 </div>
-                <span className="font-semibold">4.8/5 Average Rating</span>
-              </div>
-              <div className="flex items-center">
-                <Users className="h-5 w-5 mr-2 text-green-600" />
-                <span className="font-semibold">50,000+ Happy Customers</span>
-              </div>
-              <div className="flex items-center">
-                <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
-                <span className="font-semibold">99% On-Time Performance</span>
+              ))}
+            </div>
+
+            <div className="mt-16 text-center">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-8 text-gray-600">
+                <div className="flex items-center">
+                  <div className="flex text-green-500 mr-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-current" />
+                    ))}
+                  </div>
+                  <span className="font-semibold">4.8/5 Average Rating</span>
+                </div>
+                <div className="flex items-center">
+                  <Users className="h-5 w-5 mr-2 text-green-600" />
+                  <span className="font-semibold">50,000+ Happy Customers</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+                  <span className="font-semibold">99% On-Time Performance</span>
+                </div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </Suspense>
 
       {/* App Download Section */}
       <section className="py-20 relative overflow-hidden">
@@ -907,27 +1080,13 @@ export default function Home() {
             </div>
             
             <div className="text-center">
-              <div className="bg-transparent backdrop-blur-sm rounded-2xl p-20 shadow-xl border border-gray-300 relative">
+              <div className="bg-transparent backdrop-blur-sm rounded-2xl p-45 shadow-xl border border-gray-300 relative">
                 <Image 
-                  src="/AKP02057-Enhanced-NR.jpg" 
+                  src="/download-section-img.jpg" 
                   alt="EveraCabs App Background" 
                   fill
                   className="object-cover rounded-2xl mb-6 shadow-2xl hover:scale-105 transition-transform duration-300" 
                 />
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-black mb-4">EveraCabs</h3>
-                  <p className="text-black mb-6">Your trusted ride partner</p>
-                  <div className="flex justify-center space-x-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-black">4.8★</div>
-                      <div className="text-sm text-black">App Rating</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-black">1M+</div>
-                      <div className="text-sm text-black">Downloads</div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -991,127 +1150,140 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
     </div>
 
     {/* Service Details Modal */}
-    {isModalOpen && selectedService && (
-      <motion.div 
-        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <motion.div 
-          className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-          initial={{ 
-            scale: 0.8, 
-            rotateY: -90, 
-            opacity: 0,
-            transformPerspective: 1000
+    <AnimatePresence>
+      {isModalOpen && selectedService && (
+        <motion.div
+          className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            position: 'fixed'
           }}
-          animate={{ 
-            scale: 1, 
-            rotateY: 0, 
-            opacity: 1,
-            transformPerspective: 1000
-          }}
-          exit={{ 
-            scale: 0.8, 
-            rotateY: 90, 
-            opacity: 0,
-            transformPerspective: 1000
-          }}
-          transition={{ 
-            duration: 0.6, 
-            ease: "easeInOut",
-            type: "spring",
-            stiffness: 100
-          }}
-          style={{ transformStyle: "preserve-3d" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-3xl font-bold text-gray-900">{selectedService.title}</h2>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X className="h-6 w-6 text-gray-500" />
-              </button>
-            </div>
-            
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              {selectedService.description}
-            </p>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                  Key Features
-                </h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {selectedService.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-green-600 rounded-full mr-3 shrink-0"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+          <motion.div 
+            className="bg-white rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-4 sm:mx-0"
+            data-modal-content
+            initial={{ 
+              scale: 0.8, 
+              rotateY: -90, 
+              opacity: 0,
+              transformPerspective: 1000
+            }}
+            animate={{ 
+              scale: 1, 
+              rotateY: 0, 
+              opacity: 1,
+              transformPerspective: 1000
+            }}
+            exit={{ 
+              scale: 0.8, 
+              rotateY: 90, 
+              opacity: 0,
+              transformPerspective: 1000
+            }}
+            transition={{ 
+              duration: 0.6, 
+              ease: "easeInOut",
+              type: "spring",
+              stiffness: 100
+            }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <div className="p-4 sm:p-6">
+              <div className="flex justify-between items-center mb-4 sm:mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{selectedService.title}</h2>
+                <button
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    document.body.style.overflow = 'unset';
+                  }}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="h-6 w-6 text-gray-500" />
+                </button>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-green-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <CreditCard className="h-4 w-4 text-green-600 mr-2" />
-                    Pricing
-                  </h4>
-                  <p className="text-gray-700">{selectedService.pricing}</p>
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
+                {selectedService.description}
+              </p>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                    <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                    Key Features
+                  </h3>
+                  <ul className="grid grid-cols-1 gap-2">
+                    {selectedService.features.map((feature, index) => (
+                      <li key={index} className="flex items-start text-sm sm:text-base text-gray-700">
+                        <div className="w-2 h-2 bg-green-600 rounded-full mr-3 shrink-0 mt-2"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 
-                <div className="bg-blue-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                    <MapPin className="h-4 w-4 text-blue-600 mr-2" />
-                    Availability
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="bg-green-50 p-3 sm:p-4 rounded-xl">
+                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center text-sm sm:text-base">
+                      <CreditCard className="h-4 w-4 text-green-600 mr-2" />
+                      Pricing
+                    </h4>
+                    <p className="text-sm sm:text-base text-gray-700">{selectedService.pricing}</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-3 sm:p-4 rounded-xl">
+                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center text-sm sm:text-base">
+                      <MapPin className="h-4 w-4 text-blue-600 mr-2" />
+                      Availability
+                    </h4>
+                    <p className="text-sm sm:text-base text-gray-700">{selectedService.availability}</p>
+                  </div>
+                </div>
+                
+                <div className="bg-gray-50 p-3 sm:p-4 rounded-xl">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center text-sm sm:text-base">
+                    <Clock className="h-4 w-4 text-gray-600 mr-2" />
+                    Booking Information
                   </h4>
-                  <p className="text-gray-700">{selectedService.availability}</p>
+                  <p className="text-sm sm:text-base text-gray-700">{selectedService.bookingInfo}</p>
+                </div>
+                
+                <div className="flex flex-col gap-3 pt-4">
+                  <Button
+                    className="w-full bg-green-600 hover:bg-green-700 text-white"
+                    asChild
+                  >
+                    <Link href="/book">
+                      Book Now
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
+                    asChild
+                  >
+                    <Link href="/contact">
+                      Contact Support
+                    </Link>
+                  </Button>
                 </div>
               </div>
-              
-              <div className="bg-gray-50 p-4 rounded-xl">
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                  <Clock className="h-4 w-4 text-gray-600 mr-2" />
-                  Booking Information
-                </h4>
-                <p className="text-gray-700">{selectedService.bookingInfo}</p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <Button 
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white"
-                  asChild
-                >
-                  <Link href="/book">
-                    Book Now
-                  </Link>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
-                  asChild
-                >
-                  <Link href="/contact">
-                    Contact Support
-                  </Link>
-                </Button>
-              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    )}
+      )}
+    </AnimatePresence>
     </>
   );
 }

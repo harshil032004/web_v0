@@ -67,7 +67,7 @@ export const sampleVehicles: Vehicle[] = [
     category: 'Compact SUV',
     seats: '5 Seats',
     luggage: '2 Bags',
-    imageSrc: '/Tata.jpg',
+    imageSrc: '/Tata-land.jpg',
     features: [
       'GPS Navigation',
       'Climate Control',

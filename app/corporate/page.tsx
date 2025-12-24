@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Navigation } from "@/components/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 export default function CorporatePage() {
   const [formData, setFormData] = useState({
@@ -96,12 +98,22 @@ export default function CorporatePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left: Content */}
             <div className="text-left">
-              <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
-                </svg>
+              {/* Bouncing badge */}
+              <motion.div
+                className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+                initial={{ y: -50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: [0, -5, 5, 0],
+                  transition: { duration: 0.5 }
+                }}
+              >
+                <Star className="h-4 w-4 mr-2" />
                 Enterprise Solutions
-              </div>
+              </motion.div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
                 Corporate <span className="text-green-600">Mobility Solutions</span>
               </h1>
@@ -151,12 +163,24 @@ export default function CorporatePage() {
         <div className="absolute inset-0 opacity-30" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm">
+            {/* Bouncing badge */}
+            <motion.div
+              className="inline-flex items-center px-6 py-3 bg-green-600/10 border border-green-600/30 text-green-700 rounded-full text-sm font-semibold mb-6 shadow-xl backdrop-blur-sm"
+              initial={{ y: -50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
+              whileHover={{ 
+                scale: 1.1,
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.5 }
+              }}
+            >
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" />
               </svg>
               ESG Leadership
-            </div>
+            </motion.div>
             <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-6">Our ESG Commitments</h2>
             <p className="text-xl text-gray-800 max-w-4xl mx-auto leading-relaxed">
               Leading the way in sustainable mobility with environmentally responsible, 
@@ -282,7 +306,7 @@ export default function CorporatePage() {
       <section id="services" className="py-16 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-black mb-4">Our Services</h2>
+            <h2 className="text-5xl font-bold text-black mb-4">Our <span className="text-green-600">Services</span></h2>
             <p className="text-2xl text-gray-800">Comprehensive mobility solutions for your business needs</p>
           </div>
           
@@ -427,7 +451,7 @@ export default function CorporatePage() {
       <section className="py-20 relative overflow-hidden shadow-sm hover:shadow-lg transition-shadow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Started Today</h2>
+            <h2 className="text-5xl font-bold text-gray-900 mb-4">Get Started Today</h2>
             <p className="text-2xl text-gray-600">
               Ready to transform your corporate mobility? Let's discuss your requirements.
             </p>
